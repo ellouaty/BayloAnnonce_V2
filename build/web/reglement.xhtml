@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <title>Baylo</title>
+ 
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+    </h:head>
+  
+    <h:body style="">
+ 
+                	<ui:insert name = "navigation_barREG" >
+      <ui:include src = " ./partition/navigation_bar.xhtml" />
+   </ui:insert>
+		<!-- /NAVIGATION -->
+                
+               
+       
+
+      
+  
+                    
+					 
+  <div class="container" style="padding-bottom: 10px;padding-top: 10px ; width: 75%;" id="divEdition" >   
+  
+ 
+     <div   style="margin-top: 3px;margin-bottom: 2px;;padding-right: 0px;padding-left: 0px;"  id="divRegl">
+          <div class="col-md-12   " style="border-radius: 3px;padding-top:5px;margin-top: 10px;margin-bottom: 10px;">   
+                                              
+                                      <p:link outcome="acceuil" value="📑   Acceuil > "  style="font-size: 14px;  color: #155092 "></p:link> <h:outputText style="font-size: 12px;" value="  Réglement"></h:outputText>
+                                           
+      </div>
+         
+         
+        <div class="col-md-12   " style="height: 40px;border-radius: 3px;text-align: left;padding-top:8px;border: gray solid 1px;background-color: #FBFBFC ;margin-left: 0px;margin-right: 0px ">   
+                                              
+                                     <p:outputLabel value="📑  Réglement Du site :" style="color: #1b6d85 ;text-decoration: solid;font-size: 16px;margin-top:3px;margin-bottom:3px; "></p:outputLabel>
+                                                    
+      </div>
+            
+         
+         
+         
+          <div  class="col-md-12   " style="border-radius: 3px; text-align: left;padding-top:8px;border: gray solid 1px;padding-bottom: 8px;margin-right: 4px;margin-top: 10px;background-color: #FBFBFC " id="divRegleContent" >   
+          
+  
+ 
+                       <br/>
+  <div style="padding: 10px 15px;">
+<p>
+<em>Si une annonce est refusée pour non respect du règlement, il sera proposé à l'annonceur de la modifier. Baylo.ma se réserve le droit de juger de la conformité d'une annonce au règlement et à l'esprit du site. Le règlement est susceptible d'être modifié et peut être réactualisé en permanence.</em>
+</p>
+<p>
+<strong>Doublons:</strong><br/>
+Il est interdit de publier plusieurs annonces pour un même article, service ou emploi. Supprimez l'ancienne annonce désactivée, patientez un délai de 7 jours puis publiez votre nouvelle annonce. De même, il est interdit de publier des annonces pour un même article, service ou emploi sous différentes catégories ou dans différentes régions.Si vous voulez remonter votre annonce en haut de la page, il suffit d'opter pour notre service Renouvellement.
+</p>
+<p>
+<strong>Marketing:</strong><br/>
+Seules sont autorisées les annonces de vente, location, emploi ou service. L'utilisation d'une annonce à des fins de marketing pur est interdite.
+</p>
+<p>
+<strong>Annonce de particulier:</strong><br/>
+Les annonces catégorisées comme "Particulier" publiées sur Baylo.ma sont réservées aux personnes non commerciales, autorisées à s'engager par contrat légal.
+</p>
+<p>
+<strong>Annonce de professionnel:</strong><br/>
+Les annonces catégorisées comme "Professionnel" publiées sur Baylo.ma sont réservées aux entreprises. Baylo.ma se réserve le droit de juger du caractère professionnel d'une annonce.
+</p>
+<p>
+<strong>Services:</strong><br/>
+Les services proposés ou recherchés doivent respecter les lois en vigueur au Maroc pour chaque profession.
+</p>
+<p>
+<strong>Titre de l'annonce:</strong><br/>
+Le titre de l'annonce doit brièvement décrire l'article ou le service proposé. Il ne doit pas contenir des numéros de téléphones ou de termes tels que: <br/>- Urgent<br/>- Je vends, vente, à vendre, offre<br/>- Demande<br/>- Adresse web<br/>- Une date<br/>- Un nom d'entreprise<br/>- Une URL (adresse Web) <br/>- Un numéro de téléphone <br/>- Un lien ou un compte de réseaux sociaux <br/>Baylo.ma se réserve le droit de modifier le titre de l'annonce pour qu'il soit conforme au réglement.<br/>Aucun caractère inutile n'est autorisé dans le titre
+</p>
+<p>
+<strong>Texte de l'annonce:</strong><br/>
+L'article ou le service doit être décrit dans le texte de l'annonce. Il est interdit de proposer simplement un lien vers une autre page. Le texte des annonces ne doit pas être copié sur une autre annonce : ces textes sont protégés par le droit d'auteur.
+</p>
+<p>
+<strong>Langue:</strong><br/>
+Seules les annonces en Français sont autorisées.
+</p>
+<p>
+<strong>Catégories:</strong><br/>
+L'annonce doit être placée dans la catégorie décrivant le mieux l'article ou le service. Le cas échéant, Baylo.ma peut la déplacer dans la catégorie correspondante. Les biens et services n'appartenant pas à la même catégorie doivent être proposés dans des annonces séparées. Les annonces de vente doivent être classées sous "Offre", les annonces de recherche sous "Demande". "A louer" et "Demande de location" sont disponibles sous certaines catégories. Dans d'autres catégories, les annonces "A louer" doivent être classées sous "Offre (vous vendez un bien)", les annonces de demandes de location sous "Demande (vous recherchez un bien)".
+</p>
+ Cette limitation est susceptible d’être mise à jour à tout moment à la seule discrétion d’Baylo.ma.<br/><small>*Pour cette catégorie l'insertion est payante dès la 1ère annonce</small>
+<p></p>
+<p>
+<strong>Un seul véhicule ou une seule propriété par annonce:</strong><br/>
+Il est interdit de proposer plus d'un véhicule ou d'une propriété dans une même annonce, sauf en cas d'échange (par exemple 2 contre 1).
+</p>
+<p>
+<strong>Liens:</strong><br/>
+Les liens inclus dans l'annonce doivent être directement liés à l'article ou au service proposé. Le règlement régissant les annonces s'applique également au lien. Il est interdit d'établir un lien vers un autre site d'annonces classées ou d'enchères.
+</p>
+<p>
+<strong>Photos:</strong><br/>
+La vente d'animaux sur Baylo.ma doit se conformer à la législation en vigueur au Maroc.
+</p>
+<p>
+<strong>Biens piratés et contrefaçons:</strong><br/>
+Les annonces proposant des articles interdits à la vente de par la législation en vigueur au Maroc sont interdites.
+</p>
+<p>
+<strong>Règlement pour les animaux:</strong><br/>
+La vente d'animaux sur Baylo.ma doit se conformer à la législation en vigueur en Maroc .
+</p>
+<p>
+<strong>Articles illégaux:</strong>
+Les annonces proposant des articles interdits à la vente de par la législation en vigueur en Maroc sont interdites.
+<!--a href=" ">Voici une liste d'exemples de produits illégaux.</a-->
+</p>
+<p>
+<strong>Contenu injurieux:</strong><br/>
+Les annonces ou photos pouvant être perçues comme une insulte envers des individus, des groupes ethniques ou des personnalités sont interdites.
+</p>
+<p>
+<strong>Biens et services interdits:</strong>
+Baylo.ma a établi des restrictions sur certains biens ou services susceptibles d'être proposés.
+<!--a href=" ">Voici une liste de biens ou services non autorisés.</a-->
+</p>
+<p>
+<strong>Offres non réalistes:</strong><br/>
+Les offres non réalistes ne sont pas autorisées. Baylo.ma se réserve le droit de juger de ce qui n'est pas réaliste.
+</p>
+<p>
+<strong>Utilisation d'un service de dépôt d'annonces:</strong><br/>
+L’utilisation d’un service de dépôt d’annonces, au titre duquel des personnes sont payées pour déposer de très grandes quantités d'annonces sur les sites Web, ne sont pas autorisés sur Baylo.ma. Ces méthodes inondent le site de spams et rendent difficile la recherche d'autres contenus par les utilisateurs.
+</p>
+<p>
+<strong>Recevoir la newsletter Baylo.ma et être informé de nos promotions et actualités:</strong><br/>
+En déposant une annonce ou en répondant à une annonce vous nous autorisez à vous envoyer des emails ou des sms pour vous informer et vous aider à mieux vendre et acheter sur Baylo.ma. Vous disposez à tout moment du droit de vous désinscrire de ce service via les newsletters.
+</p>
+</div>
+<br/>
+ </div> 
+  
+  
+              
+                   
+              
+                                  
+         
+            
+     </div>
+                                                
+				  
+        
+                            
+                            
+                            
+                            </div>  
+
+  
+  
+  
+  
+  
+  
+			 <!--footer-->
+                         <div id="divFooter" style="position: relative">
+                                    <ui:insert name = "footerREG"   >
+                                                          <ui:include src = " ./partition/footer.xhtml" />
+                                                                 </ui:insert><!--/footer-->
+                         </div>
+                
+				<!-- /container -->
+                                
+                                
+			   
+                                 
+     
+
+
+                                
+			 
+     
+    </h:body></html>
+        
+   

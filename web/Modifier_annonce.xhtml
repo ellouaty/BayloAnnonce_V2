@@ -1,0 +1,829 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+                     
+                     <f:metadata>
+     
+                         <f:viewAction action="#{annonceBean.afficheAnn}"  immediate=""/>
+                   
+                       
+    
+</f:metadata>  
+    </h:head>
+  
+    <h:body   onload="changePannel();">
+ 
+                	<ui:insert name = "navigation_barPub" >
+      <ui:include src = "./partition/navigation_bar.xhtml" />
+   </ui:insert>
+		<!-- /NAVIGATION -->
+                
+               
+      
+               
+  
+                    
+					 
+  <div class="container" style="padding-bottom: 10px;padding-top: 10px ;" id="divEdition" >  
+      <h:form>
+       
+       <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12   " style="border-radius: 3px;padding-top:5px;margin-top: 10px;margin-bottom: 10px">           
+                                      <p:link outcome="acceuil" class="btn btn-link " id="linkAccRed"  value="  Acceuil > "  style="font-size: 14px;" ></p:link> <h:outputText style="font-size: 12px;" value="Modifier annonce"></h:outputText>
+                                           
+      </div>
+                                    
+      </h:form>
+      
+            
+     
+          <div id="panfeedbakM" style="display: none"  >
+             <div class="col-md-4" ></div>
+     <div class="col-md-4" style="" >  
+      
+                                              
+           <p:outputLabel style="margin-top: 150px;margin-bottom: 150px;color:#336699 " value="Annonce modifie avec succée elle sera publie apres  moderation " ></p:outputLabel>
+                                          
+           </div>
+             <div class="col-md-4"></div>         </div>
+        
+      
+             
+             
+      <c:if test="#{empty annonceBean.annonceToUpdate}">
+          <div class="col-md-4" ></div>
+     <div class="col-md-4" style="" >  
+      
+          <div id="panM" style="display: none">
+            <p:outputLabel style="margin-top: 150px;margin-bottom: 150px;color:#336699 " value="annonce introuvable !!" ></p:outputLabel>
+                                          
+          </div>
+            <div class="col-md-4"></div>         </div>
+        
+           </c:if>
+          
+       
+          
+          
+          
+     
+      <c:if test="#{not empty annonceBean.annonceToUpdate}">
+      
+      <div class="col-md-2 col-lg-2 hidden-sm hidden-xs  " style=""></div>  
+          <div class="col-md-8 col-lg-8 col-xs-12 col-sm-12   "  style="margin-top: 3px;margin-bottom: 2px;" id="divMod">
+            
+                 <h:form prependId="modForm" enctype="multipart/form-data"  >
+                                         <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12   " style="background-color:#E4E7ED ; height: 40px;border-radius: 3px;text-align: center;padding-top:8px;border-radius: 3px;border: #8D99AE solid 1px">   
+                                                 
+                                               <p:outputLabel value="Modifier votre annonce" style="color: #1b6d85 ;text-decoration: solid;font-size: 16px;margin-top:3px;margin-bottom:3px; "></p:outputLabel>
+                                                
+                                               
+                                    </div>
+                                  
+                                  
+                                  
+                                      <!--id="divAnnonce"-->
+                                              <div  style=" border-radius: 3px;padding-top:5px;padding-bottom: 5px ; padding-right:0px;padding-left: 15px;border-radius: 3px;background-color:#f8f8f8; border: #8D99AE solid 1px" id="divAnnonce">  
+                                                 
+                                                 
+                                                   <div id="divcat"  >  
+                                                                    <h:panelGrid columns="3"  >  
+                      <p:outputLabel for="listCat"  value="Categorie : " style="" id="labcat"/>
+                                        
+                                       <h:selectOneMenu  value="#{annonceBean.categorie}" id="listCat"  style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;margin-right: 10px; width:70% ">
+              
+ 			  <p:ajax listener="#{annonceBean.onCategorieChange}" update="sousCategorie" />
+			   <f:selectItem itemLabel="Categorie" itemValue="" noSelectionOption="true" />
+               <ui:insert><ui:include src = "./partition/Categorie.xhtml" />
+               </ui:insert>
+            
+               </h:selectOneMenu>  <p:spacer></p:spacer> 
+                                                      
+                    <p:outputLabel for="sousCategorie"  value="Sous categorie : "  style="justify-content: center;width: 154px" id="labsouscat"/>
+            
+                    <h:selectOneMenu  value="#{annonceBean.sousCategorie}" id="sousCategorie"  onchange="changePannel();"  style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:70%;margin-right: 10px"  >
+                               <f:selectItem itemLabel="sous categorie" itemValue=""  />
+                               <f:selectItems value="#{annonceBean.sousCategories}" />
+            </h:selectOneMenu>
+                    <p:spacer/>
+                                               
+                                  </h:panelGrid>               
+                                        
+                                               
+                                                 
+                                                 
+                                                 
+              
+                  </div>
+                                                   
+                                             <div    style=" " id="divradipub">
+                                              
+  <p:outputLabel for="Type" value="Type d'annonce :  "  style="width: 154px"/>
+  <h:selectOneRadio  value="#{annonceBean.typeAnnonce}"    class="radio-inline" id="Type"  >
+      <f:selectItem itemLabel="Offre&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"  itemValue="Offre"   /> 
+            <f:selectItem itemLabel="Demande" itemValue="Demande" /> 
+    </h:selectOneRadio>
+         </div>
+                  
+                                      <div id="divmarqMOD"  class="col-md-12" style="width: 700px ; padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px;display: none"> 
+                                                        
+                                                       
+                                                       <div id="marquev"  class="col-md-7" style="padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px;">
+                                                       
+                                                       <h:panelGrid columns="3" cellpadding="2"     >     
+                 
+                             
+                    <p:outputLabel for="marque" value="Marque : " style="width: 154px" />
+                
+                    
+                    
+                    <h:selectOneMenu  value="#{annonceBean.marque}" id="marque"    style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:100px ">
+                        <p:ajax listener="#{annonceBean.onMarqueChange}" update="modele" />
+                       
+               <ui:insert><ui:include src = "./partition/marque_item.xhtml" />
+               </ui:insert>  
+              </h:selectOneMenu>
+                
+                    <p:message for="marque" id="msgMRK" ></p:message>
+                 
+                                                       </h:panelGrid></div>
+                                                       
+                                                       <div  id ="divModelPub"  class="col-md-5" style="padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px;"> 
+                                                     <h:panelGrid columns="3"    style="display: inline"  >     
+                   
+                    <p:outputLabel for="modele" value="Modele: " style="width: 154px"  />
+             
+                    
+                    
+                    
+                    
+                    
+                    
+                    <h:selectOneMenu  value="#{annonceBean.modele}" id="modele"   style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:150px ">
+                               <f:selectItem itemLabel="Modele" itemValue="" noSelectionOption="true" />
+                               <f:selectItems value="#{annonceBean.modeles}" /> 
+            </h:selectOneMenu>
+                    
+                    
+                    <p:message for="modele" id="msgModele"></p:message>
+                                                </h:panelGrid>
+                                                       </div>
+                                                   </div>              
+                                                   
+                                                          
+                                                   <div id="divTypeVeh" style="display: none">
+                                                   
+                                                          <h:panelGrid columns="2" cellpadding="2"     >     
+                                                   
+               
+                                                       
+                                                    <p:row>
+                <p:column  > 
+                     <p:outputLabel for="SousCatv" value="Type de véhicule  : "  style="width: 154px"  />
+                </p:column> <p:column  > 
+                    <h:selectOneMenu      id="SousCatv" value="#{annonceBean.typeVehiculePro}"  style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:250px ">
+                                
+   
+        <ui:insert  name = "Viheculpro_item" >
+      <ui:include src = "./partition/Viheculpro_item.xhtml" />
+   </ui:insert>
+              </h:selectOneMenu>
+                </p:column>
+            </p:row> 
+                                                          </h:panelGrid></div>  
+                                                   
+                                                   <p:separator></p:separator>
+                                                   <div id="divTypCarb" style="display: none">
+                                                   
+                                                <h:panelGrid columns="3"    >     
+                                                   
+                
+                     <p:outputLabel for="TypCarb" value="Type de carburant  : " style="width: 154px"   />
+                <h:selectOneMenu  value="#{annonceBean.typeCarburant}" id="TypCarb"   style="font-size: 14px; height:22px;margin-top: 4px; line-height: 22px;width:150px ">
+                                
+      <ui:insert  name = "typeCarb_itemPub" >
+      <ui:include src = "./partition/typeCarb_item.xhtml" />
+   </ui:insert>
+        
+                </h:selectOneMenu>  <p:message for="TypCarb" id="msgCarb"></p:message>
+                 
+                                                          </h:panelGrid>
+                                                   
+                                                   
+                                                   
+                                                   </div>
+                                                   
+                                                       
+                                                   <div id="Annem" style="display: none">
+                                                   
+                                                      <h:panelGrid columns="3"    >     
+                                      
+                     <p:outputLabel for="ann" value="Année-Modele  :"  style="width: 154px" />
+                 <h:selectOneMenu  value="#{annonceBean.anneMOdel}" id="ann"   style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:150px ">
+                                 <f:selectItem itemLabel="Année-Modèle" itemValue="" />
+        <ui:insert  name = "anne_modelPub" >
+      <ui:include src = "./partition/anne_model.xhtml" />
+   </ui:insert>
+        
+                 </h:selectOneMenu>  <p:message for="ann" id="msgAn"></p:message>
+                                                                                         </h:panelGrid>                             
+                                                   </div>
+                                                   
+                                                    <div id="klmt" style="display: none">
+                                                   
+                                                        <h:panelGrid columns="3"    >     
+                                                   
+                                                   
+                   
+                                                       
+                                                    
+                     <p:outputLabel for="kml" value="Kilométrage  : " style="width: 154px"  />
+                  <h:selectOneMenu  value="#{annonceBean.kilomtrage}" id="kml"   style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:150px ">
+                             <f:selectItem itemLabel="Km " itemValue="" />   
+      <ui:insert  name = "KMLPub" >
+        <ui:include src = "./partition/km.xhtml" />
+   </ui:insert>
+        
+                  </h:selectOneMenu>  <p:message for="kml" id="msgKm"></p:message>
+                 
+                                                                                          </h:panelGrid></div>
+                                                
+                                                   
+                                                    <div id="divfisc" style="display: none">
+                                                                     
+                                                                                                <h:panelGrid columns="3"    >     
+                                                   
+                                                     
+                                                   
+                     <p:outputLabel for="pfsc" value="Puissance fiscale :   " style="width: 154px"  />
+              <h:selectOneMenu  value="#{annonceBean.puissanceFiscale}" id="pfsc"   style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:150px ">
+                                
+      
+                        
+                                  <f:selectItem itemLabel="Puissance fiscale" itemValue="" />                                     
+          <ui:insert  name = "PfiscalePub" >
+      <ui:include src = "./partition/Pfiscale.xhtml" />
+   </ui:insert>
+        
+                    </h:selectOneMenu>  <p:message id="msgpf" for="pfsc"></p:message>
+                 
+                                                                                          </h:panelGrid></div>
+                                                   
+                                                                                
+                                                    <div id="divEtage" style="display: none">
+                                                                     
+                                                                                          <h:panelGrid columns="3"    >     
+                                     
+                    <p:outputLabel for="etageP" value="Etage   : " style="width: 154px"  />
+               <h:selectOneMenu  value="#{annonceBean.etage}" id="etageP"   style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:150px ">
+                                
+      
+                        
+                                <f:selectItem itemLabel="Etage" itemValue="" />                                       
+          <ui:insert  name = "PetagePub" >
+      <ui:include src = "./partition/Petage.xhtml" />
+   </ui:insert>
+                                
+              </h:selectOneMenu>  
+                                                                       <p:message for="etageP" id="msgEtag"></p:message>                   </h:panelGrid></div>
+                                                   
+                                                
+                                               
+                                                   <div id="divPieces" style="display: none">
+                                                                     
+                                                                                          <h:panelGrid columns="3"    >     
+                                                    
+                    <p:outputLabel for="pieces" value="Nombre de pieces   : " style="width: 154px"  />
+                <h:selectOneMenu  value="#{annonceBean.nbPieces}" id="pieces"   style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:150px ">
+                                
+      
+                          <f:selectItem itemLabel="nombre de piéces" itemValue="" /> 
+                                                                      
+          <ui:insert  name = "PiecesPub" >
+      <ui:include src = "./partition/Pieces.xhtml" />
+   </ui:insert>
+                          <p:message id="msgPiec" for="pieces"></p:message>
+              </h:selectOneMenu>  
+                 
+                                                                                          </h:panelGrid></div>
+                                                   
+           
+                                                 
+                                                   
+                                                   
+                                                          <div id="divempEtzoon"  class="col-md-12" style="width: 700px ;padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px;display: none"> 
+                                                        
+                                                       
+                                                       
+                                                       <div id="divempPub"  class="col-md-7" style="padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px;">
+                                                       
+                                                       <h:panelGrid columns="3"     >     
+                  
+                    <p:outputLabel for="Emplace" value="Emplacement : " style="width: 154px" />
+                
+                    <p:inputText id="Emplace" value="#{annonceBean.emplacement}"  style="margin-bottom: 3px;width: 90% "  ></p:inputText>  
+                    <p:message id="msgEmp"  for="Emplace" ></p:message>
+                                                       </h:panelGrid>
+                                                       
+                                                       
+                                                       </div>
+                                                       
+                                                  <div  class="col-md-5" style="padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px;display: none" id="zoon"> 
+                                                     <h:panelGrid columns="3"   style="display: inline"  >     
+                  
+                    <p:outputLabel for="Z" value="Zooning: " style="width: 154px;margin-left: 4px"  />
+                <h:selectOneMenu  value="#{annonceBean.zone}" id="Z"   style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:100% ">
+                               <f:selectItem itemLabel="Zone" itemValue="" /> 
+                                                                     
+          <ui:insert  name = "ZoningPub" >
+      <ui:include src = "./partition/Zoning.xhtml" />
+   </ui:insert>
+              </h:selectOneMenu>  
+                   <p:message id="msgZ" for="Z" ></p:message>
+                                                </h:panelGrid>
+                                                   
+                                                       </div>
+                                                   
+                                                   
+                                                   
+                                                   </div>
+                                                   
+                                                   <div id="dvSuperPub" style="display: none">
+                                                       
+                                                             
+                                   
+                                                   
+                                                   
+                                  <h:panelGrid columns="4">     
+                                                    <p:outputLabel for="superPub"  value="Superficie :" style="width: 154px;"/>
+                                                       
+                                                       <p:inputText id="superPub" value="#{annonceBean.superficie}" style="margin-bottom: 3px;width: 88% "  ></p:inputText>
+                                                         <h:outputText value=" m2 "> </h:outputText>
+                                                   
+                                                   <p:message for="superPub" id="msgSuperf" />
+                                                       
+                                                           </h:panelGrid>    
+                                                                     
+                                                   
+                                                   
+                                                   
+                                                   </div> 
+                                                   
+                                                   
+                                                   
+                                                   <div id="divprixM" style="display: none">
+                                                       
+                                                <h:panelGrid columns="4">     
+                                                       
+                                                       <p:outputLabel for="prixM" value="Prix par m2 :" style="width: 154px;" />
+                                                     
+                                                       
+                                                       
+                                                       <p:inputText id="prixM" value="#{annonceBean.prixM2}"   style="margin-bottom: 3px; width: 91%"  ></p:inputText>
+                                                       <h:outputText value="Dh/m2 " style="padding-right: 4px"> </h:outputText>
+                                                   
+                                                   <p:message for="prixM" id="msgPrixM" />
+                                                       
+                                                           </h:panelGrid>    
+                                                   
+                                                   
+                                                   
+                                                   </div>        
+                                   
+                                                   
+                                                    <div id="divville">
+                                                                     
+                                                                                          <h:panelGrid columns="3"   >     
+                                                   
+                          
+                     <p:outputLabel for="vl" value="Ville   : " style="width: 154px"  />
+                 <h:selectOneMenu  value="#{annonceBean.ville}" id="vl"   style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:150px ">
+                                
+      
+                        
+             <ui:insert name = "Combo_villesPub" >
+      <ui:include src = "./partition/Combo_villes.xhtml" />
+   </ui:insert>
+        
+              </h:selectOneMenu>  
+                     <p:message for="vl" id="msgVil"></p:message>
+                                                                                          </h:panelGrid></div>
+                                                  
+                                                   <div id="titrePub"   >
+                                                        <h:panelGrid columns="3">
+                                                            <p:outputLabel value="Titre  :" for="tit" style="width: 154px;margin-bottom: 3px;margin-top: 3px;" />
+                                                            <p:inputText id="tit"  value="#{annonceBean.titre}"   style=" margin-bottom: 3px;text-transform: capitalize;width:90%"   ></p:inputText>
+                                                       <p:message for="tit" id="msgTitre"></p:message>
+                                                   
+                                                        </h:panelGrid>
+                                                   
+                                                   </div>
+                                                    <div id="DescMod"   >
+                                                        
+                                                        <h:panelGrid columns="3">
+                                                             
+                                                        <p:outputLabel value="Description :" for="descM"  style="width: 154px"/>
+                                                        <p:inputTextarea rows="10" id="descM" cols="50" value="#{annonceBean.description}" style="margin-bottom: 3px; width:80% " counter="display" maxlength="3000" counterTemplate="{0} caracteres restants." autoResize="false" />
+             
+                    
+                    <p:message   id="msgDesc" for="descM"  /> 
+                    <p:spacer></p:spacer> <h:outputText id="display"  /> <p:spacer></p:spacer>
+                          </h:panelGrid>
+                                 </div>
+                                                   
+                                                       <div id="prixPub">
+                                                           <h:panelGrid columns="4">
+                                                           <p:outputLabel value="Prix" for="PRIX"  style="width: 154px"/>
+        <p:inputText id="PRIX" value="#{annonceBean.prix}"  style="margin-bottom: 3px; " ></p:inputText>
+                                                       <h:outputText value=" DH"> </h:outputText>
+                                                       
+                                                       
+                                                       <p:message for="PRIX" id="msgPrix" />
+                                                       
+                                                           </h:panelGrid>
+                                                       </div>
+                                                   
+                                                 
+                                                   <div id="upload" style="padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px"> 
+                                                       
+                                                       
+                                <h:panelGrid columns="2"   cellpadding="5" style="padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px">
+                                                       
+                                                       <p:outputLabel value="Photo" style="width: 154px"  />
+                                                       <h:outputLink   id="lienUpload"   style="margin-right: 10px;margin-top: 4px;background-color:#d5d5d5 ;color:#23527c">Parcourire ...</h:outputLink>
+                                                       
+                                                       
+                                                       
+                                                       <p:growl id="messages"  showDetail="true"  /> 
+                                                      
+                                                           </h:panelGrid>
+ 
+                                                      
+                                                   
+                                                   </div>
+                                                   <br/>
+                                                 
+                                                    <p:panel id="content" style="border:none; background-color:#f8f8f8;">
+                                                   
+                                                        <div class="row" style="color:#f8f8f8;" >
+                                                               <div  id="block0" class="col-md-2  col-sm-1 col-xs-1 col-lg-1">    <p:outputLabel  id="lab" style="width: 154px;color:#f8f8f8;"  value=""  >   
+                                                                   </p:outputLabel></div>
+                                                            <c:if test="#{not empty annonceBean.streamed}">     
+          <div  id="block1"   class="col-md-1 col-sm-2 col-xs-2 col-lg-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;padding-top: 1px;width:100px">
+       
+              <p:graphicImage style="width: 60px;height: 60px;margin-top: 0px;margin-right: 0px" value="#{annonceBean.streamed}" id="image" cache="false" /> 
+           
+              <h:commandButton  class="btn btn-link small" value="x" style="color:red ;vertical-align:top;width:1px " actionListener="#{annonceBean.supprimer('0')}" id="croix" onclick=" alert('Suppression photo 0');" onmouseover="this.style.color='red';" onmouseout="this.style.color='tomato' "  >
+                  <f:ajax   render="content"></f:ajax>
+              </h:commandButton>
+          </div></c:if>
+                                                            
+                                                            
+                            <c:if test="#{not empty annonceBean.ptoUpdat[0]}">                                   
+                                                            
+                   <div  id="block11" class="col-md-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;padding-top: 1px;width:100px">
+       
+                       <p:graphicImage style="width: 60px;height: 60px;margin-top: 0px;margin-right: 0px" name="#{annonceBean.ptoUpdat[0]}" library="img" id="i" cache="false" /> 
+           
+              <h:commandButton  class="btn btn-link small" value="x" style="color:red ;vertical-align:top;width:1px " actionListener="#{annonceBean.supprimerPhToUpdate('0')}" id="croix11" onclick=" alert('Suppression photo 0');" onmouseover="this.style.color='red';" onmouseout="this.style.color='tomato' "  >
+                  <f:ajax   render="content"></f:ajax>
+              </h:commandButton>
+          </div>                                           
+                                                      </c:if>
+                                                            
+                                                            
+                                                            <c:if test="#{not empty annonceBean.ptoUpdat[1]}">                                   
+                                                            
+                   <div   class="col-md-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;padding-top: 1px;width:100px">
+       
+                       <p:graphicImage style="width: 60px;height: 60px;margin-top: 0px;margin-right: 0px" name="#{annonceBean.ptoUpdat[1]}" library="img"   cache="false" /> 
+           
+              <h:commandButton  class="btn btn-link small" value="x" style="color:red ;vertical-align:top;width:1px " actionListener="#{annonceBean.supprimerPhToUpdate('1')}"   onclick=" alert('Suppression photo 0');" onmouseover="this.style.color='red';" onmouseout="this.style.color='tomato' "  >
+                  <f:ajax   render="content"></f:ajax>
+              </h:commandButton>
+          </div>                                           
+                                                      </c:if>
+                                                            
+                                                             <c:if test="#{not empty annonceBean.ptoUpdat[2]}">                                   
+                                                            
+                   <div   class="col-md-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;padding-top: 1px;width:100px">
+       
+                       <p:graphicImage style="width: 60px;height: 60px;margin-top: 0px;margin-right: 0px" name="#{annonceBean.ptoUpdat[2]}" library="img"   cache="false" /> 
+           
+              <h:commandButton  class="btn btn-link small" value="x" style="color:red ;vertical-align:top;width:1px " actionListener="#{annonceBean.supprimerPhToUpdate('2')}"   onclick=" alert('Suppression photo 0');" onmouseover="this.style.color='red';" onmouseout="this.style.color='tomato' "  >
+                  <f:ajax   render="content"></f:ajax>
+              </h:commandButton>
+          </div>                                           
+                                                      </c:if>
+                                                            
+                                                             <c:if test="#{not empty annonceBean.ptoUpdat[3]}">                                   
+                                                            
+                   <div   class="col-md-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;padding-top: 1px;width:100px">
+       
+                       <p:graphicImage style="width: 70px;height: 70px;margin-top: 0px;margin-right: 0px" name="#{annonceBean.ptoUpdat[3]}" library="img"   cache="false" /> 
+           
+              <h:commandButton  class="btn btn-link small" value="x" style="color:red ;vertical-align:top;width:1px " actionListener="#{annonceBean.supprimerPhToUpdate('3')}"   onclick=" alert('Suppression photo 0');" onmouseover="this.style.color='red';" onmouseout="this.style.color='tomato' "  >
+                  <f:ajax   render="content"></f:ajax>
+              </h:commandButton>
+          </div>                                           
+                                                      </c:if>
+                                                            
+                                                             <c:if test="#{not empty annonceBean.ptoUpdat[4]}">                                   
+                                                            
+                   <div   class="col-md-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;padding-top: 1px;width:100px">
+       
+                       <p:graphicImage style="width: 60px;height: 60px;margin-top: 0px;margin-right: 0px" name="#{annonceBean.ptoUpdat[4]}" library="img"   cache="false" /> 
+           
+              <h:commandButton  class="btn btn-link small" value="x" style="color:red ;vertical-align:top;width:1px " actionListener="#{annonceBean.supprimerPhToUpdate('4')}"   onclick=" alert('Suppression photo 0');" onmouseover="this.style.color='red';" onmouseout="this.style.color='tomato' "  >
+                  <f:ajax   render="content"></f:ajax>
+              </h:commandButton>
+          </div>                                           
+                                                      </c:if>
+                                                             <c:if test="#{not empty annonceBean.streamed1}">
+           <div  id="block2" class="col-md-1 col-sm-2 col-xs-2 col-lg-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;width:100px">
+               <p:graphicImage style="width: 60px;height: 60px;" value="#{annonceBean.streamed1}" id="image1" cache="false" /> 
+    <h:commandButton  class="btn btn-link small" value="x" style="color:red ;vertical-align:top;width:1px " actionListener="#{annonceBean.supprimer('1')}" id="croix1"  onmouseover="this.style.color='red';" onmouseout="this.style.color='tomato' "  >
+                 <f:ajax   render="content"></f:ajax>
+              </h:commandButton>
+          </div> 
+                                                             </c:if>
+                                                             <c:if test="#{not empty annonceBean.streamed2}">
+                                                           <div  id="block3" class="col-md-1 col-sm-2 col-xs-2 col-lg-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;width:100px">
+                                                                <p:graphicImage style="width: 60px;height: 60px;" value="#{annonceBean.streamed2}" id="image2" cache="false" /> 
+           <h:commandButton  class="btn btn-link small" value="x" style="color:red ;vertical-align:top;width:1px " actionListener="#{annonceBean.supprimer('2')}" id="croix2"  onmouseover="this.style.color='red';" onmouseout="this.style.color='tomato' "  >
+                 <f:ajax   render="content"></f:ajax>
+              </h:commandButton>
+                                                             </div>   </c:if>
+                                                             <c:if test="#{not empty annonceBean.streamed3}">
+                                                                 
+               <div   id="block4" class="col-md-1 col-sm-2 col-xs-2 col-lg-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;width:100px">
+                                                                    <p:graphicImage style="width: 60px;height: 60px;" value="#{annonceBean.streamed3}" id="image3" cache="false" /> 
+           <h:commandButton  class="btn btn-link small" value="x" style="color:red ;vertical-align:top;width:1px " actionListener="#{annonceBean.supprimer('3')}" id="croix3"  onmouseover="this.style.color='red';" onmouseout="this.style.color='tomato' "  >
+                 <f:ajax   render="content"></f:ajax>
+              </h:commandButton>
+           </div>  
+                                                             </c:if>
+                                                             <c:if test="#{not empty annonceBean.streamed4}">
+                                                                 
+               <div  id="block5" class="col-md-1 col-sm-2 col-xs-2 col-lg-1 "   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;width:100px">
+                                                                     <p:graphicImage style="width: 60px;height: 60px; " value="#{annonceBean.streamed4}" id="image4" cache="false" /> 
+           <h:commandButton  class="btn btn-link small" value="x" style="color:red ;vertical-align:top;width:1px " actionListener="#{annonceBean.supprimer('4')}" id="croix4"  onmouseover="this.style.color='red';" onmouseout="this.style.color='tomato' "  >
+                 <f:ajax   render="content"></f:ajax>
+              </h:commandButton>
+           </div>     
+                                                                 
+                                                             </c:if>
+        </div>
+                                                  
+                                                    </p:panel>
+                                               
+                                               </div>
+                                         
+                                                           
+                                                             
+                                                              <!--id="divBTN"-->
+                                                               <div class="col-md-12" style="color: #1b6d85 ;text-decoration: solid;font-size: 16px;margin-top:3px;margin-bottom:3px ;text-align: right;padding-right: 0px" id="divBTN"  >   
+                                              
+                                 
+                                                                   <p:commandButton  id="btnPub"  update=" msgVil msgTitre msgDesc msgPrix msgMRK msgModele msgpf msgCarb msgKm msgAn msgPrixM msgSuperf  msgZ  msgEmp msgEtag msgPiec"   class="btn btn-success  btn-lg " style="margin-top: 14px;margin-right: 150px" value="Valider" action="#{annonceBean.modifierAnnonce}"  >
+                                                                
+                                                                   <f:param value="#{annonceBean.idAnnonce}"  name="idAnnToUpd" ></f:param>
+                                                                   
+                                                                   </p:commandButton>
+                                  
+                                                                                  
+                
+      </div>    </h:form>
+                 
+                 
+                 <h:form prependId="uploadForm" enctype="multipart/form-data"  >
+                     <p:fileUpload value="#{annonceBean.file}" mode="simple" id="file"  label="Choisir" style="display: none"     ></p:fileUpload>
+                     <br/>
+                     <h:commandButton  class="btn btn-primary" value="Ajouter" id="ajoutPh" actionListener="#{annonceBean.upload}"  style="display: none" >
+         
+             <f:ajax execute="file" render="content"></f:ajax>
+         </h:commandButton>
+                 </h:form>
+              
+             </div> 
+            
+                            
+      </c:if>
+                             
+                            
+                            </div>  
+
+  
+  
+  
+  
+  
+  
+			 <!--footer-->
+                         <div id="divFooter" style="position: relative">
+                                    <ui:insert name = "footerPub"   >
+                                                          <ui:include src = " ./partition/footer.xhtml" />
+                                                                 </ui:insert><!--/footer-->
+                         </div>
+                
+				<!-- /container -->
+                                
+                                
+                                <script>
+                                    
+              $("#lienUpload").click(function(){
+          
+             event.preventDefault();
+            $("#file").click();
+         
+     });
+         
+          $("#file").change(function(){
+                $('#ajoutPh').click();
+                
+                
+          });
+          
+          
+                    function changePannel(){
+                                        var selec =$("#sousCategorie option:selected").val();
+            
+            
+             if((selec==="Offres d'emploi")||(selec==="Demandes d'emploi")){
+     $('#divradipub').hide();
+             $('#divmarqMOD').hide(); 
+             $('#divTypeVeh').hide();
+$('#divTypCarb').hide();
+$('#Annem').hide();
+$('#klmt').hide();
+$('#divfisc').hide();
+$('#divEtage').hide();
+$('#divPieces').hide();
+$('#divempEtzoon').hide(); 
+$('#dvSuperPub').hide();
+$('#divprixM').hide();
+}
+if(selec==="Voitures"){
+             $('#divradipub').show();
+             $('#divmarqMOD').show(); $('#divModelPub').show();
+             $('#divTypeVeh').hide();
+$('#divTypCarb').show();
+$('#Annem').show();
+$('#klmt').show();
+$('#divfisc').show();
+$('#divEtage').hide();
+$('#divPieces').hide();
+$('#divempEtzoon').hide(); 
+$('#dvSuperPub').hide();
+$('#divprixM').hide(); }
+if(selec==="Motos"){ 
+    $('#divradipub').show();
+             $('#divmarqMOD').hide(); 
+             $('#divTypeVeh').hide();
+$('#divTypCarb').hide();
+$('#Annem').show();
+$('#klmt').show();
+$('#divfisc').hide();
+$('#divEtage').hide();
+$('#divPieces').hide();
+$('#divempEtzoon').hide(); 
+$('#dvSuperPub').hide();
+$('#divprixM').hide();}
+
+            
+            if((selec==="Toutes les catégories")||(selec==="Stages")||(selec==="Services")||(selec==="Cours et Formations")||(selec==="Matériels Professionnels")||(selec==="Business et Affaires commerciales" )||(selec==="Stocks et Vente en gros")||(selec==="AUTRES") ||
+(selec==="Téléphones")||(selec==="Tablettes" )||(selec==="Ordinateurs portables" )||(selec==="Ordinateurs de bureau")||
+(selec=== "Accessoires informatique et Gadgets" ) ||(selec=== "Jeux vidéo et Consoles")||(selec==="Appareils photo et Caméras")||(selec==="Télévisions" )||
+(selec==="Image et Son")|| (selec==="Vélos")||(selec==="Pièces et Accessoires pour véhicules")||
+(selec==="Bateaux")||(selec==="Electroménager et Vaisselles")||(selec==="Meubles et Décoration")||
+(selec==="Jardin et Outils de bricolage")||(selec==="Vêtements")||(selec==="Chaussures")||
+(selec==="Montres et Bijoux")||(selec==="Sacs et Accessoires") ||(selec==="Vêtements pour enfant et bébé") ||
+(selec==="Equipements pour enfant et bébé")||(selec==="Produits de beauté")||
+(selec==="Animaux")||(selec==="Instruments de Musique")||(selec==="Art et Collections") ||(selec==="Voyages et Billetterie")||(selec==="Films Livres Magazines")||
+(selec==="Autre Immobilier")){
+        
+         $('#divradipub').show();
+             $('#divmarqMOD').hide(); 
+             $('#divTypeVeh').hide();
+$('#divTypCarb').hide();
+$('#Annem').hide();
+$('#klmt').hide();
+$('#divfisc').hide();
+$('#divEtage').hide();
+$('#divPieces').hide();
+$('#divempEtzoon').hide(); 
+$('#dvSuperPub').hide();
+$('#divprixM').hide();
+     }
+     if(selec==="Véhicules Professionnels"){ 
+         $('#divradipub').show();
+             $('#divmarqMOD').show(); $('#divModelPub').hide();
+             $('#divTypeVeh').show();
+$('#divTypCarb').show();
+$('#Annem').show();
+$('#klmt').show();
+$('#divfisc').show();
+$('#divEtage').hide();
+$('#divPieces').hide();
+$('#divempEtzoon').hide(); 
+$('#dvSuperPub').hide();
+$('#divprixM').hide();}
+
+ if((selec==="Appartements")||(selec==="Bureaux et Plateaux")||(selec==="Magasins Commerces et Locaux industriels")||(selec==="Locations de vacances")||(selec==="Colocations")){
+                    $('#divmarqMOD').hide();
+ $('#divModelPub').hide();
+             $('#divTypeVeh').hide();
+$('#divTypCarb').hide();
+$('#Annem').hide();
+$('#klmt').hide();
+$('#divfisc').hide();
+$('#divEtage').show();
+$('#divPieces').show();
+$('#dvSuperPub').show();
+$('#divprixM').show();
+ $('#zoon').hide();
+$('#divempEtzoon').show();
+$('#divempPub').show()();
+
+
+        
+        
+        }
+        
+          if( (selec==="Maisons et Villas")){    
+              $('#divmarqMOD').hide();
+             $('#divModelPub').hide();
+             $('#divTypeVeh').hide();
+$('#divTypCarb').hide();
+$('#Annem').hide();
+$('#klmt').hide();
+$('#divfisc').hide();
+$('#divEtage').hide();
+$('#divPieces').show();
+$('#dvSuperPub').show();
+$('#divprixM').show(); 
+$('#zoon').hide();
+$('#divempEtzoon').show();
+$('#divempPub').show()();
+     
+            }
+         
+            
+            if( (selec==="Terrains et Fermes")){           
+             $('#divmarqMOD').hide();  
+             $('#divTypeVeh').hide();
+$('#divTypCarb').hide();
+$('#Annem').hide();
+$('#klmt').hide();
+$('#divfisc').hide();
+$('#divEtage').hide();
+$('#divPieces').hide();
+$('#dvSuperPub').show(); 
+$('#divprixM').show(); 
+$('#divempEtzoon').show();
+$('#divempPub').show();
+ $('#zoon').show(); 
+$('#divempPub').show()();
+         
+
+ }}
+ 
+ 
+ 
+ 
+ 
+ 
+                                    </script>
+                                
+                                 
+     
+
+
+                                
+			 
+     
+    </h:body></html>
+        
+        
+        
+    

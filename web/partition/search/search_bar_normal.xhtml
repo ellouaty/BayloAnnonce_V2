@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head >
+        
+    </h:head>
+    <h:body>
+        
+        <ui:composition>
+            
+            
+            
+                 
+            <h:form prependId ="formul"  >
+            
+            
+                             <div class="container"  >   
+                           
+                                 <div  class="col-md-3    "  style="  " >   
+                                     <p:inputText id="titreSerch"   value="#{search.titreSearch}"  class="form-control"/>
+                                   <p:watermark for="titreSerch" value="Que recherchez-vous ?"   />
+                                 
+                                 </div>
+                           
+                               
+                                         <div class="col-md-3  "   style=" "  > 
+                                             <h:selectOneMenu id="ListeCategorie" value="#{search.categorieSearch}" onchange="changePannelSearch();"  style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:100%;height:31px ">
+           <ui:insert name = "categorie_item" >
+      <ui:include src = "../categorie_item.xhtml" />
+   </ui:insert>
+                                                 <f:ajax listener="#{search.viderChampsSearch()}" ></f:ajax>
+        </h:selectOneMenu> </div>
+                                  
+                                        <div  class="col-md-3  "    >
+                                            <h:selectOneMenu id="MenuVille"  value="#{search.villeSearch}"    style=" height:22px;margin-top: 4px; line-height: 23px;width:100%;height:31px ;">
+            
+                   <ui:insert name = "Combo_villes" >
+      <ui:include src = "../Combo_villes.xhtml" />
+   </ui:insert>
+        </h:selectOneMenu> </div>
+                                 
+                               
+                                 <div class="col-md-3   "   style="   ;margin-top:  0px ;height: 35px; "  >
+                                     <h:commandButton  class="btn " id="rechercher" actionListener ="#{search.lien()}"  value="Rechercher"    style="height: 35px;background-color: #a6c545;color: white"   >
+                                           
+                                     </h:commandButton>
+                                   
+                                        
+                                      </div>
+                                 
+                              <div class="col-md-12  "   style="  float: left" > 
+                                   
+                                  <div class="radio" id="divRadio" style="margin-bottom: 1px ">
+                                      
+                                      <p:selectOneRadio value="#{search.typeAnnonceSearch}"   columns="2" class="radio-inline" id="TypePUB" style="font-size: 80%"  >
+                                          <f:selectItem itemLabel="Offre&#160;&#160;&#160;" itemValue="Offre"   /> 
+            <f:selectItem itemLabel="Demande" itemValue="Demande" /> 
+    </p:selectOneRadio>
+                                  </div>   
+                                  
+                                  
+                              </div>
+                                  
+                                  
+                                  
+                                 <h:form >
+                                 
+                                    <div  class="col-md-3"  id="divmarq" style="display: none"> 
+                                        <h:selectOneMenu  value="#{search.marqueSearch}" id="list_marque"   style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:100% "   >
+                                            <p:ajax listener="#{search.onMarqueChange}" update="Modeles"></p:ajax>
+                                            <ui:insert  name = "marque_item" >
+      <ui:include src = "../marque_item.xhtml" />
+   </ui:insert>
+        </h:selectOneMenu>
+                                        
+                                        
+                                        
+                                        
+                                                          
+                         
+                                    </div>
+                                 
+                                 
+                                      <div  class="col-md-3" id="divmodel" style="display: none">
+                                   
+                    
+                                       
+                                                        
+                                          <h:selectOneMenu  value="#{search.modeleSearch}"    id="Modeles"  style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:100%;">
+              <f:selectItem itemLabel="Modéle" itemValue="" />
+              <f:selectItems value="#{search.modelesSearch}" />
+        </h:selectOneMenu>
+                                      
+                                      
+                                      
+                                      
+                                      </div>
+                                 
+                                 
+                                 </h:form>
+                                     
+                                      
+                                        <div  class="col-md-3" id="divcarb" style="display: none">
+                                            <h:selectOneMenu   value="#{search.typeCarburantSearch}" id="listCarb"    style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:100% ">
+           <ui:insert  name = "typeCarb_item" >
+      <ui:include src = "../typeCarb_item.xhtml" />
+   </ui:insert>
+                                       </h:selectOneMenu> </div>
+                                  
+                                  
+                                 
+                                
+                                 
+                                 
+                                 <div  class="col-md-6" style="width: 100% ;margin-top: 5px;" ></div>
+                                 <div   class="form-group col-md-3 "  style=" display: none " id="divprix"> 
+                                      <p:inputText id="min" value="#{search.prixminsearch}" placeholder="Prix min (DHs)" style="width: 255px;margin-bottom: 3px" class="form-control" /> 
+                                      <p:inputText id="max"  value="#{search.prixmaxsearch}" placeholder="Prix max (DHs)" style="width: 255px"  class="form-control" /> </div>
+                                        
+                                        
+                                         <div  class="col-md-3" id="divpro" style="display: none">
+                                             <h:selectOneMenu   value="#{search.typeVehuculeSearch}"  id="vp"  style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:100% ">
+           <ui:insert  name = "Viheculpro_item" >
+      <ui:include src = "../Viheculpro_item.xhtml" />
+   </ui:insert>
+                                       </h:selectOneMenu> </div>
+                                        
+                                 <div   class="form-group col-md-3 "  style=" display: none "  id="divsup" >  
+                                     <h:selectOneMenu  value="#{search.superficieminsearch}"  id="listSUPmin"   style=" height:22px;margin-top: 3px; line-height: 23px; width:100% ;margin-top: 2px;">
+                                                    <f:selectItem itemLabel="Superficie min" itemValue="" />
+           <ui:insert  name = "superficies" >
+      <ui:include src = "../superficie.xhtml" />
+   </ui:insert>
+        </h:selectOneMenu> 
+                                     <h:selectOneMenu   value="#{search.superficiemaxsearch}"  id="listSUPmax"   style=" height:22px;margin-top: 3px; line-height: 23px; width:100% ;margin-top: 2px;">
+                                                    <f:selectItem itemLabel="Superficie max" itemValue="" />
+           <ui:insert  name = "superficie" >
+      <ui:include src = "../superficie.xhtml" />
+   </ui:insert>
+        </h:selectOneMenu> 
+                                        </div>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                         <div   class="form-group  col-md-3"  style=" display: none "  id="divan"> 
+                                             
+                                             <h:selectOneMenu     value="#{search.anneModelminsearch}" id="annMin"  style=" height:22px;margin-top: 3px; line-height: 23px; width:100% ;margin-top: 2px;">
+                                                    <f:selectItem itemLabel="Année-Modèle min" itemValue="" />
+           <ui:insert  name = "anne_model" >
+      <ui:include src = "../anne_model.xhtml" />
+   </ui:insert>
+        </h:selectOneMenu> 
+                                    
+                                             <h:selectOneMenu  value="#{search.anneModelmaxsearch}"  id="annMax"    style=" height:22px;margin-top: 1px; line-height: 23px; width:100% ;">
+             <f:selectItem itemLabel="Année-Modèle max" itemValue="" />
+              <ui:insert  name = "anne_model" >
+      <ui:include src = "../anne_model.xhtml" />
+   </ui:insert>
+        </h:selectOneMenu>      
+                                         
+                                         
+                                         
+                                         
+                                         
+                                         
+                                         </div>
+                                 
+                                 
+                              
+                                 
+                                  <div   class="form-group  col-md-3"  style=" display: none" id="divkm" > 
+                                             
+                                      <h:selectOneMenu    value="#{search.klmtMinSearch}" id="kmMin"   style=" height:22px;margin-top: 3px; line-height: 23px; width:100% ;margin-top: 2px;">
+                                                    <f:selectItem itemLabel="KM min" itemValue="" />
+          <ui:insert  name = "km" >
+      <ui:include src = "../km.xhtml" />
+   </ui:insert>
+        </h:selectOneMenu> 
+                                    
+                                        <h:selectOneMenu    value="#{search.klmtMaxSearch}"  id="kmMax"   style=" height:22px;margin-top: 1px; line-height: 23px; width:100% ;">
+             <f:selectItem itemLabel="KM max" itemValue="" />
+              <ui:insert  name = "km" >
+      <ui:include src = "../km.xhtml" />
+   </ui:insert>
+        </h:selectOneMenu>      
+                                         
+                                         
+                                         
+                                         
+                                         
+                                         
+                                         </div>
+                                 
+                                  <div   class="form-group  col-md-3"  style=" display: none " id="divfiscale"> 
+                                             
+                                      <h:selectOneMenu   value="#{search.puissanceFiscaleSearch}" id="fsc"    style=" height:22px;margin-top: 3px; line-height: 23px; width:100% ;margin-top: 2px;">
+                                                    <f:selectItem itemLabel="Puissance fiscale" itemValue="" />
+          <ui:insert  name = "Pfiscale" >
+      <ui:include src = "../Pfiscale.xhtml" />
+   </ui:insert>
+        </h:selectOneMenu> 
+                                    
+                                          
+                                         
+                                         
+                                         
+                                         
+                                         
+                                  </div> 
+                                       
+ 			</div>
+                      
+              </h:form>             
+ 			  
+            <script>
+   
+       
+       function   viderShamps(){
+      $('#titreSerch').val("");
+       $('#TypePUB').val("Offre");
+       $('#listSUPmin').val("");
+       $('#listSUPmax').val("");
+       $('#vp').val("");
+       $('#fsc').val("");
+       $('#annMin').val("");
+       $('#annMax').val("");
+       $('#kmMin').val("");
+       $('#kmMax').val("");
+       $('#list_marque').val("");
+       $('#min').val("");      
+       $('#max').val("");
+       $('#Modeles').val("");
+         $('#listCarb').val("");}
+        
+    function changePannelSearch(){
+        /**/
+      // alert("yooo");
+      var selec =$("#ListeCategorie option:selected").val();
+  
+  
+   if(selec==="Voitures"){
+       
+// alert("propriete voiture");
+         $('#vp').val("");
+       $('#listSUPmin').val("");
+       $('#listSUPmax').val("");
+       $('#divRadio').show();
+       $('#divsup').hide();
+       $('#divpro').hide(); 
+       $('#divfiscale').show();
+       $('#divan').show();
+       $('#divkm').show();
+       $('#divmarq').show();
+       $('#divprix').show();
+       $('#divmodel').show();
+       $('#divcarb').show();
+         
+   }
+    
+    
+    
+    
+      if(selec==="Motos"){
+       //alert("radio prix km anne"); 
+       $('#vp').val("");
+       $('#listCarb').val("");
+       $('#list_marque').val("");
+    $('#Modeles').val("");
+       $('#fsc').val("");
+        $('#listSUPmin').val("");
+       $('#listSUPmax').val("");
+          $('#divRadio').show();
+          $('#divmodel').hide();
+       $('#divsup').hide();
+       $('#divpro').hide(); 
+       $('#divfiscale').hide();
+       $('#divan').show();
+       $('#divkm').show();
+       $('#divmarq').hide();
+       $('#divprix').show();
+       
+       $('#divcarb').hide();
+        
+        
+    }
+        
+  if((selec==="Offres d'emploi")||(selec==="Demandes d'emploi")){
+        
+        // alert("all hide");
+        $('#vp').val("");
+        $('#listCarb').val("");
+        $('#min').val("");      
+       $('#max').val("");
+        $('#list_marque').val("");
+    $('#Modeles').val("");
+        $('#kmMin').val("");
+       $('#kmMax').val("");
+        $('#annMin').val("");
+       $('#annMax').val("");
+          $('#fsc').val("");
+          $('#listSUPmin').val("");
+       $('#listSUPmax').val("");
+        $('#divRadio').hide();
+       $('#divsup').hide();
+       $('#divpro').hide(); 
+       $('#divfiscale').hide();
+       $('#divan').hide();
+       $('#divkm').hide();
+       $('#divmarq').hide();
+       $('#divprix').hide();
+       $('#divmodel').hide();
+       $('#divcarb').hide(); 
+       
+    }
+     if((selec==="Toutes les catégories")||(selec==="LOISIRS ET DIVERTISSEMENT")||(selec==="EMPLOI ET SERVICES")||(selec==="Stages")||(selec==="IMMOBILIER")){
+        
+         //alert("seul radio");
+         $('#vp').val("");
+         $('#listCarb').val("");
+         $('#list_marque').val("");
+         $('#min').val("");      
+       $('#max').val("");
+    $('#Modeles').val("");
+         $('#kmMin').val("");
+       $('#kmMax').val("");
+         $('#annMin').val("");
+       $('#annMax').val("");
+         $('#fsc').val("");
+          $('#listSUPmin').val("");
+       $('#listSUPmax').val("");
+         $('#divRadio').show();
+       $('#divsup').hide();
+       $('#divpro').hide(); 
+       $('#divfiscale').hide();
+       $('#divan').hide();
+       $('#divkm').hide();
+       $('#divmarq').hide();
+       $('#divprix').hide();
+       $('#divmodel').hide();
+       $('#divcarb').hide(); 
+    }
+    
+  
+    
+       if((selec==="Services")||(selec==="Cours et Formations")||(selec==="Matériels Professionnels")||(selec==="ENTREPRISES")||(selec==="Business et Affaires commerciales" )||(selec==="Stocks et Vente en gros")||(selec==="AUTRES" )||(selec==="Autres") ||(selec==="INFORMATIQUE ET MULTIMEDIA")||(selec==="Téléphones")||(selec==="Tablettes" )||(selec==="Ordinateurs portables" )||(selec==="Ordinateurs de bureau")||(selec=== "Accessoires informatique et Gadgets" ) ||(selec=== "Jeux vidéo et Consoles")||(selec==="Appareils photo et Caméras")||(selec==="Télévisions" )||(selec==="Image et Son")||(selec==="VEHICULES")||(selec==="Vélos")||(selec==="Pièces et Accessoires pour véhicules")||(selec==="Bateaux")||(selec==="POUR LA MAISON ET JARDIN")||(selec==="Electroménager et Vaisselles")||(selec==="Meubles et Décoration")||(selec==="Jardin et Outils de bricolage")||(selec==="HABILLEMENT ET BIEN ETRE")||(selec==="Vêtements")||(selec==="Chaussures")||(selec==="Montres et Bijoux")||(selec==="Sacs et Accessoires") ||(selec==="Vêtements pour enfant et bébé") ||(selec==="Equipements pour enfant et bébé")||(selec==="Produits de beauté") ||(selec==="Sports et Loisirs")||(selec==="Animaux")||(selec==="Instruments de Musique")||(selec==="Art et Collections") ||(selec==="Voyages et Billetterie")||(selec==="Films Livres Magazines")||(selec==="Autre Immobilier")||(selec==="Terrains et Fermes"))
+                        {
+      
+         //alert("prix et radio");
+         $('#vp').val("");
+         $('#listCarb').val("");
+         $('#list_marque').val("");
+    $('#Modeles').val("");
+         $('#kmMin').val("");
+       $('#kmMax').val("");
+         $('#annMin').val("");
+       $('#annMax').val("");
+         $('#fsc').val("");
+          $('#listSUPmin').val("");
+       $('#listSUPmax').val("");
+        $('#divRadio').show();
+       $('#divsup').hide();
+       $('#divpro').hide(); 
+       $('#divfiscale').hide();
+       $('#divan').hide();
+       $('#divkm').hide();
+       $('#divmarq').hide();
+       $('#divprix').show();
+       $('#divmodel').hide();
+       $('#divcarb').hide();
+        
+    }
+    
+    
+                              
+         if(selec==="Véhicules Professionnels"){
+       
+        // alert("prix radio vehpro");
+        $('#listCarb').val("");
+        $('#list_marque').val("");
+    $('#Modeles').val("");
+        $('#kmMin').val("");
+       $('#kmMax').val("");
+        $('#annMin').val("");
+       $('#annMax').val("");
+        $('#fsc').val("");
+         $('#listSUPmin').val("");
+       $('#listSUPmax').val("");
+       $('#divRadio').show();
+       $('#divsup').hide();
+       $('#divpro').show(); 
+       $('#divfiscale').hide();
+       $('#divan').hide();
+       $('#divkm').hide();
+       $('#divmarq').hide();
+       $('#divprix').show();
+       $('#divmodel').hide();
+       $('#divcarb').hide();
+   
+    }
+    
+                              
+        if((selec==="Appartements")||(selec==="Appartement")||(selec==="Maisons et Villas") ||(selec==="Bureaux et Plateaux")||(selec==="Magasins Commerces et Locaux industriels")||(selec==="Locations de vacances")||(selec==="Colocations")){
+         
+        // alert("radio superficie prix");
+        $('#vp').val("");
+        $('#listCarb').val("");
+        $('#list_marque').val("");
+        $('#Modeles').val("");
+        $('#kmMin').val("");
+        $('#kmMax').val("");
+        $('#annMin').val("");
+        $('#annMax').val("");
+        $('#fsc').val("");
+        $('#divRadio').show();
+       $('#divsup').show();
+       $('#divpro').hide(); 
+       $('#divfiscale').hide();
+       $('#divan').hide();
+       $('#divkm').hide();
+       $('#divmarq').hide();
+       $('#divprix').show();
+       $('#divmodel').hide();
+       $('#divcarb').hide(); 
+        
+        
+        
+        
+    }   
+       
+    
+    
+    
+    
+    
+    
+    
+    
+      } 
+
+            </script>
+  
+ 
+              
+             
+            
+ 
+        </ui:composition>
+        
+    
+
+
+    </h:body> 
+</html>

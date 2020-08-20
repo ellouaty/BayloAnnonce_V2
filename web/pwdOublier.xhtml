@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+    </h:head>
+  
+    <h:body style="">
+ 
+                	<ui:insert name = "navigation_barPwdOB" >
+      <ui:include src = " ./partition/navigation_bar.xhtml" />
+   </ui:insert>
+		<!-- /NAVIGATION -->
+                
+               
+      
+                <!-- TOP HEADER -->
+			<div id="top-header" style="background-color:  #f2f0f0;padding-bottom:4px;padding-top: 10px">
+                             
+                             
+                            <form id="ff"  >
+                            
+                                                        		<ui:insert name = "search_bar_normalPwdOB" >
+                                                                                <ui:include src = "./partition/search/search_bar_normal.xhtml" />
+                                                                                                 </ui:insert>                      
+                            </form>
+                </div>
+			<!-- /TOP HEADER -->
+
+      
+  
+                    
+					 
+  <div class="container   " style="padding-bottom: 10px;padding-top: 10px ; width: 85%;  " id="divEdition" >   
+  
+      
+      
+       <div class="col-md-1 col-lg-1 hidden-sm hidden-xs"  ></div>
+ 
+                      <div class="col-md-10 col-lg-10 col-xs-12  col-sm-12  " style="border-radius: 3px;padding-top:5px;padding-bottom: 5px ; ">   
+    
+                                               
+        
+            
+                <div class="col-md-1 col-lg-1 hidden-sm hidden-xs" ></div>
+ 
+        
+        
+      
+    <div class="col-md-8 col-lg-8 col-xs-12  col-sm-12 center-block " style="height:640px;border-radius: 3px;padding-top:5px;padding-bottom: 5px ;  padding-right:0px;padding-left: 0px; " id="divPwdOubli"  >   
+   
+    <br/>  <br/>             
+                                                    
+         
+                                    <div class="col-md-12   " style=" border-radius: 3px;text-align: left;padding-top:8px;border-radius: 3px;border: gray solid 1px;background-color:#cccccc ">   
+                                              
+                                        <p:outputLabel value="Récuperation du mot de passe : " style="color:#245269 ;text-decoration: solid;font-size: 16px;margin-top:3px;margin-bottom:3px; "></p:outputLabel>
+                                                    
+      </div>
+	     
+	
+	
+                
+                
+             
+		<p:panel id="loginPnlPwdOUBL1" style=";border-radius: 3px;padding-top:5px;padding-bottom: 5px ;margin-left: 0px" >
+                    
+                    <h:form prependId="lol">
+                    <h:panelGrid columns="1" style="margin-left: 10%;margin-top: 5%" id="loginPnlPwdEmail" >
+                       <p:spacer></p:spacer>
+                        <p:spacer></p:spacer>
+                       
+                         
+                        <p:inputText id="emailPwdOUBL" value="#{login.email}"  style="margin-bottom: 3px;margin-left: 10px;"   >
+                     
+                        </p:inputText>  <p:watermark for="emailPwdOUBL" value="Votre email :"   />
+                        <p:message for="emailPwdOUBL"></p:message>
+                        <p:outputLabel style="color: red;display: none;font-weight: normal" value="cet email ne correspond a aucun compte !!" id="compteInexiMsg"></p:outputLabel>
+                         
+                        
+                
+              </h:panelGrid>    
+                    <br/>
+                    <br/>
+                    
+                     
+                     
+                <div class="col-md-6 col-lg-6 col-sm-2 col-xs-2" ></div>
+                    <h:panelGrid columns="3" style="margin-bottom:10px; " id="pannelSuivANNuler">
+                      <h:commandButton class="btn btn-default   " id="btnpwdAnnul" value="Annuler" style="height: 35px;   ;background-color: #f2f0f0"     /> 
+                      <p:spacer style="width:10px"></p:spacer>  <h:commandButton class="btn btn-primary   " id="btnpwdSuiv" value="Suivant"  actionListener="#{login.reintialiserPwd()}"   style="height: 35px; ;color:white" /> 
+              
+                    
+                    </h:panelGrid>
+                    
+                     <br/> 
+                     <br/></h:form>
+                     </p:panel>
+		 
+		
+                 	<p:panel id="loginPnlPwdOUBL2" style=";border-radius: 3px;padding-top:5px;padding-bottom: 5px ;margin-left: 0px;display: none" >
+                    <br/> 
+                    <br/>
+          
+                            <h:form prependId="loala">
+                    
+                    
+                    <p:outputLabel style="font-size:17px;color:#245269;font-family: serif;font-weight: bold;  " id="labInfospwd" value="Nous avons envoyé votre code a l'adresse #{login.email} pour verifier que vous en étes le titulaire.Consulter votre boite de récéption ."></p:outputLabel>
+                    
+                       <h:panelGrid columns="1" style="margin-bottom:10px;margin-left: 32%; " cellpadding="5" id="loginPanelpwd2">
+                           <br/> 
+                           <p:inputText id="codeRecuPwdOubl" value="#{login.codeRecuPwd}"   style=" margin-bottom: 3px;text-transform: capitalize" ></p:inputText>
+                     <p:watermark for="codeRecuPwdOubl" value="Entrer le code d'accés "   />
+                    
+                    
+                       </h:panelGrid>
+                    
+                    
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6" ></div>
+                    <h:panelGrid columns="3" style="margin-bottom:10px; " id="pannelSuivANNuler2">
+                     <h:commandButton class="btn btn-primary   " id="btnpwdValider" value="Valider" actionListener="#{login.verifiCode_validation_codeRecuPwd()}"     style="height: 35px; ;color:white;  " />
+                   
+                    
+                    </h:panelGrid>
+                    
+                     <br/> 
+                    <br/>
+                            </h:form>
+                     </p:panel>
+	<p:panel id="loginPnlPwdOUBL3" style=";border-radius: 3px;padding-top:5px;padding-bottom: 5px ;margin-left: 0px;display: none" >
+                    <br/> 
+                    <br/>
+            <h:form prependId="form3">
+                    <p:outputLabel value="Nouveau mot de passe :" id="labNewPass" style=" "></p:outputLabel>
+                    <p:password id="NewPass" value="#{login.newPass}" feedback="false" size="15" style="margin-bottom: 3px;margin-left: 10px;  "></p:password>
+                    <p:message for="NewPass" ></p:message>
+                    
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6" ></div>
+                    <h:panelGrid columns="3" style="margin-bottom:10px; " id="pannelSuivANNuler3">
+                <h:commandButton class="btn btn-primary   " id="btnValiderNew" value="Valider" action="#{login.modifierPwd()}"       style="height: 35px; color:white " />
+                 
+            
+                    
+                    </h:panelGrid>
+                    
+                     <br/> 
+                    <br/></h:form>
+                     </p:panel>
+        	      
+                 
+</div>  
+            
+            
+            
+            
+            
+            
+            
+   </div>
+                                           
+                            
+                            
+                            
+                            
+                            
+                            
+                            </div>  
+
+  
+  
+  
+  
+  
+  
+			 <!--footer-->
+                         <div id="divFooter" style="position: relative">
+                                    <ui:insert name = "footerPwdOB"   >
+                                                          <ui:include src = " ./partition/footer.xhtml" />
+                                                                 </ui:insert><!--/footer-->
+                         </div>
+                
+				<!-- /container -->
+                                
+                                <script>
+                                     $("#btnpwdAnnul").click(function(){
+                 $("#lienAcceuil").click();
+    
+    });
+    
+    
+    
+ 
+                                    </script>
+                                
+			   
+                                 
+     
+
+
+                                
+			 
+     
+    </h:body></html>
+        
+        
+        
+          
+
+        
+    
+       
+             
+       
+         
+   

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 janv. 2020 21:02:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Message" table="MESSAGE" schema="DBANNONCES">
+        <id name="idMessage" type="big_decimal">
+            <column name="ID_MESSAGE" precision="22" scale="0" />
+            <generator class="increment"></generator>
+        </id>
+        <many-to-one name="utilisateurConnecteByIdUtilConEnvoi" class="model.UtilisateurConnecte" fetch="select">
+            <column name="ID_UTIL_CON_ENVOI" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="utilisateurConnecteByIdUtilConRecoi" class="model.UtilisateurConnecte" fetch="select">
+            <column name="ID_UTIL_CON_RECOI" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="chat" class="model.Chat" fetch="select"  >
+            <column name="ID_CHAT" precision="22" scale="0" />
+        </many-to-one>
+        <property name="contenuMessage" type="string">
+            <column name="CONTENU_MESSAGE" length="110" />
+        </property>
+        <property name="etatMessage" type="string">
+            <column name="etatMessage" length="15" />
+        </property>
+         <property name="modMessage" type="string">
+            <column name="modMessage" length="15" />
+        </property>
+        <property name="dateMessage" type="string">
+            <column name="DATE_MESSAGE" length="30" />
+        </property>
+        <property name="heureMessage" type="string">
+            <column name="HEURE_MESSAGE" length="30" />
+        </property>
+    </class>
+</hibernate-mapping>

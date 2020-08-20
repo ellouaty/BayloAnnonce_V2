@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 janv. 2020 21:02:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.UtilisateurConnecte" table="UTILISATEUR_CONNECTE" schema="DBANNONCES">
+        <id name="idUtilisateurConnecte" type="big_decimal">
+            <column name="ID_UTILISATEUR_CONNECTE" precision="22" scale="0" />
+            <generator class="increment"></generator>
+        </id>
+        <property name="nom" type="string">
+            <column name="NOM" length="30" />
+        </property>
+        <property name="etatcompte" type="string">
+            <column name="ETATCOMPTE" length="10" />
+        </property>
+        <property name="emailUtilConnecte" type="string">
+            <column name="EMAIL_UTIL_CONNECTE" length="30" />
+        </property>
+        <property name="telUtilConnecte" type="string">
+            <column name="TEL_UTIL_CONNECTE" length="30" />
+        </property>
+        <property name="villeUtilConnecte" type="string">
+            <column name="VILLE_UTIL_CONNECTE" length="30" />
+        </property>
+        <property name="telVisiblUtilConnecte" type="string">
+            <column name="TEL_VISIBL_UTIL_CONNECTE" length="2" />
+        </property>
+        <property name="passwordUtilConnecte" type="string">
+            <column name="PASSWORD_UTIL_CONNECTE" length="30" />
+        </property>
+        <property name="noteEmailUtilConnecte" type="string">
+            <column name="NOTE_EMAIL_UTIL_CONNECTE" length="30" />
+        </property>
+         <property name="degreNoteEmailUtilConnecte" type="string">
+            <column name="DEGRE_email_UTIL_CONNECTE" length="10" />
+        </property> 
+         <property name="degreNoteTELUtilConnecte" type="string">
+            <column name="DEGRE_TEL_UTIL_CONNECTE" length="10" />
+        </property>
+        <property name="noteTelUtilConnecte" type="string">
+            <column name="NOTE_TEL_UTIL_CONNECTE" length="30" />
+        </property>
+        <property name="phProfil" type="string">
+            <column name="PH_PROFIL" length="50" />
+        </property>
+        <set name="chatsForIdUtilisateurConnecte1" table="CHAT" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_UTILISATEUR_CONNECTE1" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.Chat" />
+        </set>
+        <set name="favorises" table="FAVORIS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_UTILISATEUR_CONNECTE" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="model.Favoris" />
+        </set>
+        <set name="chatsForIdUtilisateurConnecte" table="CHAT" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_UTILISATEUR_CONNECTE" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.Chat" />
+        </set>
+        <set name="messagesForIdUtilConEnvoi" table="MESSAGE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_UTIL_CON_ENVOI" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.Message" />
+        </set>
+        <set name="messagesForIdUtilConRecoi" table="MESSAGE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_UTIL_CON_RECOI" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.Message" />
+        </set>
+        <set name="actionUsers" table="ACTION_USER" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_USER" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="model.ActionUser" />
+        </set>
+        <set name="annonces" table="ANNONCE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_UTILISATEUR_CONNECTE" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.Annonce" />
+        </set>
+        <set name="reclamations" table="RECLAMATION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_UTILISATEUR_CONNECTE" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="model.Reclamation" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 f?vr. 2020 12:57:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Employe" table="EMPLOYE" schema="DBANNONCES" optimistic-lock="version">
+        <id name="idEmploye" type="big_decimal">
+            <column name="ID_EMPLOYE" precision="22" scale="0" />
+            <generator class="increment" />
+        </id>
+        <property name="nomEmploye" type="string">
+            <column name="NOM_EMPLOYE" length="30" />
+        </property>
+        <property name="prenomEmploye" type="string">
+            <column name="PRENOM_EMPLOYE" length="30" />
+        </property>
+        <property name="emailEmploye" type="string">
+            <column name="EMAIL_EMPLOYE" length="30" />
+        </property>
+        <property name="loginEmploye" type="string">
+            <column name="LOGIN_EMPLOYE" length="30" />
+        </property>
+        <property name="passwordEmploye" type="string">
+            <column name="PASSWORD_EMPLOYE" length="30" />
+        </property>
+        <property name="rolesEmploye" type="string">
+            <column name="ROLES_EMPLOYE" length="30" />
+        </property>
+        <set name="reclamations" table="RECLAMATION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_EMPLOYE" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.Reclamation" />
+        </set>
+    </class>
+</hibernate-mapping>

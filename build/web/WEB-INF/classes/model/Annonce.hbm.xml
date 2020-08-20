@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 janv. 2020 21:02:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Annonce" table="ANNONCE" schema="DBANNONCES">
+        <id name="idAnnonce" type="big_decimal">
+            <column name="ID_ANNONCE" precision="22" scale="0" />
+            <generator class="increment"></generator>
+        </id>
+        <many-to-one name="utilisateurConnecte" class="model.UtilisateurConnecte" fetch="select">
+            <column name="ID_UTILISATEUR_CONNECTE" precision="22" scale="0" />
+        </many-to-one>
+        <property name="titreAnnonce" type="string">
+            <column name="TITRE_ANNONCE" length="30" />
+        </property>
+        <property name="dateDepotAnnonce" type="string">
+            <column name="DATE_DEPOT_ANNONCE" length="30" />
+        </property>
+        <property name="heureDepotAnnonce" type="string">
+            <column name="HEURE_DEPOT_ANNONCE" length="30" />
+        </property>
+        <property name="categorie" type="string">
+            <column name="CATEGORIE" length="35" />
+        </property>
+        <property name="souscategorie" type="string">
+            <column name="SOUSCATEGORIE" length="35" />
+        </property>
+        <property name="prixAnnonce" type="big_decimal">
+            <column name="PRIX_ANNONCE" precision="22" scale="0" />
+        </property>
+           <property name="noteAnnonce" type="string">
+            <column name="NOTE_ANNONCE" length="30" />
+        </property>
+         <property name="degreNoteAnnonce" type="string">
+            <column name="DEGRE_NOTE_ANNONCE" length="10" />
+        </property>
+        <property name="typeAnnonce" type="string">
+            <column name="TYPE_ANNONCE" length="30" />
+        </property>
+        <property name="descriptionAnnonce" type="string">
+            <column name="DESCRIPTION_ANNONCE" length="4000" />
+        </property>
+        <property name="villeAnnonce" type="string">
+            <column name="VILLE_ANNONCE" length="30" />
+        </property>
+        <property name="dateExpirationAnnonce" type="string">
+            <column name="DATE_EXPIRATION_ANNONCE" length="30" />
+        </property>
+        <property name="nbVueAnnonce" type="big_decimal">
+            <column name="NB_VUE_ANNONCE" precision="22" scale="0" />
+        </property>
+        <property name="etatAnnonce" type="string">
+            <column name="ETAT_ANNONCE" length="30" />
+        </property>
+        <property name="ipAnnonce" type="string">
+            <column name="IP_ANNONCE" length="20" />
+        </property>
+        <property name="paysAnnonce" type="string">
+            <column name="PAYS_ANNONCE" length="20" />
+        </property>
+        <set name="actionEmps" table="ACTION_EMP" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANNONCE" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="model.ActionEmp" />
+        </set>
+        <set name="maisonVillas" table="MAISON_VILLA" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANNONCE" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.MaisonVilla" />
+        </set>
+        <set name="modificationsForIdAnnonceOld" table="MODIFICATION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANNONCE_OLD" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.Modification" />
+        </set>
+        <set name="modificationsForIdAnnonceNew" table="MODIFICATION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANNONCE_NEW" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.Modification" />
+        </set>
+        <set name="voitures" table="VOITURE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANNONCE" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.Voiture" />
+        </set>
+        <set name="doublantsForIdAnnonce1" table="DOUBLANT" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANNONCE1" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="model.Doublant" />
+        </set>
+        <set name="motos" table="MOTO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANNONCE" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.Moto" />
+        </set>
+        <set name="doublantsForIdAnnonce2" table="DOUBLANT" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANNONCE2" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="model.Doublant" />
+        </set>
+        <set name="actionUsers" table="ACTION_USER" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANNONCE" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="model.ActionUser" />
+        </set>
+        <set name="reclamations" table="RECLAMATION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANNONCE" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="model.Reclamation" />
+        </set>
+        <set name="autreImmobiliers" table="AUTRE_IMMOBILIER" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANNONCE" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.AutreImmobilier" />
+        </set>
+        <set name="photos" table="PHOTO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANNONCE" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.Photo" />
+        </set>
+        <set name="favorises" table="FAVORIS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_ANNONCE" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="model.Favoris" />
+        </set>
+    </class>
+</hibernate-mapping>

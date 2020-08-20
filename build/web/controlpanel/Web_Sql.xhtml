@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		 
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+    </h:head>
+    <h:body style="background-color: lightgoldenrodyellow">
+          
+          <p:panel id="panCont" style="margin-left: 5px;border: none;background-color: inherit">   
+            <h:form prependId="conForm">
+         
+              
+                <c:if test="#{not empty emp}"> 
+                  <h:selectOneMenu   value="#{select}" id="menu"  style="color: #000066;font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;height:31px ;margin-left: 0px;margin-top: 0px;width:15%;background-color: inherit">
+                               <f:selectItem  itemValue="0" itemLabel="⇒Menu Principale" />  
+                                <f:selectItems value="#{droits}" /> 
+                                 <f:ajax listener="#{employeBean.redirection()}"/>
+        </h:selectOneMenu> 
+                    <p:outputLabel style="float: right;color: #000066;text-transform: capitalize" value="#{emp.nomEmploye} #{emp.prenomEmploye}" > </p:outputLabel>
+                    <br/> <p:commandLink style="float: right;display: block;text-decoration:underline;" value="Sing out" actionListener="#{employeBean.singOut('Web_Sql')}" />
+                </c:if> 
+            </h:form>
+          </p:panel>
+        <h:form prependId="conForm">
+               <h:selectOneMenu    id="mn"  style="color: #000066;font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;height:31px ;margin-left: 0px;margin-top: 0px;width:15%;background-color: inherit">
+                               <f:selectItem  itemValue="0" itemLabel="⇒SQL QUERIES" />  
+                                <f:selectItem  itemValue="1" itemLabel="Averrage time" /> 
+                                <f:selectItem  itemValue="2" itemLabel="Statistique by moderator" /> 
+                               
+               </h:selectOneMenu> </h:form>
+               <br/>
+        <p:panel id="pnAverage" class="col-md-12 col-lg-2 col-sm-1" style="display: none;background-color: inherit; height:80%;border:1px solid #2e6da4 ;margin-bottom:3px;margin-bottom:20px;width:100%; overflow-y: auto;overflow-x: hidden;">
+                <h:form prependId="conForm">        
+                    <p:outputLabel value="From:" style="width: 154px"/> <p:inputMask  id="av1"  value="#{sqlBean.dateAver1}"  mask="99-99-9999 99:99:99" >
+                         
+                    </p:inputMask><p:watermark value="dd-MM-yyyy HH:mm:ss" for="av1" ></p:watermark><br/>
+            <p:outputLabel value="To:" style="width: 154px"/>  
+            
+             <p:inputMask  id="av2"  value="#{sqlBean.dateAver2}"  mask="99-99-9999 99:99:99" >
+                        
+                    </p:inputMask><p:watermark value="dd-MM-yyyy HH:mm:ss" for="av2" ></p:watermark>
+            <p:commandButton value="execute" action ="#{sqlBean.recupAverrage()}" style="color:white;background-color: #204d74;margin-left: 10px" >
+                          </p:commandButton>   
+                          <br/>  
+                          <p:separator></p:separator>
+                           <p:outputLabel value="Resultat:" style="width: 154px"/> 
+                           <p:outputLabel id="labResultat" style="font-weight: normal;border: 1px gold solid;color:#204d74; padding-right: 10px" value="#{sqlBean.resultaAverage}"/> 
+                              <br/> 
+   
+                </h:form>
+           
+        </p:panel> 
+               
+               
+               
+               
+               
+        <p:panel id="pnStatistique" class="col-md-12 col-lg-2 col-sm-1" style="display: none;background-color: inherit; height:80%;border:1px solid #2e6da4 ;margin-bottom:3px;margin-bottom:20px;width:100%; overflow-y: auto;overflow-x: hidden;">
+                        <h:form prependId="conForm">        
+                            <p:outputLabel value="From:" style="width: 154px"/>
+                            
+                             <p:inputMask  id="stat1"  value="#{sqlBean.dateStat1}"  mask="99-99-9999 99:99:99" >
+                      </p:inputMask><p:watermark value="dd-MM-yyyy HH:mm:ss" for="stat1" ></p:watermark><br/>
+                            <p:outputLabel value="To:" style="width: 154px"/>   
+                            
+                             <p:inputMask  id="stat2"  value="#{sqlBean.dateStat2}"   mask="99-99-9999 99:99:99" >
+                     </p:inputMask><p:watermark value="dd-MM-yyyy HH:mm:ss" for="stat2" ></p:watermark>
+            <p:commandButton value="execute" action ="#{sqlBean.recupStatistiques()}" style="color:white;background-color: #204d74;margin-left: 10px" >
+                          </p:commandButton>   
+                          <br/>  
+                          <p:separator></p:separator>
+                           <p:outputLabel value="Resultat:" style="width: 154px; "/> 
+                           <br/>   
+                           <p:outputLabel value="Login :" style="width: 160px;margin-left: 15px" />   
+                           <p:outputLabel value="Accepted :" style="width: 160px;margin-left: 15px " />
+                           <p:outputLabel value="Refused :" style="width: 160px;margin-left: 15px" />   
+                         <p:panelGrid columns="3">
+                           
+                             <c:forEach items="#{sqlBean.list_emp}" var="emp">
+                             
+                                 <p:outputLabel value="#{emp.nomEmploye}" style="width: 160px" />      <p:outputLabel value="#{emp.nbAnAccepted}" style="width: 160px" />  <p:outputLabel value="#{emp.nbAnRefused}" style="width: 160px" />
+                             
+                             
+                             </c:forEach>
+                             
+                             
+                         </p:panelGrid>
+                </h:form>
+                 </p:panel>
+        
+        
+        
+        
+        <script>
+       $("#mn").change(function (){
+           
+      
+      var selec =$("#mn option:selected").val();
+   alert(selec);
+  
+   if(selec==="1"){  
+       $('#pnAverage').show();
+       $('#pnStatistique').hide();}
+   else if(selec==="2"){  
+       $('#pnAverage').hide();
+       $('#pnStatistique').show();}
+       });
+        
+            </script>
+    </h:body>
+    
+</html>

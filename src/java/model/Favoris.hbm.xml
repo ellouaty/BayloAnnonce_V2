@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 janv. 2020 21:02:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Favoris" table="FAVORIS" schema="DBANNONCES">
+        <composite-id name="id" class="model.FavorisId">
+            <key-property name="idUtilisateurConnecte" type="big_decimal">
+                <column name="ID_UTILISATEUR_CONNECTE" precision="22" scale="0" />
+            </key-property>
+            <key-property name="idAnnonce" type="big_decimal">
+                <column name="ID_ANNONCE" precision="22" scale="0" />
+            </key-property>
+            <key-property name="dateFavoris" type="string">
+                <column name="DATE_FAVORIS" length="30" />
+            </key-property>
+            <key-property name="heureFavoris" type="string">
+                <column name="HEURE_FAVORIS" length="30" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="utilisateurConnecte" class="model.UtilisateurConnecte" update="false" insert="false" fetch="select">
+            <column name="ID_UTILISATEUR_CONNECTE" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="annonce" class="model.Annonce" update="false" insert="false" fetch="select">
+            <column name="ID_ANNONCE" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+                     
+                     
+                      <f:metadata>
+     
+                          <f:viewAction action="#{messageBean.onloadFirstMsg()}"  immediate=""/>
+                   
+                       
+    
+</f:metadata>    
+    </h:head>
+  
+    <h:body style=" ">
+ 
+                	<ui:insert name = "navigation_barAide" >
+      <ui:include src = " ./partition/navigation_bar.xhtml" />
+   </ui:insert>
+		<!-- /NAVIGATION -->
+                
+               
+      <br/><br/>
+                
+      
+  
+                    
+					 
+  <div class="container" style="padding-bottom: 10px;padding-top: 10px ;  background-color: #FBFBFC" id="divEdition" >   
+        
+                            
+                            
+                            <h:form prependId="false">
+                            
+                         
+        
+         
+                                 
+  
+            
+         
+         
+         
+          <div  class="col-md-6 col-lg-6 col-xs-12 col-sm-12" style=" height: 500px;   padding-top:8px;border-radius: 3px;border:gray solid 1px;margin-top: 10px;background-color: #FBFBFC " id="divAideContent">   
+                              
+
+              <br/>  <br/>  
+              <h:outputText class="col-md-12 col-lg-10 col-xs-12 col-sm-12" value="Envoyer à : #{messageBean.recepteur.nom}"></h:outputText>
+              <p:inputTextarea class="col-md-12 col-lg-10 col-xs-12 col-sm-12"  rows="10" cols="50" placeholder="Ecrire votre message ici" value="#{messageBean.contenu}" style="margin-bottom: 3px;font-size: 12px "   maxlength="3000" counterTemplate="{0} caracteres restants." autoResize="false" />
+                      
+                     <br/>
+                     <p:commandButton value="Envoyer" actionListener="#{messageBean.creerChat()}" style="color:wheat;background-color: #1b6d85;margin-left: 70%;margin-top: 5px">
+                     
+                       <f:param value="#{messageBean.annonceToEdit.idAnnonce}" name="idAnnToMsg"></f:param>
+                    
+                     
+                     </p:commandButton>
+                     <p:separator></p:separator>
+                      <p:outputLabel value="Attention"></p:outputLabel>
+               
+         
+         
+         <br/>
+         <h:outputText style="color: #999999" value=" Il ne faut jamais envoyer de l'argent par virement bancaire ou a travers les agences de transfert d'argent lors de l'achat des bien disponible sur le site baylo.ma,le siteBaylo  ne joue pas le role d'intermédiaire"></h:outputText>
+     <br/>
+         
+                                    </div>
+         
+              
+         
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                  
+             <div  class="col-md-6  col-lg-6 col-xs-12 col-sm-12" style=" height: 500px;  text-align: left;padding-top:8px;border-radius: 3px;border:gray solid 1px;margin-top: 10px;background-color: #FBFBFC ">   
+                 <p:outputLabel value="Résumé de l'annonce"></p:outputLabel><br/>
+                 <h:outputText value="#{messageBean.annonceToEdit.titreAnnonce}"></h:outputText><br/>
+                 <h:outputText value="#{messageBean.annonceToEdit.prixAnnonce}" style="color:#1b6d85 "></h:outputText><br/>
+                 <h:outputText value="#{messageBean.annonceToEdit.dateDepotAnnonce}"></h:outputText><br/>
+                   <p:separator></p:separator>
+                   <br/>
+                   <p:outputLabel value="Description "></p:outputLabel><br/>
+            <h:outputText value="#{messageBean.annonceToEdit.descriptionAnnonce}"></h:outputText>
+     <br/><p:separator></p:separator><br/>
+                   
+            <p:outputLabel value="Localisation"></p:outputLabel> <br/>
+             <h:outputText value="#{messageBean.annonceToEdit.villeAnnonce}"></h:outputText><br/>
+             </div>
+                                 
+         
+         
+         
+         
+         
+                                 
+         
+         
+         
+         
+         
+         
+  
+                             
+                            
+                            
+                            </h:form>
+                            
+                            
+                            
+                            </div>  
+
+  
+  
+      <br/>
+  
+  
+  
+			 <!--footer-->
+                         <div id="divFooter" style="position: relative">
+                                    <ui:insert name = "footerAide"   >
+                                                          <ui:include src = " ./partition/footer.xhtml" />
+                                                                 </ui:insert><!--/footer-->
+                         </div>
+                
+				<!-- /container -->
+                                
+                                
+			   
+                                 
+     
+
+
+                                
+			 
+     
+    </h:body></html>
+        
+        
+    

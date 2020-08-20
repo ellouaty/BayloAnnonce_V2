@@ -1,0 +1,621 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		 
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+                                       <f:metadata>
+     
+                                           <f:viewAction action="#{employeBean.onloadNew()}"  immediate=""/>
+                        </f:metadata>
+    </h:head>
+    <h:body style="background-color: lightgoldenrodyellow"  >
+        <div class="container" style=" width:100% ;float:right">
+             
+            
+              <h:form   prependId="false"> 
+                  <div class="col-md-11" style="text-align: right" >  
+                      <p:outputLabel   style="" value="Réference :" />
+                      <p:commandLink  style="font-weight: normal;color: #336699" value="#{employeBean.annonceToModerate.idAnnonce}"  action="#{findBean.onloadListeSearch('lien')}">
+                               <f:param name="ref" value="#{employeBean.annonceToModerate.idAnnonce}"></f:param>
+                           </p:commandLink>
+            
+            <c:if test="#{not empty employeBean.noActionBy}">
+                <p:outputLabel  style="margin-left: 10px"   value=" No action By :" />
+            <p:outputLabel style="font-weight: normal;text-transform: capitalize;" value="#{employeBean.noActionBy}"/>
+            </c:if>
+             
+              <c:if test="#{not empty employeBean.viewedBy}">
+                  <p:outputLabel style="margin-left: 10px;"   value="Viewed By:" />
+                    <p:outputLabel style="font-weight: normal;text-transform: capitalize;" value="#{employeBean.viewedBy}"/></c:if>
+            <p:outputLabel style="margin-left: 10px"  value="Locked By:" />
+            <p:outputLabel style="font-weight: normal;text-transform: capitalize;margin-left: 5px" value="#{emp.nomEmploye} #{emp.prenomEmploye}"/>
+            <p:outputLabel style="font-weight: normal;margin-left: 5px" value="#{employeBean.heureModeration}"/> 
+            
+        </div>
+                  <div class="col-md-11" style="border:0.5px red solid;padding-bottom: 10px;padding-top: 10px;margin-left: 0px">
+      
+                      <div class="col-md-6" style="background-color:inherit;border-right: gray 1px solid">
+                          <div class="col-md-10" style="background-color:inherit">
+                           <p:inputText  value="#{employeBean.titre}"   id="titreE" required="true" class="col-md-12" style="font-size: 15px;background-color: #ffffff;border: 1px gray solid; text-transform: capitalize "  />
+   
+                              <p:message for="titreE" id="msgTitre" ></p:message>
+                              <h:graphicImage class="col-md-11" library="img" name="#{employeBean.photoFirst}"   id="grandPh" style="border:#5e5e5e dashed 2px;padding: 0px ;margin:15px 15px 15px 15px;height:350px"   /> 
+                                            
+                   <div class="col-md-12" style="background-color: inherit">
+                       <div class="col-md-10" style="margin: 0px;padding-left:0px">  <p:outputLabel  style="font-weight: normal;padding-right: 4px" value="#{employeBean.annonceToModerate.utilisateurConnecte.nom}"/> 
+                           <p:commandLink value="#{employeBean.annonceToModerate.utilisateurConnecte.emailUtilConnecte}" action="#{findBean.onloadListeSearch('lien')}" style="color: #336699">
+                               <f:param name="email" value="#{employeBean.annonceToModerate.utilisateurConnecte.emailUtilConnecte}"></f:param>
+                           </p:commandLink>
+                       </div>
+                           <p:outputLabel class="col-md-10" style="font-weight: normal;padding-left:5px" value="#{employeBean.annonceToModerate.villeAnnonce},Icon"/>  
+                           <h:selectOneMenu class="col-md-7" id="ListeCategorie" value="#{employeBean.annonceToModerate.souscategorie}"  style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;height:31px;margin-right: 10px ">
+          <ui:insert name = "categorie_itemMOD" >
+      <ui:include src = "../partition/List_catModeration.xhtml" />
+   </ui:insert>
+        </h:selectOneMenu>  
+                           <h:selectOneMenu class="col-md-3" value="#{employeBean.annonceToModerate.typeAnnonce}" style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;height:31px"  >
+                           
+                        <f:selectItem itemLabel="Offre" itemValue="Offre"  /> 
+                           <f:selectItem itemLabel="Demande" itemValue="Demande" /> 
+                       </h:selectOneMenu> 
+      
+                           <c:if test="#{not empty employeBean.vehiculeProTomoderate}">
+                       <div  class="col-md-12" id="divTypeVeh" style="padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px;">
+                                                   
+                           <h:selectOneMenu   class="col-md-6"   id="SousCatv" value="#{employeBean.vehiculeProTomoderate.sousCatVehiculeProf}"   style="font-size: 14px; height:31px;margin-top: 4px; line-height: 23px;width:250px ">
+                                
+   
+        <ui:insert  name = "Viheculpro_item" >
+      <ui:include src = "../partition/Viheculpro_item.xhtml" />
+   </ui:insert>
+              </h:selectOneMenu>                                                    
+                
+                      
+                     <p:message class="col-md-6"  for="SousCatv"></p:message>
+                                                       </div>  
+                                     
+                           </c:if>
+                           <c:if test="#{not empty employeBean.voitureToModerate}">
+                  <div id="divmarq"  class="col-md-12" style="width: 700px ; padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px;"> 
+                                                        
+                     
+                     
+                                                       <div id="Divmarque"  class="col-md-12" style="padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px;">
+                                                          
+                   <p:outputLabel class="col-md-4"  for="marque" value="Marque : " style="width: 174px" />
+                
+                   <p:outputLabel class="col-md-4" value="#{employeBean.voitureToModerate.marqueVoiture}" id="marque"   style="font-size: 14px; margin-top: 4px; width:150px ;font-weight: normal "/>
+                   
+                 <p:message class="col-md-4"  for="marque" id="msgMRK" />
+                 
+                                                      </div> </div>
+                           
+                         
+                     
+                                                      
+                                                       <div  id ="divModelPub" class="col-md-12" style="padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px;"> 
+                                                       
+                   
+                    <p:outputLabel class="col-md-4"   for="modele" value="Modele: " style="width: 174px"  />
+             
+                    <p:outputLabel class="col-md-4"  id="modele" value="#{employeBean.voitureToModerate.modeleVoiture}"  style="font-size: 14px; margin-top: 4px; width:150px ;font-weight: normal "/>
+                    
+                    <p:message class="col-md-4"   for="modele" id="msgModele"></p:message>
+                                                    
+                                                   </div>   
+    
+                         
+                   
+                                                   <div class="col-md-12" id="divTypCarb" style="padding-left: 0px">
+                                                   
+                                                    
+                
+                     <p:outputLabel class="col-md-4"  for="TypCarb" value="Type de carburant  : " style="width: 174px"   />
+                     <p:outputLabel class="col-md-4"   value="#{employeBean.voitureToModerate.typeCarburantVoiture}" id="TypCarb"  style="margin-bottom: 3px;font-weight: normal" />
+       <p:message class="col-md-4"  for="TypCarb" id="msgCarb"></p:message>
+                  
+                                                   
+                                                   
+                                                   
+                                                   </div>  
+                                                       
+                                                   <div class="col-md-12" id="Annem" style="padding-left: 0px">
+                                                       
+                                      
+                     <p:outputLabel class="col-md-4"  for="ann" value="Année-Modele  :"  style="width: 174px" />
+                     <p:outputLabel class="col-md-4" value="#{employeBean.voitureToModerate.anneeModeleVoiture}" id="ann"  style="margin-bottom: 3px;font-weight: normal " />
+      
+               <p:message class="col-md-4"  for="ann" id="msgAn"></p:message>
+                                                                                               
+                                                                                                         
+                                                   </div>   
+                      
+                                                                 
+                   
+                                                
+                                                    <div class="col-md-12" id="klmt" style="padding-left: 0px">
+                                                   
+                                                        
+           
+                                                       
+                                                    
+                     <p:outputLabel class="col-md-4"  for="kml" value="Kilométrage  : " style="width: 174px"  />
+                     <p:outputLabel class="col-md-4"  id="kml" value="#{employeBean.voitureToModerate.kilometrage}" style="margin-bottom: 3px;font-weight: normal " />
+        <p:message class="col-md-4"  for="kml" id="msgKm"></p:message>
+                 
+                                                                                          </div>   
+                      
+                                                
+                                                    <div id="divfisc" style="">
+                                                                     
+                                                                                                
+                                                   
+                     <p:outputLabel class="col-md-4"  for="pfsc" value="Puissance fiscale :   " style="width: 174px"  />
+             
+                     <p:outputLabel class="col-md-4"   id="pfsc" value="#{employeBean.voitureToModerate.puissanceFiscaleVoiture}"  style="margin-bottom: 3px;font-weight: normal" />
+      <p:message class="col-md-4"  id="msgpf" for="pfsc"></p:message>
+                 
+                                                                                          </div>
+               
+                           
+                           </c:if>        
+                          
+                           
+                           
+                           <c:if test="#{not empty employeBean.appartBureauToModerate}">
+                                                         
+                                                    <div class="col-md-12" id="divEtage" style="padding-left: 0px">
+                                                                     
+                                                                                           
+                    <p:outputLabel class="col-md-4"  for="etageP" value="Etage   : " style="width: 174px"  />
+        
+                    <p:outputLabel class="col-md-4" id="etageP"  value="#{employeBean.appartBureauToModerate.etageAppartement}"  style="font-size: 14px; margin-top: 4px; width:150px ;font-weight: normal "/>
+                    
+                                                                       <p:message class="col-md-4"  for="etageP" id="msgEtag"></p:message>                   </div>
+                                                   
+                           </c:if>
+                           
+                                                  
+                           <c:if test="#{not empty employeBean.autreImmoToModerate}">
+                                                         
+                                                 
+                                                     
+                                                       <div id="divempPubAUT"  class="col-md-12" style="padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px;">
+                                                        
+                    <p:outputLabel  class="col-md-4" for="EmplaceAUT" value="Emplacement : " style="width: 174px" />
+                
+                    <h:inputText class="col-md-4" id="EmplaceAUT" readonly="true" value="#{employeBean.autreImmoToModerate.emplacementAutreImmobilier}"  style="margin-bottom: 3px;background-color: inherit "  ></h:inputText>  
+                    <p:message class="col-md-4" id="msgEmpAUT"  for="EmplaceAUT" ></p:message>
+                                                     
+                                                       
+                                                       
+                                                       </div>  
+                                    
+                                                   
+                                                   <div  class="col-md-12" id="dvSuperPubAUT" style="padding-left: 0px">
+                                                       
+                                                             
+                                       
+                                                    <p:outputLabel class="col-md-4" for="superPubAUT"  value="Superficie :" style="width: 174px;"/>
+                                                       
+                                                    <h:inputText class="col-md-3" id="superPubAUT"  readonly="true" value="#{employeBean.autreImmoToModerate.superficieAutreImmobilier}"  style="margin-bottom: 3px;background-color: inherit " ></h:inputText>
+                                                       <h:outputText   value="m2 " style="float: left" > </h:outputText>
+                                                   
+                                                       
+                                                       
+                                                   <p:message class="col-md-4" for="superPubAUT" id="msgSuperfAUT" />
+                                                       
+                                                         
+                                                   
+                                                   
+                                                   
+                                                   </div> 
+                                                   
+                                              <div  class="col-md-12" id="divprixMAUT" style="padding-left: 0px">
+                                                       
+                                                   
+                                                       <p:outputLabel  class="col-md-4" for="prixMAUT" value="Prix par m2 :" style="width: 174px;" />
+                                                     
+                                                       
+                                                       
+                                                       <h:inputText class="col-md-3" id="prixMAUT" readonly="true" value="#{employeBean.autreImmoToModerate.prixMcAutreImmobilier}"  style="margin-bottom: 3px;background-color: inherit "  ></h:inputText>
+                                                       <h:outputText   value="Dh/m2 " style="float: left"> </h:outputText>
+                                                   
+                                                   <p:message class="col-md-4" for="prixMAUT" id="msgPrixMAUT" />
+                                                        
+                                                   
+                                              </div>  </c:if>
+                         
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                           
+                                               
+                           <c:if test="#{not empty employeBean.maisonVillaToModerate}">
+                                                         
+                                                   <div class="col-md-12" id="divPieces" style="padding-left: 0px">
+                                                                     
+                                                                                           
+                    <p:outputLabel class="col-md-4" for="pieces" value="Nombre de pieces   : " style="width: 174px"  />
+                    <p:outputLabel class="col-md-4" id="pieces"  value="#{employeBean.maisonVillaToModerate.nbPiecesMaisonVilla}"  style="font-size: 14px; margin-top: 4px; width:150px ;font-weight: normal "/>
+         
+                    <p:message class="col-md-4"  for="pieces" ></p:message>
+                                                                                         </div>
+                                                   
+           
+                         
+                                                   
+                                                     
+                                                       <div id="divempPub"  class="col-md-12" style="padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px;">
+                                                        
+                    <p:outputLabel  class="col-md-4" for="Emplace" value="Emplacement : " style="width: 174px" />
+                
+                    <h:inputText class="col-md-4" id="Emplace" readonly="true" value="#{employeBean.maisonVillaToModerate.emplacementMaisonVilla}"  style="margin-bottom: 3px;background-color: inherit "  ></h:inputText>  
+                    <p:message class="col-md-4" id="msgEmp"  for="Emplace" ></p:message>
+                                                     
+                                                       
+                                                       
+                                                       </div>  </c:if>
+                                                       
+                           <c:if test="#{not empty employeBean.terrainFerTomoderate}">
+                                                  <div  class="col-md-12" style="padding-right: 0px;padding-left: 0px;margin-right: 0px;margin-left: 0px;" id="zoon"> 
+                                                         
+                  
+                    <p:outputLabel class="col-md-4" for="Z" value="Zooning: " style="width: 174px;"  />
+                    <p:outputLabel class="col-md-4" id="Z"  value="#{employeBean.terrainFerTomoderate.zoningTerrainFerme}"  style="font-size: 14px; margin-top: 4px; width:150px ;font-weight: normal "/>
+          
+                   <p:message class="col-md-4" id="msgZ" for="Z" ></p:message>
+                                             
+                                                   
+                                                       </div>
+                                                   
+                           </c:if>
+                                                <c:if test="#{not empty employeBean.maisonVillaToModerate}">
+                                    
+                                                   
+                                                   <div  class="col-md-12" id="dvSuperPub" style="padding-left: 0px">
+                                                       
+                                                             
+                                       
+                                                    <p:outputLabel class="col-md-4" for="superPub"  value="Superficie :" style="width: 174px;"/>
+                                                       
+                                                    <h:inputText class="col-md-3" id="superPub"  readonly="true" value="#{employeBean.maisonVillaToModerate.superficieMaisonVilla}"  style="margin-bottom: 3px;background-color: inherit " ></h:inputText>
+                                                       <h:outputText   value="m2 " style="float: left" > </h:outputText>
+                                                   
+                                                   <p:message class="col-md-4" for="superPub" id="msgSuperf" />
+                                                       
+                                                         
+                                                   
+                                                   
+                                                   
+                                                   </div> 
+                                                   
+                                              <div  class="col-md-12" id="divprixM" style="padding-left: 0px">
+                                                       
+                                                   
+                                                       <p:outputLabel  class="col-md-4" for="prixM" value="Prix par m2 :" style="width: 174px;" />
+                                                     
+                                                       
+                                                       
+                                                       <h:inputText class="col-md-3" id="prixM" readonly="true" value="#{employeBean.maisonVillaToModerate.prixMetreCarreMaisonVilla}"  style="margin-bottom: 3px;background-color: inherit "  ></h:inputText>
+                                                       <h:outputText   value="Dh/m2 " style="float: left"> </h:outputText>
+                                                   
+                                                   <p:message class="col-md-4" for="prixM" id="msgPrixM" />
+                                                        
+                                                   
+                                              </div>  </c:if>
+                         
+                           
+                                                   
+                                                     <div id="prixPub" class="col-md-12" style="padding-left: 0px;padding-top: 7px" >  
+                                                            <p:outputLabel  class="col-md-4"  value="Prix :" style="width: 174px;" />
+                                                     
+                                                           <h:inputText class="col-md-3" required="true"  id="PRIXE" value="#{employeBean.prix}"  style="margin-bottom: 3px;  " ></h:inputText>
+     
+                                                           <h:outputText   value="DH" style="float: left"> </h:outputText>
+                                                       
+                                                       
+                                                       <p:message for="PRIXE" class="col-md-4"  id="msgPrix" />
+                                                        
+                                                       </div>
+             
+                       
+                       
+                   
+                         
+                       
+                       
+                       
+                   </div></div>
+                   <div class="col-md-2" style="background-color:inherit">
+                       <br/><br/>
+                       <c:if test="#{not empty employeBean.photoTomoderate[0]}">
+          
+                    <div   class="col-md-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;padding-top: 1px;width:100px">
+                        <p:commandLink action="#{employeBean.afficherPhoto(0)}" >     
+            <h:graphicImage   style="width: 100px;height: 90px;margin-top: 0px;margin-right: 0px;border: solid gray 1px;border-radius:1px" name="#{employeBean.photoTomoderate[0]}" library="img"    /> 
+                        </p:commandLink>       <p:selectBooleanCheckbox class="col-md-1" style="float: left;margin-right: 0px;margin-top: 4px;margin-bottom: 4px;" value="#{employeBean.delete0}"  >supprimer </p:selectBooleanCheckbox>
+                                 
+                    </div>   </c:if>
+                       <c:if test="#{not empty employeBean.photoTomoderate[1]}">
+          
+                        <div   class="col-md-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;padding-top: 1px;width:100px">
+       <p:commandLink action="#{employeBean.afficherPhoto(1)}" >   
+                       <h:graphicImage   style="width: 100px;height: 90px;margin-top: 0px;margin-right: 0px;border: solid gray 1px;border-radius:1px" name="#{employeBean.photoTomoderate[1]}"  library="img"   /> 
+       </p:commandLink> <p:selectBooleanCheckbox class="col-md-1" style="float: left;margin-right: 0px;margin-top: 4px;margin-bottom: 4px;" value="#{employeBean.delete1}" >supprimer </p:selectBooleanCheckbox>
+                                 
+          </div>   
+                           </c:if>
+                       
+                       <c:if test="#{not empty employeBean.photoTomoderate[2]}">
+          
+                        <div   class="col-md-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;padding-top: 1px;width:100px">
+       <p:commandLink action="#{employeBean.afficherPhoto(2)}" >   
+                       <h:graphicImage   style="width: 100px;height: 90px;margin-top: 0px;margin-right: 0px;border: solid gray 1px;border-radius:1px" name="#{employeBean.photoTomoderate[2]}"  library="img"   /> 
+       </p:commandLink>       <p:selectBooleanCheckbox class="col-md-1" style="float: left;margin-right: 0px;margin-top: 4px;margin-bottom: 4px;" value="#{employeBean.delete2}"  >supprimer </p:selectBooleanCheckbox>
+                                 
+          </div>   </c:if>
+                       <c:if test="#{not empty employeBean.photoTomoderate[3]}">
+          
+                        <div   class="col-md-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;padding-top: 1px;width:100px">
+       <p:commandLink action="#{employeBean.afficherPhoto(3)}" >   
+                       <h:graphicImage   style="width: 100px;height: 90px;margin-top: 0px;margin-right: 0px;border: solid gray 1px;border-radius:1px" name="#{employeBean.photoTomoderate[3]}"  library="img"    /> 
+       </p:commandLink>   <p:selectBooleanCheckbox class="col-md-1" style="float: left;margin-right: 0px;margin-top: 4px;margin-bottom: 4px;" value="#{employeBean.delete3}"  >supprimer </p:selectBooleanCheckbox>
+                                 
+          </div>   </c:if>
+                       <c:if test="#{not empty employeBean.photoTomoderate[4]}">
+          
+                        <div   class="col-md-1"   style=" padding-left: 0px;padding-right: 0px;margin-right:4px;padding-top: 1px;width:100px">
+       <p:commandLink action="#{employeBean.afficherPhoto(4)}" >   
+                       <h:graphicImage   style="width: 100px;height: 90px;margin-top: 0px;margin-right: 0px;border: solid gray 1px;border-radius:1px" name="#{employeBean.photoTomoderate[4]}"  library="img"  /> 
+       </p:commandLink>      <p:selectBooleanCheckbox class="col-md-1" style="float: left;margin-right: 0px;margin-top: 4px;margin-bottom: 4px;"  value="#{employeBean.delete4}"  >supprimer </p:selectBooleanCheckbox>
+                                 
+          </div>   </c:if>
+                                    
+                                                            
+                                                            
+                                         
+                   </div>
+                          
+                                                                
+                         
+                </div>
+                  
+                      <div class="col-md-6" style="background-color: #f7ecb5">
+                          
+                          <div class="col-md-5"  > <br/> 
+                              <div class="col-md-12" style="background-color: inherit;height: 150px;display: none">
+                           <p:outputLabel value="lool"  style="display: none"></p:outputLabel>
+               <p:separator  class="col-md-11"  style="margin-top: 10px;margin-bottom: 10px;"/>
+                             
+                      </div>
+                              <c:if test="#{not empty  employeBean.annonceToModerate.utilisateurConnecte.noteEmailUtilConnecte}">
+                             <h:outputText  class="col-md-11" id="labEmail" value="Note sur l'email" style="padding-left: 0px;"/>
+                             
+                              <c:if test="#{employeBean.annonceToModerate.utilisateurConnecte.degreNoteEmailUtilConnecte eq 'false'}">
+                               <h:inputTextarea class="col-md-7" id="noteEmailA" value="#{employeBean.annonceToModerate.utilisateurConnecte.noteEmailUtilConnecte}" ondblclick="clickNemail();" readonly="true" style="background-color: #ffff66 " />  
+                              </c:if>
+                              <c:if test="#{employeBean.annonceToModerate.utilisateurConnecte.degreNoteEmailUtilConnecte eq 'true'}">
+                                
+                                  <h:inputTextarea class="col-md-7" id="noteEmailB" value="#{employeBean.annonceToModerate.utilisateurConnecte.noteEmailUtilConnecte}" ondblclick="clickNemailB();" readonly="true" style="background-color: #ff6666 " />  
+                              </c:if>
+                               </c:if>
+                                <h:inputTextarea class="col-md-7" id="noteEmailE" value="#{employeBean.annonceToModerate.utilisateurConnecte.noteEmailUtilConnecte}"  style="background-color: #ffffff;display: none" />  
+                             <p:selectBooleanCheckbox class="col-md-6" id="checkEmail" style="float: left;margin-right: 0px;margin-top: 4px;margin-bottom: 4px;display: none" value="#{employeBean.annonceToModerate.utilisateurConnecte.degreNoteEmailUtilConnecte}" itemLabel="important"  />  
+                             
+                              <c:if test="#{not empty  employeBean.annonceToModerate.utilisateurConnecte.noteTelUtilConnecte}">
+                                     <h:outputText id="labTel"  class="col-md-11" value="Note sur numero de Tel" style="padding-left: 0px;color: blue"/>
+                                
+                               <c:if test="#{employeBean.annonceToModerate.utilisateurConnecte.degreNoteTELUtilConnecte eq 'false'}">
+                                
+                                <h:inputTextarea class="col-md-7" id="noteTelA" value="#{employeBean.annonceToModerate.utilisateurConnecte.noteTelUtilConnecte}" ondblclick="clickNtel();" readonly="true" style="background-color: #ffff66 " /> 
+                               </c:if>
+                                       <c:if test="#{employeBean.annonceToModerate.utilisateurConnecte.degreNoteTELUtilConnecte eq 'true'}">
+                                
+                               <h:inputTextarea class="col-md-7" id="noteTelB" value="#{employeBean.annonceToModerate.utilisateurConnecte.noteTelUtilConnecte}" ondblclick="clickNtelB();" readonly="true" style="background-color:  #ff6666 " /> 
+                               </c:if>
+                               </c:if>
+                                  <h:inputTextarea class="col-md-7" id="noteTelE"  value="#{employeBean.annonceToModerate.utilisateurConnecte.noteTelUtilConnecte}"  style="background-color: #ffffff;display: none" />  
+                              
+                               <p:selectBooleanCheckbox class="col-md-6" id="checkTel"  style="float: left;margin-right: 0px;margin-top: 4px;margin-bottom: 4px;display: none" value="#{employeBean.annonceToModerate.utilisateurConnecte.degreNoteTELUtilConnecte}"  itemLabel="important" /> 
+                               
+                               <h:outputText id="labUser"  class="col-md-11" value="Note sur l'annonce" style="padding-left: 0px;display: none"/>
+                              <c:if test="#{not empty employeBean.annonceToModerate.noteAnnonce}">
+                                   <h:outputText   class="col-md-11" value="Note sur l'annonce" style="padding-left: 0px;color: blue"/>
+                              
+                              <c:if test="#{employeBean.annonceToModerate.degreNoteAnnonce eq 'false'}">
+                                <h:inputTextarea class="col-md-7" id="noteUserA" value="#{employeBean.annonceToModerate.noteAnnonce}" ondblclick="clickNuser();" readonly="true" style="background-color: #ffff66 " />  
+                              </c:if>
+                                 <c:if test="#{employeBean.annonceToModerate.degreNoteAnnonce eq 'true'}">
+                                    <h:inputTextarea class="col-md-7" id="noteUserB" value="#{employeBean.annonceToModerate.noteAnnonce}" ondblclick="clickNuserB();" readonly="true" style="background-color:  #ff6666 " />  
+                              </c:if>
+                                
+                           </c:if>
+                                     <h:inputTextarea class="col-md-7" id="noteUserE" value="#{employeBean.annonceToModerate.noteAnnonce}"  style="background-color: #ffffff;display: none" />  
+                              
+                                <p:selectBooleanCheckbox class="col-md-6" id="checkUser"  style="float: left;margin-right: 0px;margin-top: 4px;margin-bottom: 4px;display: none" value="#{employeBean.annonceToModerate.degreNoteAnnonce}" itemLabel="important" />  
+                             
+                              <c:if test="#{empty  employeBean.annonceToModerate.utilisateurConnecte.noteEmailUtilConnecte}">
+                                  <h:link class="col-md-11" id="lienEmail" value="Note sur email" onclick="event.preventDefault();clickNemailLien(); " style="color: #336699" /></c:if>
+                                      <c:if test="#{empty  employeBean.annonceToModerate.utilisateurConnecte.noteTelUtilConnecte}">
+                                          <h:link class="col-md-11" id="lienTel" value="Note sur numero de télephone" onclick="event.preventDefault();clickNtelLien();" style="color: #336699" /></c:if>
+                                          <c:if test="#{empty  employeBean.annonceToModerate.noteAnnonce}">
+                                              <h:link class="col-md-11" id="lienUser" value="Note sur l'annonce" onclick="event.preventDefault();clickNuserLien();" style="color: #336699" /></c:if>
+                                <p:separator  class="col-md-11"  style="margin-top: 10px;margin-bottom: 10px"/>
+                                <h:outputText class="col-md-11" style="font-size: 14px;" value="#{employeBean.heureDepot}"/>  
+                                 <h:outputText class="col-md-11" style="font-size: 14px;" value="#{employeBean.annonceToModerate.utilisateurConnecte.villeUtilConnecte}"></h:outputText>
+                                 <p:commandLink class="col-md-11"  value="#{employeBean.annonceToModerate.utilisateurConnecte.telUtilConnecte}" style="color:#336699;font-size: 14px;font-weight:bold " 
+                                                  action="#{findBean.onloadListeSearch('lien')}">
+                               <f:param name="tel" value="#{employeBean.annonceToModerate.utilisateurConnecte.telUtilConnecte}"></f:param>
+                           </p:commandLink>
+                               <c:if test="#{not emptyemployeBean.annonceToModerate.paysAnnonce}">
+                                 <c:if test="#{employeBean.annonceToModerate.paysAnnonce eq 'MORROCO'}">
+                                 <h:link class="col-md-11"  style="color:#336699;font-size: 14px;font-weight:bold;background-color: inherit "  value="#{employeBean.annonceToModerate.ipAnnonce},#{employeBean.annonceToModerate.paysAnnonce}"  />
+                               </c:if>
+                                   <c:if test="#{not empty employeBean.annonceToModerate.ipAnnonce}">                      
+<c:if test="#{employeBean.annonceToModerate.paysAnnonce ne 'MORROCO'}">
+                              
+                              
+<p:commandLink  class="col-md-11"  style="color:#336699;font-size: 14px;font-weight:bold;background-color:inherit;color:red "  value="#{employeBean.annonceToModerate.ipAnnonce},#{employeBean.annonceToModerate.paysAnnonce}"
+                action="#{findBean.onloadListeSearch('lien')}">
+                               <f:param name="ip" value="#{employeBean.annonceToModerate.ipAnnonce}"></f:param>
+                           </p:commandLink>
+
+</c:if>                                <p:separator  class="col-md-11"  style="margin-top: 10px;margin-bottom: 10px;"/>
+                                 </c:if> </c:if>
+                           </div> 
+                          <div class="col-md-6" style="background-color:inherit;" >  
+                              <p:outputLabel value="lool"  style="display: none"></p:outputLabel>
+              <br/>
+                          </div>
+                          
+                      </div> 
+                      <div class="col-md-12" >
+                          <div id="DescMod" class="col-md-6" style="border-right:gray 1px solid  "  >
+                              <p:message for="descriptionE" id="msgDesc" style="float: right" ></p:message>
+                              <p:inputTextarea class="col-md-12" rows="10" id="descriptionE"    required="true"  value="#{employeBean.description}" style="height: 200px ;margin-bottom: 3px;margin-top: 7px;background-color:#000\9 ;border: 1px gray solid;  "    />
+                            
+                                 </div> 
+                      
+                          <p:panel id="pn" class="col-md-2"  style=" background-color:  #f7ecb5;margin-top:40px;margin-left: 10px;padding-bottom: 10px;padding-right:10px;padding-top: 20px" >
+                     <h:commandButton actionListener="#{employeBean.MoveToAbus()}" style="float:right ;  margin-right: 10px;margin-bottom: 20px;color: white;background-color:#ff6666 " id="btnMOVE"   value="Move to Abus queu" >
+                             <f:param value="#{employeBean.annonceToModerate.idAnnonce}" name="idAnnAbus"/>
+                         </h:commandButton>
+                                
+                              <h:selectOneMenu class="col-md-11"  value="#{employeBean.motifDerefus}"  style="font-size: 14px; height:22px;margin-top: 6px;margin-right: 20px;margin-bottom:20px;  line-height: 23px;width:180px ">
+                                
+        
+         <ui:insert name = "motif" >
+      <ui:include src = "../partition/motif_refus.xhtml" />
+      
+   </ui:insert> 
+                                </h:selectOneMenu>    
+                                       <div   class="col-md-5" style="margin-right: 10px;" >
+                                    <h:commandButton action="#{employeBean.refuseAnnonceByEmp('norm')}" class="btn-primary"  id="btnref"   value="refuser"  >   
+                                      <f:param value="#{employeBean.annonceToModerate.idAnnonce}" name="idAnnToRefu"/>  
+                                      
+                                    </h:commandButton>
+                                           
+                                    <h:commandButton  disabled="true" class="btn-primary"  id="btnrefE" style="display: none"   value="refuser"  />  
+                                </div>
+                                <div   class="col-md-5"  >     
+                                    <c:if test="#{employeBean.annonceToModerate.etatAnnonce ne 'publie'}">
+                                        <c:if test="#{employeBean.annonceToModerate.etatAnnonce ne 'rejete'}"> 
+                                            <c:if test="#{employeBean.annonceToModerate.etatAnnonce ne 'abus'}"> 
+                                            
+                                            <h:commandButton class="btn-success"  action ="#{employeBean.accepteAnnonceByEmp('norm')}"  id="btnacc" value="accepter">
+                                     <f:param value="#{employeBean.annonceToModerate.idAnnonce}" name="idAnnToAcct"/> 
+                                     </h:commandButton>
+                                              
+                                    </c:if> </c:if> </c:if> 
+                                      <c:if test="#{employeBean.annonceToModerate.etatAnnonce eq 'publie'}">
+                                          <h:commandButton class="btn-success" disabled="true"  style="color: white;#8ccd8c"  value="accepter"/>
+                                    </c:if>
+                                     <c:if test="#{employeBean.annonceToModerate.etatAnnonce eq 'rejete'}">
+                                          <h:commandButton class="btn-success" disabled="true"   style="color: white;#8ccd8c"  value="accepter"/>
+                                    </c:if>
+                                       <c:if test="#{employeBean.annonceToModerate.etatAnnonce eq 'abus'}">
+                                          <h:commandButton class="btn-success" disabled="true"   style="color: white;#8ccd8c"  value="accepter"/>
+                                    </c:if>
+                                     
+                                </div>
+                             
+                          </p:panel>  
+                          
+                             <p:panel id="pn1" class="col-md-2" style="display: none; background-color:  #f7ecb5;margin-top:90px;margin-left: 10px;padding-bottom: 10px;padding-right:10px;padding-top: 20px"  >
+                         <c:if test="#{employeBean.motifDerefus eq 'NO'}"  >
+                               <p:outputLabel value="motif ??" id="mtfNo" style="color:red"></p:outputLabel></c:if>
+                               
+                                <c:if test="#{employeBean.annonceToModerate.etatAnnonce eq 'publie'}">
+                               <p:outputLabel value="accepted" id="labFeedBAcc"  style="color: green;border: green 1px solid;padding-right: 5px;padding-left: 5px;"></p:outputLabel>
+                                </c:if>
+                             <c:if test="#{employeBean.annonceToModerate.etatAnnonce eq 'rejete'}"> 
+                                 <p:outputLabel value="refused" id="labFeedBRefu"  style="color: red;border:red 1px solid;padding-right: 5px;padding-left: 5px;"></p:outputLabel>
+                             </c:if>    <p:outputLabel value="moved to abus queu" id="labFeedBMoved"  style="color: palevioletred;border:palevioletred 1px solid;padding-right: 5px;padding-left: 5px;display: none"     ></p:outputLabel>
+                            
+                          </p:panel>  
+                         <h:outputLink   class="btn btn-default"    style="float:right ;margin-right: 10px;margin-top:90px;margin-bottom: 20px;color: white;background-color: mediumaquamarine" value="#{request.contextPath}/Queus"     > Quitter
+                          </h:outputLink>
+                       <p:commandButton action="#{employeBean.NoActionAnnonceByEmp('new')}" style="float:right ;margin-right: 10px;margin-top:90px;margin-bottom: 20px;color: white;background-color: darksalmon"    value="Suivant >>" >
+                             <f:param value="#{employeBean.annonceToModerate.idAnnonce}" name="idAnnNoAct"/>
+                         </p:commandButton> 
+                         
+                      </div>
+                </div>
+              </h:form> 
+          
+           
+        
+        </div>
+                            <script>
+   
+       
+       function clickNemail(){
+          $('#noteEmailA').toggle();
+           $('#noteEmailE').toggle();
+          $('#checkEmail').toggle();}
+         
+         function clickNtel(){
+          $('#noteTelA').toggle();
+           $('#noteTelE').toggle(); 
+          $('#checkTel').toggle();}
+         
+         function clickNuser(){
+          $('#noteUserA').toggle();
+           $('#noteUserE').toggle();
+           $('#checkUser').toggle();
+       }
+       
+        function clickNemailB(){
+          $('#noteEmailB').toggle();
+           $('#noteEmailE').toggle();
+          $('#checkEmail').toggle();}
+         
+         function clickNtelB(){
+          $('#noteTelB').toggle();
+           $('#noteTelE').toggle(); 
+          $('#checkTel').toggle();}
+         
+         function clickNuserB(){
+          $('#noteUserB').toggle();
+           $('#noteUserE').toggle();
+           $('#checkUser').toggle();
+       }
+       function clickNemailLien(){
+           $('#labEmail').show();
+           $('#noteEmailE').show();
+          $('#checkEmail').show();
+           $('#lienEmail').hide();}
+         function clickNtelLien(){
+           $('#labTel').show();
+           $('#noteTelE').show();
+          $('#checkTel').show();
+           $('#lienTel').hide();}
+         
+          function clickNuserLien(){
+           $('#labUser').show();
+           $('#noteUserE').show();
+          $('#checkUser').show();
+           $('#lienUser').hide();
+       }
+        
+            </script>
+               
+        
+    </h:body>
+    
+</html>

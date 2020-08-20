@@ -1,0 +1,596 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		 
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+              <f:metadata>
+     
+                  <f:viewAction action="#{annonceBean.onload()}"  immediate=""/>
+                   
+                       
+    
+</f:metadata>    
+                
+    </h:head>
+  
+    <h:body style="">
+ 
+                	<ui:insert name = "navigation_barListAnn" >
+      <ui:include src = " ./partition/navigation_bar.xhtml" />
+   </ui:insert>
+		 
+			<!--div id="top-header" style="background-color: slategray ;padding-bottom:4px;padding-top: 10px">
+                             
+                            <ui:insert name = "search_bar_normalListAnn" >
+                                                                                <ui:include src = "./partition/search/search_bar_normal.xhtml" />
+                                                                                                 </ui:insert>                      
+                            
+                </div-->
+			 
+           
+					 
+  <div class="container" style="padding-bottom: 10px;padding-top: 10px ; " id="divEdition" >
+      
+       
+            
+      <c:if test="#{empty annonceBean.annonceToEdit}">
+          <div class="col-md-4 col-xs-2 col-sm-2 " ></div>
+     <div class="col-md-4 col-xs-8 col-sm-8" style=" " >  
+      
+                                              
+           <p:outputLabel style="margin-top: 150px;margin-bottom: 150px;color:#336699 " value="#{annonceBean.reponse}" ></p:outputLabel>
+                                          
+           </div>
+            <div class="col-md-4"></div>
+      </c:if>
+      
+      
+      
+      
+ <c:if test="#{not empty annonceBean.annonceToEdit}">
+      <h:form prependId="lol">
+     <div class="col-md-9" style="margin-top:10px ;margin-bottom:10px ">
+          <h:outputLink  class="btn btn-link " value="#{request.contextPath}/Acceuil" style="font-size: 14px;margin-left:0px;margin-right:0px;padding-left:0px;padding-right:0px;color: #525D7D">  
+            Acceuil >
+          </h:outputLink> 
+         <h:outputLink  class="btn btn-link " value="#{request.contextPath}/listeAnnonces/All" style="font-size: 14px;margin-left:0px;margin-right:0px;padding-left:0px;padding-right:0px;color:#525D7D">  
+            Tout le Maroc >
+          </h:outputLink>
+           <h:outputLink  class="btn btn-link " value="#{request.contextPath}/listeAnnonces/#{annonceBean.annonceToEdit.villeAnnonce}" style="font-size: 14px;margin-left:0px;margin-right:0px;padding-left:0px;padding-right:0px;color: #525D7D">  
+            #{annonceBean.annonceToEdit.villeAnnonce} >
+          </h:outputLink>
+            <h:outputLink  class="btn btn-link " value="#{request.contextPath}/listeAnnonces/#{annonceBean.annonceToEdit.categorie}" style="font-size: 14px;margin-left:0px;margin-right:0px;padding-left:0px;padding-right:0px;color:#525D7D">  
+            #{annonceBean.annonceToEdit.categorie} >
+          </h:outputLink>
+         <h:outputLink  class="btn btn-link " value="#{request.contextPath}/listeAnnonces/Resultat_Villes_#{annonceBean.annonceToEdit.souscategorie}_Annonces" style="font-size: 14px;margin-left:0px;margin-right:0px;padding-left:0px;padding-right:0px;color: #525D7D">  
+            #{annonceBean.annonceToEdit.souscategorie} >
+          </h:outputLink>
+         <h:outputText value="#{annonceBean.annonceToEdit.titreAnnonce}" > </h:outputText> 
+        
+                           </div>
+      <div class="col-md-9" style="background-color: white;font-size:160%;margin-top:10px ;margin-bottom:10px ;">#{annonceBean.annonceToEdit.titreAnnonce} </div>
+      <br/>
+      <div class="col-md-9" > 
+          <c:if test="#{annonceBean.btnPrec eq 'ok'}">
+          <p:commandButton class="col-md-4" value="« Précedente" id="bouttPre" style="margin-top: 0px;margin-bottom:  0px;margin-left:  0px;margin-right:  0px;background-color: whitesmoke"  action="#{annonceBean.annoncePrecedente()}" > 
+          
+            <f:param value="#{annonceBean.annonceToEdit.idAnnonce}"  name="idAnnToEdit" ></f:param> 
+          </p:commandButton>
+                
+      </c:if>
+          <c:if test="#{annonceBean.btnPrec eq 'ko'}">
+           <p:commandButton class="col-md-4" value="« Précedente"  disabled="true" style="margin-top: 0px;margin-bottom:  0px;margin-left:  0px;margin-right:  0px;background-color: whitesmoke"  /> 
+          
+          
+          </c:if>
+          <p:commandButton class="col-md-4  "   value="Resultats"   style=" background-color:#F0F0F0; margin-top: 0px;margin-bottom:  0px;margin-left:  0px;margin-right:  0px;background-color: whitesmoke"   action="#{annonceBean.onload()}"  > 
+          
+          <f:param value="#{annonceBean.annonceToEdit.idAnnonce}"  name="idAnnToEdit" ></f:param> 
+          
+          </p:commandButton>
+          <c:if test="#{annonceBean.btnSuiv eq 'ok'}">
+          
+          
+          <p:commandButton class="col-md-4" value="Suivante »" style="margin-top: 0px;margin-bottom:  0px;margin-left:  0px;margin-right:  0px;background-color:Whitesmoke"   action="#{annonceBean.annonceSuivante()}"> 
+            <f:param value="#{annonceBean.annonceToEdit.idAnnonce}"  name="idAnnToEdit" ></f:param> 
+          
+          </p:commandButton>  
+          
+          </c:if>
+          <c:if test="#{annonceBean.btnSuiv eq 'ko'}">
+               <p:commandButton class="col-md-4" value="Suivante »"  disabled="true" style="margin-top: 0px;margin-bottom:  0px;margin-left:  0px;margin-right:  0px;background-color: whitesmoke"  /> 
+          
+          </c:if>
+          
+          
+          
+          <p:spacer></p:spacer>
+              
+          
+          <p:panel  class="row" id="pFav" style="border:none;margin-top: 0px;padding-bottom: 0px;padding-top: 0px; ">  
+              <div class="col-md-1 hidden-sm hidden-xs "></div>
+              
+              
+              <div class="col-md-9 col-sm-10 col-xs-10"   >       
+                  <c:if test="#{not empty annonceBean.ptoUpdat}">
+                      
+                      <p:galleria  value="#{annonceBean.ptoUpdat}"  style=" "  var="image" panelHeight="380" panelWidth="600"  transitionInterval="5000" showCaption="false"  >
+                          <p:graphicImage name="img/#{image}"   title=""  style="border: solid 1px gray;height:22em;width:25em ;margin-left: 17%;margin-top: 2%" />
+           </p:galleria> 
+                     
+              </c:if>
+               
+                  <c:if test="#{empty annonceBean.ptoUpdat}">
+                  <p:graphicImage name="img/NoPh.JPG"    style="width:95% ;height:50%; margin-top: 23px;border: solid 1px gray;" />
+              </c:if>
+            
+          
+            </div>
+              <div class="col-md-2 col-sm-2 col-xs-2" > 
+                <c:if test="#{empty user}"> 
+              
+                    <button onclick="event.preventDefault(); $('#dialog').css('background-color','#d9534f');$('#idpart').show();$('#idbtq').hide();PF('dialogue').show();" style="border:1px solid grey;border-radius:1px;margin-top:400%;margin-left: 15%;background-color: white">
+                  <p:outputLabel  id="labFavrNoC" style=" background-color: white;padding-right: 3px;padding-left:3px;padding-top: 3px;cursor: pointer" > 
+                      <p:graphicImage style="width:20px ;height:20px;cursor: pointer"  library="imgProjet" name="cwhite.JPG"  /> 
+              
+                                  #{annonceBean.annonceToEdit.nbFav} </p:outputLabel></button>
+                </c:if>
+                     <c:if test="#{not empty user}"> 
+                  
+                   
+                        <c:set var="a" value="#{user.idUtilisateurConnecte}"></c:set>
+                            <c:set var="b" value="#{annonceBean.annonceToEdit.utilisateurConnecte.idUtilisateurConnecte}" ></c:set>
+                            
+                            
+                        
+                      <c:if test="#{a ne b}">
+              
+              <c:if test="#{annonceBean.annonceToEdit.fav eq true}">
+              <button onclick="event.preventDefault();$('#addFav').click();" style="border:1px solid grey;border-radius:1px;margin-top:400%;margin-left: 15%;background-color: white">
+                  <p:outputLabel  id="labFav" style=" background-color: white;padding-right: 3px;padding-left:3px;padding-top: 3px;cursor: pointer" > 
+                    <p:graphicImage style="width:20px ;height:20px;cursor: pointer"  library="imgProjet" name="cred.JPG"  /> 
+              
+                       
+                                 #{annonceBean.annonceToEdit.nbFav} </p:outputLabel></button>
+                      
+                                 <p:commandButton  id="addFav" onclick="event.preventDefault();"  action="#{annonceBean.removeFavorite()}" style="display: none" update="pFav">
+              <f:param value="#{annonceBean.annonceToEdit.idAnnonce}"  name="idToFav" ></f:param>
+              </p:commandButton>
+          </c:if>
+              
+              <c:if test="#{annonceBean.annonceToEdit.fav eq false}">
+                <button onclick="event.preventDefault();$('#removeFav').click();" style="border:1px solid grey;border-radius:1px;margin-top:400%;margin-left: 15%;background-color: white">
+                  <p:outputLabel  id="labFavr" style=" background-color: white;padding-right: 3px;padding-left:3px;padding-top: 3px ;cursor: pointer" > 
+                      <p:graphicImage style="width:20px ;height:20px;cursor: pointer"  library="imgProjet" name="cwhite.JPG"  /> 
+              
+              
+                                 #{annonceBean.annonceToEdit.nbFav}</p:outputLabel></button>
+                      
+                                 <p:commandButton ondblclick="event.preventDefault();" id="removeFav" action="#{annonceBean.addFavorite()}" style="display: none" update="pFav">
+                <f:param value="#{annonceBean.annonceToEdit.idAnnonce}"  name="idToFav" ></f:param>
+              </p:commandButton>
+              </c:if>
+              
+                      </c:if>
+               
+              
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+               </c:if>  
+                  
+              </div>
+              
+          </p:panel>
+          <div class="col-md-12 col-xs-12 col-sm-12" style="background-color: white;font-size:160%;margin-top:10px ;  ">
+              #{annonceBean.annonceToEdit.prixAnnonce} DH   <p:separator style="margin-top:5px;margin-bottom:15px"></p:separator> </div>
+          
+          <div class="col-md-8 " >
+              <p:outputLabel style="font-weight: normal " value="#{annonceBean.annonceToEdit.descriptionAnnonce}"></p:outputLabel>
+  
+          </div>
+          <div class="col-md-4 " style="border:1px gray  ; margin-bottom: 10px;margin-top: 3px;padding-bottom: 10px;padding-top: 10px; ">  
+  
+           <div   style="border:1px gray  ;background-color: #DDD;padding-top: 10px;padding-right: 10px;padding-bottom: 10px;margin-bottom: 10px;border-radius:2px;padding-right: 10px;padding-left: 10px ">  
+               <c:forEach var="v" items="#{annonceBean.annonceToEdit.voitures}" >
+               Année-Modèle : #{v.anneeModeleVoiture} <br/>
+               Kilométrage: #{v.kilometrage}<br/>
+              Type de carburant: #{v.typeCarburantVoiture}<br/>
+               Marque: #{v.marqueVoiture}<br/>
+               Modèle: #{v.modeleVoiture}<br/>
+Puissance fiscale: #{v.puissanceFiscaleVoiture} <br/>
+<c:forEach var="vp" items="#{v.vehiculeProfessionnels}" >
+    Type de véhicule: #{vp.sousCatVehiculeProf}<br/></c:forEach>
+</c:forEach> 
+               
+               <c:forEach var="M" items="#{annonceBean.annonceToEdit.motos}" >
+               Année-Modèle : #{M.anneModelMoto} <br/>
+               Kilométrage: #{M.kilometrageMoto}<br/> 
+ 
+               </c:forEach> 
+               
+              
+     
+               
+               
+                <c:forEach var="Oth" items="#{annonceBean.annonceToEdit.autreImmobiliers}" >
+                  
+                   Superficie: #{Oth.superficieAutreImmobilier}<br/> 
+                   Prix du m²: #{Oth.prixMcAutreImmobilier}<br/> 
+                   Emplacement: #{Oth.emplacementAutreImmobilier}<br/> 
+        
+  <c:forEach var="TER" items="#{Oth.terrainFermes}" >
+               Zonning : #{TER.zoningTerrainFerme} <br/>
+                
+        
+ 
+               </c:forEach> 
+               </c:forEach> 
+     
+     
+               
+                <c:forEach var="MSV" items="#{annonceBean.annonceToEdit.maisonVillas}" >
+                   Nombre de piéces: #{MSV.nbPiecesMaisonVilla}<br/> 
+                   Superficie: #{MSV.superficieMaisonVilla}<br/> 
+                   Prix du m²: #{MSV.prixMetreCarreMaisonVilla}<br/> 
+                   Emplacement: #{MSV.emplacementMaisonVilla}<br/> 
+               
+  <c:forEach var="AP" items="#{MSV.appartements}" >
+               Etage : #{AP.etageAppartement} <br/>
+               Usage: #{AP.usage}<br/> 
+        
+ 
+               </c:forEach> 
+               </c:forEach> 
+                 Secteur: #{annonceBean.annonceToEdit.villeAnnonce}
+                 <p:separator style="margin-bottom: 4px;margin-top: 4px"></p:separator>
+ 
+ 
+                 Type:  #{annonceBean.annonceToEdit.souscategorie} ,#{annonceBean.annonceToEdit.typeAnnonce} 
+             
+ 
+ 
+ 
+          </div>
+               </div>
+  
+          
+          
+            <div class="col-md-8" style=" margin-top:10px ;padding-right: 10px;border-top: 1px solid gray;padding-top: 10px">
+                 
+   <c:if test="#{empty user}">
+          <p:commandButton class="col-md-3 hidden-sm hidden-xs" value="Chatter"   id="chatBtnBotm" style="color:slategrey;background-color: #f0ad4e;margin-right: 10px">
+           
+          </p:commandButton> 
+  
+               <c:if test="#{annonceBean.annonceToEdit.utilisateurConnecte.telVisiblUtilConnecte eq 'ko'}">
+                  <p:commandButton class="col-md-4 hidden-sm hidden-xs"  id="affichTel" value="Afficher le numéro" style="color:white;background-color: green;margin-right: 20px"/>   
+                 </c:if>
+       
+                <p:outputLabel class="col-md-4 hidden-sm hidden-xs" value="#{annonceBean.annonceToEdit.utilisateurConnecte.nom}" style=""/>  
+   </c:if> 
+              
+              
+               <c:if test="#{not empty user}">
+                  <c:set var="a" value="#{user.idUtilisateurConnecte}"></c:set>
+                  <c:set var="b" value="#{annonceBean.annonceToEdit.utilisateurConnecte.idUtilisateurConnecte}" ></c:set>
+                      
+                <c:if test="#{a ne b}">
+                      <p:commandButton class="col-md-3 hidden-sm hidden-xs" value="Chatter"  action="#{messageBean.chatterBTN()}" style="color:slategrey;background-color: #f0ad4e;margin-right: 10px">
+              <f:param value="#{annonceBean.idAnnonce}" name="idAnnToMsg"></f:param>
+               <f:param value="#{annonceBean.annonceToEdit.utilisateurConnecte.idUtilisateurConnecte}"  name="idAnn" />
+          </p:commandButton> 
+                   
+  
+                 <c:if test="#{annonceBean.annonceToEdit.utilisateurConnecte.telVisiblUtilConnecte eq 'ko'}">
+                  <p:commandButton class="col-md-4 hidden-sm hidden-xs "  id="affichTel3" value="Afficher le numéro" style="color:white;background-color: green;margin-right: 20px"/>   
+                 </c:if>
+       
+                <p:outputLabel class="col-md-4 hidden-sm hidden-xs" value="#{annonceBean.annonceToEdit.utilisateurConnecte.nom}" style=""/>  
+   </c:if>     
+                    
+                </c:if>
+            
+      </div>
+      
+          
+          
+          <br/><br/>
+  
+      </div>
+      
+      
+      
+      
+      <div class="col-md-3"  >
+          <p:panel header="Vues:#{annonceBean.annonceToEdit.nbVueAnnonce} total"   >
+          
+           
+          </p:panel>
+          
+          
+          <p:panel header="#{annonceBean.annonceToEdit.utilisateurConnecte.nom}"  style="margin-top: 10px;"  >
+              
+                   #{annonceBean.annonceToEdit.villeAnnonce}  <br/>
+                   #{annonceBean.dateBean}  
+   #{annonceBean.annonceToEdit.heureDepotAnnonce}
+              
+          </p:panel>
+          
+          
+              
+                   
+                
+                  
+                  
+                  
+                  <c:if test="#{not empty user}"> 
+                  
+                      
+                       
+                        <c:set var="i" value="#{user.idUtilisateurConnecte}"></c:set>
+                            <c:set var="j" value="#{annonceBean.annonceToEdit.utilisateurConnecte.idUtilisateurConnecte}" ></c:set>
+                      <c:if test="#{i ne j}">
+                          <p:panel  style="padding-bottom: 10px;padding-top: 10px ">  
+                              <c:if test="#{annonceBean.annonceToEdit.utilisateurConnecte.telVisiblUtilConnecte eq 'ko'}">  
+                                  <p:commandButton class="col-md-12 btn-primary" value="Afficher le numéro"  id="affichTel1"  style="margin-bottom: 5px;color: #F0F0F0;background-color: blue"  ></p:commandButton>
+                              </c:if>
+                   
+                              <p:commandButton class="col-md-12 btn btn-warning" value="Chatter"   action="#{messageBean.chatterBTN()}"     style="margin-bottom: 5px;color: #F0F0F0;background-color: orange"   >
+                          <f:param value="#{annonceBean.annonceToEdit.utilisateurConnecte.idUtilisateurConnecte}"  name="idAnn" />
+                           
+                            <f:param value="#{annonceBean.annonceToEdit.idAnnonce}" name="idAnnToMsg"></f:param>
+                      </p:commandButton> 
+                                            
+                                
+                              <c:if test="#{annonceBean.annonceToEdit.utilisateurConnecte.telVisiblUtilConnecte eq 'ko'}">
+                     
+                       <br/></c:if>
+     <br/><br/>
+   
+                          </p:panel>
+                          
+                      <p:panel>     <p:commandLink style="color:#336699;font-size: 12px;font-weight:bold" id="lienSign" class="a btn-link" value="Signaler l'annonce"></p:commandLink>
+                      </p:panel> </c:if> 
+                            <c:if test="#{i == j}">
+                           <p:panel header="Gérer votre annonce"  style="margin-top: 10px"  >
+             
+                               <h:commandLink   actionListener="#{annonceBean.redirectModif()}" style="color:#336699;font-size: 12px;font-weight:bold " class="a btn-link"  value="Modifier votre annonce"/>
+                                        
+                                  <br/>
+          <p:commandLink style="color:#336699;font-size: 12px;font-weight:bold " value="Suppimer votre annonce" action="#{annonceBean.supprimerAnnonce('edit')}" class="a btn-link">
+          
+              <f:param value="#{annonceBean.annonceToEdit.idAnnonce}"  name="idAnnToSupr" ></f:param>
+          </p:commandLink>
+          <br/>
+          
+          <p:commandLink style="color:#336699;font-size: 12px;font-weight:bold " value="Désactiver votre annonce" actionListener ="#{annonceBean.desactiverAnnonce('edit')}" class="a btn-link">
+           <f:param value="#{annonceBean.annonceToEdit.idAnnonce}"  name="idAnnToDesac" ></f:param>  
+          </p:commandLink>
+     
+                                                               
+                                                     
+          
+          
+          
+          
+          
+          
+          
+      
+          </p:panel>
+                      </c:if>
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+    
+   
+   
+              
+                     
+                                                 
+                  </c:if>                                   
+                                                
+                                                
+                                                  <c:if test="#{empty user}"> 
+                                                       <p:panel>   
+                                                           
+                                                           <c:if test="#{annonceBean.annonceToEdit.utilisateurConnecte.telVisiblUtilConnecte eq 'ko'}">
+                        <p:commandButton class="col-md-12 btn-primary" value="Afficher le numéro"  id="affichTel2"  style="margin-bottom: 5px;color: #F0F0F0;background-color: blue"  ></p:commandButton>
+                                                           </c:if>
+                   
+                         <p:commandButton class="col-md-12 btn btn-primary" value="Chatter"  id="chatDec" actionListener="#{login.pageDemander('chatBTN')}" style="margin-bottom: 5px;color: #F0F0F0;background-color: blue" >
+                         
+                         
+                         </p:commandButton>
+         <c:if test="#{annonceBean.annonceToEdit.utilisateurConnecte.telVisiblUtilConnecte eq 'ko'}">
+                     
+                       <br/></c:if>
+     <br/><br/>
+              </p:panel>
+                     
+                                                  
+                                                  
+                                                  
+                                                  </c:if>
+           
+      </div>
+ 
+          </h:form>   
+     
+ </c:if>
+              </div>  
+
+
+  
+  
+  
+			 <!--footer-->
+                         <div id="divFooter" style="position: relative">
+                                    <ui:insert name = "footerListAnn"   >
+                                                          <ui:include src = " ./partition/footer.xhtml" />
+                                                                 </ui:insert><!--/footer-->
+                         </div>
+                
+				<!-- /container -->
+                                
+                                  
+       
+       <p:dialog  id="dialogPhone" widgetVar="dialoguePhone" hideEffect="explode" modal="true"  style="background-color:gainsboro ;text-decoration: brown" >
+               
+               
+		<p:panel  style=" width: 400px;height: 350px ;margin-bottom: 5px">
+                     <br/>
+                
+             
+                  <h:panelGrid columns="2" cellpadding="10" width="40%" style=" margin-left: 100px">
+                      <p:outputLabel value="#{annonceBean.annonceToEdit.utilisateurConnecte.telUtilConnecte}" style="font-weight: normal;border: 2px forestgreen solid ;padding-left:5px;padding-right:2px;padding-top:2px;padding-bottom:5px;width:100px;height:30px;border-radius:3px;margin-left:30px"></p:outputLabel><br/>
+                    <h:graphicImage name="abuse.png" library="imgProjet"    alt="abuse" style="height:177px ;width: 160px;"/><br/>
+                    
+                         
+                    </h:panelGrid>
+                     <p:outputLabel style="font-weight: normal;color: #525D7D;font-size: 12px;display: inline;margin-left: 20px"> <p:outputLabel style="color: red;font-size: 12px;display: inline;margin-left: 0px" > Attention !</p:outputLabel>   Il ne faut jamais envoyer de l’argent à l’avance au vendeur par virement bancaire ou à travers une agence de transfert d’argent lors de l’achat des biens disponibles sur le site.</p:outputLabel>			 
+                      
+                   
+		</p:panel>
+	 
+            	 
+                
+                 
+                                             
+   
+           
+           
+             
+                     
+    
+            
+            
+       
+            
+            
+            
+        </p:dialog>
+                                
+                                 
+       <p:dialog  id="dialogReclam" widgetVar="dialogReclam" hideEffect="explode" header="Quel est le probléme avec cette annonce? " modal="true"  style="background-color:white;" >
+         
+       
+           <h:form prependId="false">
+
+             
+                  <h:panelGrid columns="1" cellpadding="10" width="50%" style="background-color:white;">
+                      <p:outputLabel  value="Veuillez seléctionner le type d'abus:" ></p:outputLabel>
+                      <h:selectOneMenu    value="#{annonceBean.motifReclamation}"    style=" height:22px;margin-top: 4px; line-height: 23px;width:50%;height:31px ;">
+            
+                   <ui:insert name = "Abus" >
+      <ui:include src = "./partition/abus.xhtml" />
+   </ui:insert>
+        </h:selectOneMenu>
+                      
+                        <p:outputLabel  value="Message:" ></p:outputLabel>
+                        <p:inputTextarea rows="10" cols="50" placeholder="Ecrire votre message ici" value="#{annonceBean.messageReclamation}"  style="margin-bottom: 3px;font-size: 12px "   maxlength="3000" counterTemplate="{0} caracteres restants." autoResize="false" />
+             </h:panelGrid>
+                    <h:panelGrid columns="2" cellpadding="10"  width="50%" style="background-color:white;float: right">
+                          
+                        <h:commandButton class="btn btn-default" action="#{annonceBean.annulerRec()}" value="Annuler" > 
+                             <f:param value="#{annonceBean.annonceToEdit.idAnnonce}"  name="idAnnToReclam" ></f:param>
+                        </h:commandButton>
+                          <h:commandButton class="btn btn-success" value="Valider"  action="#{annonceBean.signaler()}"  >
+                            <f:param value="#{annonceBean.annonceToEdit.idAnnonce}"  name="idAnnToReclam" ></f:param></h:commandButton>
+                      </h:panelGrid>
+		 
+	  
+           </h:form>      
+   
+               
+        </p:dialog>
+            
+           
+			   
+                                <script>
+                                    $("#chatDec").click(function (){
+               event.preventDefault(); 
+             $("#dialog").css("background-color","#d9534f"); 
+              $("#idpart").show();
+                $("#idbtq").hide();
+              PF('dialogue').show();
+              
+              
+              
+              
+              
+              
+          });                              $("#chatBtnBotm").click(function (){
+               event.preventDefault(); 
+             $("#dialog").css("background-color","#d9534f"); 
+              $("#idpart").show();
+                $("#idbtq").hide();
+              PF('dialogue').show();
+               }); 
+              
+              
+              
+                                      
+                                $("#affichTel1").click(function (){
+                                    
+                                    PF('dialoguePhone').show();
+                                    
+                                });
+                                                               $("#affichTel2").click(function (){
+                                    
+                                    PF('dialoguePhone').show();
+                                    
+                                });
+                                                       $("#affichTel").click(function (){
+                                    
+                                    PF('dialoguePhone').show();
+                                    
+                                });    
+                                 $("#affichTel3").click(function (){
+                                    
+                                    PF('dialoguePhone').show();
+                                    
+                                });    
+                                
+                                     $("#lienSign").click(function (){
+                                    
+                                    PF('dialogReclam').show();
+                                    
+                                });    
+                                
+                                
+                                
+                                </script>
+
+                                
+			 
+    </h:body>
+     </html>

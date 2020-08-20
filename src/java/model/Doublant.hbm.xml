@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 janv. 2020 21:02:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Doublant" table="DOUBLANT" schema="DBANNONCES">
+        <composite-id name="id" class="model.DoublantId">
+            <key-property name="idAnnonce1" type="big_decimal">
+                <column name="ID_ANNONCE1" precision="22" scale="0" />
+            </key-property>
+            <key-property name="idAnnonce2" type="big_decimal">
+                <column name="ID_ANNONCE2" precision="22" scale="0" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="annonceByIdAnnonce1" class="model.Annonce" update="false" insert="false" fetch="select">
+            <column name="ID_ANNONCE1" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="annonceByIdAnnonce2" class="model.Annonce" update="false" insert="false" fetch="select">
+            <column name="ID_ANNONCE2" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="pourcentageTitreDoublant" type="big_decimal">
+            <column name="POURCENTAGE_TITRE_DOUBLANT" precision="22" scale="0" />
+        </property>
+        <property name="pourcentageCategorieDoublant" type="big_decimal">
+            <column name="POURCENTAGE_CATEGORIE_DOUBLANT" precision="22" scale="0" />
+        </property>
+        <property name="pourcentagePhotoDoublant" type="big_decimal">
+            <column name="POURCENTAGE_PHOTO_DOUBLANT" precision="22" scale="0" />
+        </property>
+        <property name="pourcentageTexteDoublant" type="big_decimal">
+            <column name="POURCENTAGE_TEXTE_DOUBLANT" precision="22" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

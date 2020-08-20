@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 janv. 2020 21:02:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.ActionUser" table="ACTION_USER" schema="DBANNONCES">
+        <composite-id name="id" class="model.ActionUserId">
+            <key-property name="idUser" type="big_decimal">
+                <column name="ID_USER" precision="22" scale="0" />
+            </key-property>
+            <key-property name="idAnnonce" type="big_decimal">
+                <column name="ID_ANNONCE" precision="22" scale="0" />
+            </key-property>
+            <key-property name="dateActionUser" type="string">
+                <column name="DATE_ACTION_USER" length="30" />
+            </key-property>
+            <key-property name="heureActionUser" type="string">
+                <column name="HEURE_ACTION_USER" length="30" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="utilisateurConnecte" class="model.UtilisateurConnecte" update="false" insert="false" fetch="select">
+            <column name="ID_USER" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="annonce" class="model.Annonce" update="false" insert="false" fetch="select">
+            <column name="ID_ANNONCE" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="libelleActionUser" type="string">
+            <column name="LIBELLE_ACTION_USER" length="30" />
+        </property>
+        <property name="motifActionUser" type="string">
+            <column name="MOTIF_ACTION_USER" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

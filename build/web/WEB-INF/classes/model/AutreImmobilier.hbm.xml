@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 janv. 2020 21:02:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.AutreImmobilier" table="AUTRE_IMMOBILIER" schema="DBANNONCES">
+        <id name="idAutreImmobilier" type="big_decimal">
+            <column name="ID_AUTRE_IMMOBILIER" precision="22" scale="0" />
+            <generator class="increment"></generator>
+        </id>
+        <many-to-one name="annonce" class="model.Annonce" fetch="select">
+            <column name="ID_ANNONCE" precision="22" scale="0" />
+        </many-to-one>
+        <property name="emplacementAutreImmobilier" type="string">
+            <column name="EMPLACEMENT_AUTRE_IMMOBILIER" length="50" />
+        </property>
+        <property name="superficieAutreImmobilier" type="big_decimal">
+            <column name="SUPERFICIE_AUTRE_IMMOBILIER" precision="22" scale="0" />
+        </property>
+        <property name="prixMcAutreImmobilier" type="big_decimal">
+            <column name="PRIX_MC_AUTRE_IMMOBILIER" precision="22" scale="0" />
+        </property>
+        <set name="terrainFermes" table="TERRAIN_FERME" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_AUTRE_IMMOBILIER" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.TerrainFerme" />
+        </set>
+    </class>
+</hibernate-mapping>

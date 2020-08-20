@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+                         
+    </h:head>
+    <h:body style="background-color: lightgoldenrodyellow">
+           
+         
+        <p:panel id="panCont" style="margin-left: 5px;border: none;background-color: inherit">   
+           
+            <h:form prependId="conForm">
+            
+              <h:panelGrid   columns="2" style="" >
+                 
+                        <p:outputLabel for="Inlogin" value="Login" style="font-size: 13px ;margin-bottom: 3px;padding-right: 5px;text-transform: capitalize"/>
+                        <p:inputText id="Inlogin" value="#{employeBean.login}" size="15" required="true" style="margin-bottom: 3px;margin-left: 10px;"/>
+                       
+			<p:outputLabel  for="pass" value="Mot de passe" style="font-size: 13px ;margin-bottom: 3px; " />
+                        <p:password id="pass" value="#{employeBean.pwd}" required="true"
+                                            feedback="false" size="15" style="margin-bottom: 3px;margin-left: 10px; "/>
+                                             <p:spacer></p:spacer>
+                        <p:outputLabel  value="#{employeBean.msg}" id="vld" style="color: red;font-size: 12px;" />
+                        
+			<p:spacer></p:spacer>	 	 
+                         
+                    <h:commandButton id="loginButton"  class="btn btn-primary"  
+                                     value="Valider" actionListener="#{employeBean.authentification}"  style="float: right; color:white ;text-decoration: gainsboro;margin-right: 10px">
+                               
+                        
+                    </h:commandButton></h:panelGrid> 
+               
+                  
+	</h:form>
+           
+        </p:panel>
+             
+                     
+    
+            
+    </h:body>
+</html>

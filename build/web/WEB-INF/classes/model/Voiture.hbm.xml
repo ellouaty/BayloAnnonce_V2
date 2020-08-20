@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 janv. 2020 21:02:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Voiture" table="VOITURE" schema="DBANNONCES">
+        <id name="idVoiture" type="big_decimal">
+            <column name="ID_VOITURE" precision="22" scale="0" />
+            <generator class="increment"></generator>
+        </id>
+        <many-to-one name="annonce" class="model.Annonce" fetch="select">
+            <column name="ID_ANNONCE" precision="22" scale="0" />
+        </many-to-one>
+        <property name="marqueVoiture" type="string">
+            <column name="MARQUE_VOITURE" length="30" />
+        </property>
+        <property name="modeleVoiture" type="string">
+            <column name="MODELE_VOITURE" length="30" />
+        </property>
+        <property name="typeCarburantVoiture" type="string">
+            <column name="TYPE_CARBURANT_VOITURE" length="30" />
+        </property>
+        <property name="anneeModeleVoiture" type="big_decimal">
+            <column name="ANNEE_MODELE_VOITURE" precision="22" scale="0" />
+        </property>
+        <property name="kilometrage" type="big_decimal">
+            <column name="KILOMETRAGE" precision="22" scale="0" />
+        </property>
+        <property name="puissanceFiscaleVoiture" type="string">
+            <column name="PUISSANCE_FISCALE_VOITURE" length="20" />
+        </property>
+        <set name="vehiculeProfessionnels" table="VEHICULE_PROFESSIONNEL" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_VOITURE" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.VehiculeProfessionnel" />
+        </set>
+    </class>
+</hibernate-mapping>

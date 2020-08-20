@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <title>Baylo</title>
+
+	
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" /> 
+                  <h:outputStylesheet library = "css" name = "style.css" /> 
+         
+            
+    </h:head>
+  
+    <h:body style=" " onload="viderShamps()">
+        <h:form>
+            
+             
+        </h:form>
+        <ui:insert name = "navigation_barAC" >
+      <ui:include src = " ./partition/navigation_bar.xhtml" />
+   </ui:insert>
+		 
+			<div id="top-header" style="background-color:  #f2f0f0;padding-bottom:0.1%;padding-top:0.6%">
+                             
+                            <!--div id="divmessage">	<ui:insert name = "messageAC" >
+                                                          <ui:include src = "./partition/message.xhtml" />
+                                                                 </ui:insert>
+                            </div-->
+                             
+                          
+                            
+                                                        		<ui:insert name = "search_bar_normalAC" >
+                                                                                <ui:include src = "./partition/search/search_bar_normal.xhtml" />
+                                                                                                 </ui:insert>                      
+                       
+                </div>
+			
+        <div id="divbaniere"  class="hidden-xs" >
+                                          		<ui:insert name = "banier_centreAC" >
+                                                                          <ui:include src = "./partition/banier_centre.xhtml" />
+                                                        </ui:insert></div>
+                                      
+                <div class="section " style="padding-top: 0.1%;padding-bottom: 0%;  ">
+			 
+                                <div class="container" id="divCatVille" style="border:1px solid #8D99AE;border-radius:1%;margin-bottom: 1%  ">
+                                
+                                    <div class="col-md-4 col-xs-12" style="  " id="divVille">
+                                        <div class="row"> <p:outputLabel   style="float: left;text-decoration: underline;color:#122b40;margin-top: 6px ;font-weight: normal"> Choisissez une Ville :</p:outputLabel>
+     </div>
+                                <div class="row">
+				 
+                                        <!-- liste villes -->
+                                      <ui:insert name = "liste_villeAC" >
+                                                                          <ui:include src = "./partition/liste_ville.xhtml" />
+                                                                                                         </ui:insert>
+					<!-- /liste villes -->
+  </div>
+                                </div>
+                                     
+                                    
+                                      <!-- liste categorie --> 
+                                            <div class="col-md-8 col-xs-12" style="  " id="divcat">
+                                                <div class="row">
+                                                   <p:outputLabel   style="float: left;text-decoration: underline;color:#122b40;margin-top: 10px;font-weight: normal ">Choisissez une Categorie :</p:outputLabel>
+                   </div>  
+                                <div class="row" > 
+                                    <ui:insert name = "list_categorieAC" >
+                                                                          <ui:include src = "./partition/list_categorie.xhtml" />
+                                                                                                      </ui:insert>   
+                             
+                                </div></div>
+
+			</div>
+                              
+  
+               </div>
+		 
+                
+                         <div id="divFooter" style="position: relative">
+                                    <ui:insert name = "footerAC"   >
+                                                          <ui:include src = " ./partition/footer.xhtml" />
+                                                                 </ui:insert><!--/footer-->
+                         </div>
+                
+				 
+                                
+       	  
+			 
+    </h:body>
+     </html>

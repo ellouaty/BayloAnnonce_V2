@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:pretty="http://ocpsoft.com/prettyfaces">
+    <h:head>
+    </h:head>
+    <h:body  >
+        <ui:composition>    
+            <nav>
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+                                <div id="responsive-nav" style="padding-top: 1px ;" >
+                                    
+                              
+                                    
+                                     <h:form prependId="false">
+					<!-- NAV -->
+                                        <div style="background-color:inherit"    class="row">
+                                            <div   class="col-md-2"   > <a href="#"> <h:graphicImage name="LOGO.JPG" library="imgProjet"  style=" border-radius: 100px " /></a></div>
+                                            <div class="col-md-7  " style=" ; margin-top: 1%;height: 0.1%" > 
+                                                         
+                                            </div>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            <div   class="col-md-3"  > 
+                                                  <c:if test="#{not empty user}">  
+                                                <p:link class="btn " id="btn_Publier"   outcome="Publier_annonce"   style="background-color: #f6831f;margin-top: 14px;margin-right: 0px ;margin-left: 0px;text-shadow: 0px 1px 0px rgba(255,255,255,0.7);font-family: Arial,sans-serif;box-sizing: border-box" value="Publier une annonce!" ></p:link>
+                                           
+                                                
+                                                    <p:outputLabel class="hidden-lg hidden-md"  style="margin-top:1.6%;color: #155092;cursor: pointer;float: right;" id="n3" value="#{user.nom}"/> 
+                                                
+                                                <p:graphicImage  id="im3" class="hidden-lg hidden-md" style="float: right;cursor: pointer;margin-top: 0.8%; vertical-align: middle; border: 2px solid #95a5a6;width:40px;border-radius: 50%;border: 2px solid white ;margin-right: 3px;height: 40px;display: inline" name="#{user.phProfil}" library="img" />
+                                                            </c:if>
+                                                      
+                                           
+                                                
+                                                
+                                                  <c:if test="#{empty user}"> 
+                                                      <p:commandLink class="btn " id="btn_PublierDEC"  actionListener="#{login.pageDemander('Publication')}"  style="float: right;background-color: #f6831f;margin-top: 14px;margin-right: 0px ;margin-left: 0px;text-shadow: 0px 1px 0px rgba(255,255,255,0.7);font-family: Arial,sans-serif;box-sizing: border-box" value="Publier une annonce!" ></p:commandLink> 
+    </c:if>
+                                        
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                            </div>
+                                        </div> 
+                                         
+                                                <div class="row" style="background-color: #155092;margin-bottom: 0.5%;  ">
+                                                <ul class="nav main-nav navbar-nav  " style=" align-self: center ;margin-top: 0px;padding-left: 40px;padding-top: 0.5%;padding-bottom: 0.5%;margin-right: 0px; "> 
+						
+                                           
+                                               
+                                             
+                                                    <li    style="padding: 0px 0px 0px 0px " ><p:link   outcome="acceuil" value="Acceuil"  id="lienAcceuil" style="font-family:slick ; font-size: 17px;"  /></li>
+                                                <li>
+    
+                                                     
+                                                    <h:outputLink      
+                                                                      id="lienRecherche"  style="  font-family:slick ; font-size: 17px;" value="#{request.contextPath}/listeAnnonces/All">
+                                                    
+                                                    Rechercher
+                                                    </h:outputLink></li>
+						    <c:if test="#{not empty user}" >
+                                                        <li><h:outputLink       id="l" value="#{request.contextPath}/Chat"   style=" font-family:slick ; font-size: 17px" > Chat
+                                                           
+                                                            <c:if test="#{messageBean.notifications ne 0}">
+                                                               
+                                                              <span   style="background-color:#fa3e3e;border-radius: 2px;padding: 1px 3px;background-clip: padding-box;display: inline;font-family: 'helvetica neue', Helvetica, Arial, sans-serif;font-size: 10px;line-height: 1.3;min-height: 13px;vertical-align: top">#{messageBean.notifications}</span>  
+                                                            </c:if>
+                                                            </h:outputLink> </li>
+                                               
+                                                        <li><h:outputLink     value="#{request.contextPath}/MesAnnonces/0"   style=" font-family:slick ;font-size: 17px; "  >
+                                                    
+                           
+                                                        Mes Annonces
+                                                     </h:outputLink> </li>
+                                                       
+  </c:if>
+                                      <c:if test="#{empty user}">            
+                                          <li  >  <p:commandLink  actionListener="#{login.pageDemander('Chat')}"   id="chat" value="chat"   style=" font-family:slick ;  font-size: 17px;"  /> </li>
+                 
+                                          <li  >  <p:commandLink  actionListener="#{login.pageDemander('Acceuil')}"    id="conn" value="Se connecter"   style=" font-family:slick ;font-size: 17px;"  /> 
+      
+</li>   </c:if>                  
+                                                  
+                                                    </ul>
+                                                  <c:if test="#{not empty user}" > 
+                                                    
+                                                    <p:outputLabel      class="hidden-sm hidden-xs" style="float: right; margin-top:1.6%;color:white;cursor: pointer;margin-right:10%;" id="n" value="#{user.nom}"/>     
+                                                       <p:graphicImage  id="im2"      class="hidden-sm hidden-xs"  style="float: right;cursor: pointer;margin-top: 0.8%; vertical-align: middle; border: 2px solid #95a5a6;width:40px;border-radius: 50%;border: 2px solid white ;margin-right: 3px;height: 40px;display: inline" name="#{user.phProfil}" library="img" />
+                                                        </c:if>
+                                                </div>
+                                             
+                                            
+                                            
+                                            
+                                 <p:remoteCommand name="notif" action="#{messageBean.RefrechNotif()}" /></h:form>
+        
+        
+                                
+                                </div>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+                                
+			<!-- /container -->
+		  <ui:insert name = "Se connecter" >
+    
+                                                        
+                                                        <ui:include src = "se_connecter.xhtml" />
+   </ui:insert>
+                   
+                        <p:dialog  class="col-md-12  col-xs-3  " id="dd" widgetVar="dd" hideEffect="fade"   modal="true"  position="right,top"   showEffect="fade"  resizable="false"   style="text-decoration: brown ;padding:0px 0px 0px 0px;margin-right: 15%; " >
+         
+        
+         
+        <c:if test="#{not empty user}" > 
+               
+           <h:form prependId="false">
+		<p:panel  id="pan1" style="  margin-bottom: 5px;margin-left: 0px;margin-right: 0px">
+                 
+             
+                    <h:panelGrid columns="2" id="p1" cellpadding="10" width="100%"  >
+                      <p:graphicImage id="im1"  style="margin-left:20%;margin-right:20%;vertical-align: middle; border: 2px solid #95a5a6;width:80px;border-radius: 50%;padding: 3px;border: 2px solid #269abc ;height: 40px;float: left;cursor: pointer;margin-top: 15px; " name="#{user.phProfil}" library="img" /><br/>
+                                            
+                      <p:outputLabel value="#{user.nom}" id="labnom" style=" margin-left:25%;margin-left:25%;padding-top:2px;padding-bottom:5px;width:100px;height:30px; "></p:outputLabel><br/>
+                     <br/>
+                      <p:outputLabel value="#{user.emailUtilConnecte}" style="font-weight: normal; padding-left:11%;padding-right:20%;padding-top:2px;padding-bottom:5px;width:100px;height:30px; "></p:outputLabel><br/>
+                     <br/>
+                      <h:commandButton class=" btn-info" action="#{login.deconnect_particulier}" value="Se deconnecter"  id="btnDec"  style="margin-left:0%;margin-right:30%;margin-bottom: 5px;"  ></h:commandButton>
+                      <br/>
+                    </h:panelGrid>
+                       <h:panelGrid columns="2" cellpadding="10"   style="; ">
+                          
+                       <h:outputLink    class="btn-default " value="#{request.contextPath}/MesAnnonces/2"   style="margin-bottom: 5px; font-size: 0.9em;padding-right:0%;padding-left: 0% ;color: blue" >
+                                                    
+                           Gérer mon compte
+                                                     </h:outputLink>
+                         
+                    </h:panelGrid>
+               </p:panel>
+	 
+           </h:form>
+        </c:if>
+                 
+                                             
+   
+         </p:dialog>
+            
+           
+           
+                </nav>
+           
+            <script>
+                
+        setInterval("notif()",2000);  
+          $("#btn_PublierDEC").click(function (){
+               event.preventDefault(); 
+             $("#dialog").css("background-color","#d9534f"); 
+              $("#idpart").show();
+                $("#idbtq").hide();
+              PF('dialogue').show();
+              
+              
+              
+              
+              
+              
+          });  
+          
+          
+                 $("#n").click(function (){
+                                    
+                                    PF('dd').show();
+                                    
+                                });
+                                 $("#im2").click(function (){
+                                    
+                                    PF('dd').show();
+                                    
+                                });
+                                    $("#n3").click(function (){
+                                    
+                                    PF('dd').show();
+                                    
+                                });
+                                 $("#im3").click(function (){
+                                    
+                                    PF('dd').show();
+                                    
+                                });
+                                
+                                
+               $("#conn").click(function (){
+               event.preventDefault();
+               
+                $("#dialog").css("background-color","#d9534f"); 
+              $("#idpart").show();
+                $("#idbtq").hide();
+              PF('dialogue').show();
+              
+              
+              
+              
+              
+          });    
+          
+          
+           $("#chat").click(function (){
+               event.preventDefault();
+               
+                $("#dialog").css("background-color","#d9534f"); 
+              $("#idpart").show();
+                $("#idbtq").hide();
+              PF('dialogue').show();
+              
+              
+              
+              
+              
+          });    
+          
+               
+            
+             
+           
+                
+            </script>
+        
+        
+        
+        
+        
+        
+        
+        </ui:composition>
+        
+        
+        
+        
+         
+    </h:body>
+</html>
+ 

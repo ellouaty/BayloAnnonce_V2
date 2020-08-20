@@ -1,0 +1,96 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		 
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+                     
+                          <f:metadata>
+     
+                              <f:viewAction action="#{employeBean.editerEmp()}"  immediate=""/>
+                   
+                       
+    
+</f:metadata> 
+    </h:head>
+     <h:body style="background-color: lightgoldenrodyellow">
+        
+          <p:panel id="panCont" style="margin-left: 5px;border: none;background-color: inherit">   
+           
+            <h:form prependId="conForm">
+              
+                <c:if test="#{not empty emp}"> 
+                   
+                   <p:outputLabel style="float: right;color: #000066;text-transform: capitalize" value="#{emp.nomEmploye} #{emp.prenomEmploye}" > </p:outputLabel> 
+                   <br/> <p:commandLink style="float: right;display: block;text-decoration:underline;" value="Sing out" actionListener="#{employeBean.singOut('Gestion_Utilisateurs')}" />
+                </c:if></h:form>
+          </p:panel>
+        <h:form prependId="false"> 
+            <div class="col-md-4"    ></div>
+            <h:panelGrid columns="3" class="col-md-4"  style="border:1px solid #23527c; "  >
+                <p:outputLabel    value="Nom :" for="fnom" style="margin: 10px 10px 10px 10px; " /> <p:inputText value="#{employeBean.nomEmploye}" id="fnom"  /> <p:message  for="fnom" id="msgnom" />
+                <p:outputLabel value="Prenom :"  for="fpnom" style="margin: 10px 10px 10px 10px; "/><p:inputText value="#{employeBean.prenomEmploye}" id="fpnom"  /> <p:message id="msgPrenom" for="fpnom" />
+                <p:outputLabel   value="Email :" for="fem" style="margin: 10px 10px 10px 10px; " /><p:inputText value="#{employeBean.emailEmploye}" id="fem"  /> <p:message for="fem" id="msgEmail" />
+                <p:outputLabel value="Login :"  for="flg" style="margin: 10px 10px 10px 10px; " /><p:inputText value="#{employeBean.loginEmploye}" id="flg"  /> <p:message for="flg" id="msgLog" />
+                <p:outputLabel value="Ancien pwd :"  style="margin: 10px 10px 10px 10px; " /><p:outputLabel value="#{employeBean.pwdEmploye}"   /> <p:spacer></p:spacer>
+                
+                <p:outputLabel value="PassWord:"  for="fpwd" style="margin: 10px 10px 10px 10px; " /><p:password value="#{employeBean.pwdEmploye}"  id="fpwd"  /> <p:message for="fpwd" id="msgpwd" />
+                         <p:outputLabel   value="Nb:" style="margin: 10px 10px 10px 10px; " for="fnb" />
+                        
+                 
+                         <h:selectOneMenu id="fnb" value="#{employeBean.nbAnnMdr}"   style="font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;width:150px ">
+                      
+        <f:selectItem itemLabel="1" itemValue="1"  />
+       <f:selectItem itemLabel="5" itemValue="5"  />
+      <f:selectItem itemLabel="10" itemValue="10"  />
+       <f:selectItem itemLabel="15" itemValue="15"  />
+        <f:selectItem itemLabel="20" itemValue="20"  />
+                         </h:selectOneMenu>
+                          <p:message for="fnb" />
+                          <p:separator/>  <p:separator/>  <p:separator/>
+                          <p:outputLabel   value="Droits:" style="margin-left: 10px" /> 
+                         <p:selectBooleanCheckbox itemLabel="Queus" value="#{employeBean.droitQueus}"  ></p:selectBooleanCheckbox>     <p:spacer/>
+                         <p:spacer/>     <p:selectBooleanCheckbox value="#{employeBean.droitSearch}" itemLabel="Search" /> <p:spacer/>  
+                         <p:spacer/> <p:selectBooleanCheckbox  value="#{employeBean.droitSaifMail}"  itemLabel="Saif Mail" /> <p:spacer/>   
+                         <p:spacer/>   <p:selectBooleanCheckbox value="#{employeBean.droitSpam}"  itemLabel="Spam Filter" /> <p:spacer/>   
+                         <p:spacer/> <p:selectBooleanCheckbox  value="#{employeBean.droitliveChat}"  itemLabel="Live chat" /> <p:spacer/>   
+                         <p:spacer/>  <p:selectBooleanCheckbox value="#{employeBean.droitReclamations}"  itemLabel="Reclamations" /> <p:spacer/>   
+                         <p:spacer/> <p:selectBooleanCheckbox value="#{employeBean.droitGestionUtil}"  itemLabel="Gestion Utilisateurs" /> <p:spacer/>   
+                         <p:spacer/>  <p:selectBooleanCheckbox value="#{employeBean.droitGestionBtq}"  itemLabel="Gestion Boutique" /> <p:spacer/>   
+                         <p:spacer/> <p:selectBooleanCheckbox value="#{employeBean.droitGestionEmp}"   itemLabel="Gestion Employees"/> <p:spacer/>   
+                         <p:spacer/>  <p:selectBooleanCheckbox value="#{employeBean.droitWebSql}"  itemLabel="Web Sql" /> <p:spacer/> 
+                       </h:panelGrid>
+            <div class="col-md-5" ></div>
+            <h:panelGrid class="col-md-3" columns="3" style="margin-top: 10px" ><p:commandButton style="margin-bottom: 10px;background-color:peachpuff ;color: black" action="#{employeBean.annuler()}" value="annuler" /> 
+                           <p:spacer/> 
+                           <p:commandButton style="margin-bottom: 10px;background-color: #2ecc71;color:#000000" update="msgpwd msgnom msgPrenom msgEmail msgLog" action="#{employeBean.modifierEmp()}" value="modifier" >
+                               <f:param name="idModiEmp" value="#{employeBean.idEmp}"></f:param>
+                           </p:commandButton>   
+                          
+            </h:panelGrid>
+                <div class="col-md-4"    ></div>
+           
+	 
+            </h:form>
+                
+                 
+                                             
+   
+           
+           
+        
+                                
+     
+        
+        
+    </h:body>
+</html>

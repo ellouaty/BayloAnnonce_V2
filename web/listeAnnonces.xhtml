@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:pretty="http://ocpsoft.com/prettyfaces">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+                     
+                     
+                     <f:metadata>
+     
+                         <f:viewAction action="#{search.chercher()}"  immediate=""/>
+                       
+    
+</f:metadata>
+                     
+                     <style>
+                                          .noHeader.ui-datatable table thead tr {
+    display: none;
+}
+.ui-widget-content{
+    border-right: none;
+}
+.ui-datatable.noHeader thead th,
+.ui-datatable.noHeader tbody,
+.ui-datatable.noHeader tbody tr,
+.ui-datatable.noHeader tbody td {
+    border-style: none;
+}
+ 
+                     </style>
+    </h:head>
+  
+    <h:body onload="changePannelSearch();">
+        
+       
+ 
+                	<ui:insert name = "navigation_barListAnn" >
+      <ui:include src = " ./partition/navigation_bar.xhtml" />
+   </ui:insert>
+		<!-- /NAVIGATION -->
+                
+               
+      
+                <!-- TOP HEADER -->
+			<div id="top-header" style="background-color: #f2f0f0 ;padding-bottom:4px;padding-top: 10px">
+                             
+                            
+                        
+                            
+                                                        		<ui:insert name = "search_bar_normalListAnn" >
+                                                                                <ui:include src = "./partition/search/search_bar_normal.xhtml" />
+                                                                                                 </ui:insert>                      
+                             
+                </div>
+			<!-- /TOP HEADER -->
+
+      
+  
+                    
+					 
+                        <div class="container" style="padding-bottom: 10px;padding-top: 10px ; width: 60%; " id="divEdition" >   
+  
+      
+     
+            <!--p:panel id="T" style="background-color:whitesmoke;width: 1157px;height:800px;"-->
+                <br/>
+                
+                <p:dataTable  styleClass="noHeader"  var="P" value="#{search.page}" 
+                              scrollable="true" scrollWidth="100%"  emptyMessage="Aucun resultat trouvé"  >
+     
+ 
+ 
+                   <!-- paginator="true"
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+             rowsPerPageTemplate="1,5,10,15"   --> 
+                    <p:column >
+          
+                        <ui:repeat var="a" value="#{P}">
+                            <h:outputLink  value="#{request.contextPath}/EditAnnonce/#{a.idAnnonce}">  
+				   
+                            <div class="col-md-3 col-lg-3 col-sm-5 col-xs-11 "  style=" "> 
+                               
+                              
+                          
+                                
+                             <div   style=" padding-top:131px; ;height:165px;width:170px; ; background-image: url(../resources/img/#{a.cheminFirst});background-repeat: no-repeat;background-size:170px 165px "   >
+                                    <p:graphicImage    style="float:right;height: 30px;width: 30px;border-radius: 50%;" library="img" name="#{a.utilisateurConnecte.phProfil}" id="parc1" cache="false" />   
+                                </div>
+                                
+                                
+                                
+                                 
+                                
+                         <div class="card" style="width: 170px; ">
+                             
+  <div class="card-body" style="padding-top: 0%; " >
+      <a  class="btn btn-link"   style="font-weight: bold; color:#155092  ;padding: 0px 0px 0px 0px ; width: 170px;font-size: 14px">  #{a.titreAnnonce} </a>
+      <p style=" color:black  ; text-align: center;padding-top: 0%;font-size: 14px">#{a.prixAnnonce} DHs </p>  
+  </div>
+</div>
+            </div>
+                       
+                                  <div class="col-md-1 col-lg-1 col-sm-1 col-xs-1 "  style="width: 5%  "> 
+                               
+                              
+                   </div> 
+                            </h:outputLink>
+                </ui:repeat>
+             
+                  
+                    
+                    </p:column><br/></p:dataTable>
+             
+            
+            
+            <!--p:panel-->   
+                 
+                 
+                    
+                                          
+                                         
+                                
+                            
+                            
+                            </div>  
+
+  
+  
+  
+  <br/><br/>
+  
+  
+			 <!--footer-->
+                         <div id="divFooter" style="position: relative">
+                                    <ui:insert name = "footerListAnn"   >
+                                                          <ui:include src = " ./partition/footer.xhtml" />
+                                                                 </ui:insert><!--/footer-->
+                         </div>
+                
+				<!-- /container -->
+                                
+                                
+			                         
+			 
+    </h:body>
+     </html>

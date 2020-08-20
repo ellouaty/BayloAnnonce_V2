@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		 
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+    </h:head>
+    <h:body style="background-color: lightgoldenrodyellow">
+        
+          <p:panel id="panCont" style="margin-left: 5px;border: none;background-color: inherit">   
+           
+            <h:form prependId="conForm">
+              
+                <c:if test="#{not empty emp}"> 
+                  <h:selectOneMenu   value="#{select}" id="menu"  style="color: #000066;font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;height:31px ;margin-left: 0px;margin-top: 0px;width:15%;background-color: inherit">
+                               <f:selectItem  itemValue="0" itemLabel="⇒Menu Principale" />  
+                                <f:selectItems value="#{droits}" /> 
+                                 <f:ajax listener="#{employeBean.redirection()}"/>
+        </h:selectOneMenu> 
+                    <p:outputLabel style="float: right;color: #000066;text-transform: capitalize" value="#{emp.nomEmploye} #{emp.prenomEmploye}" > </p:outputLabel>
+                    <br/> <p:commandLink style="float: right;display: block;text-decoration:underline;" value="Sing out" actionListener="#{employeBean.singOut('Gestion_Boutique')}" />
+                </c:if></h:form>
+          </p:panel>
+        
+        
+        
+    </h:body>
+</html>

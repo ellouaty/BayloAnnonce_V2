@@ -1,0 +1,177 @@
+
+
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces
+                      http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+	<url-mapping>
+		<pattern value="/Acceuil" />
+		<view-id value="/faces/acceuil.xhtml" />
+	</url-mapping>
+	
+        <url-mapping>
+		<pattern value="/Inscription" />
+		<view-id value="/faces/inscrire.xhtml" />
+	</url-mapping>
+        <url-mapping>
+		<pattern value="/PwdOublie" />
+		<view-id value="/faces/pwdOublier.xhtml" />
+	</url-mapping>
+	
+         <url-mapping>
+		<pattern value="/Publication" />
+		<view-id value="/faces/Publier_annonce.xhtml" />
+	</url-mapping>
+            <url-mapping>
+		<pattern value="/Chat" />
+		<view-id value="/faces/chat.xhtml" />
+	</url-mapping>
+        
+           <url-mapping>
+		<pattern value="/Aide" />
+		<view-id value="/faces/aide.xhtml" />
+	</url-mapping>
+        
+           <url-mapping>
+		<pattern value="/AchatSecurise" />
+		<view-id value="/faces/AchatSecurise.xhtml" />
+	</url-mapping> 
+        
+          <url-mapping>
+		<pattern value="/Presentation" />
+		<view-id value="/faces/presentation.xhtml" />
+	</url-mapping>
+        
+           <url-mapping>
+		<pattern value="/Reglement" />
+		<view-id value="/faces/reglement.xhtml" />
+	</url-mapping> 
+        
+       <url-mapping  >
+		<pattern value="/MesAnnonces/#{annonceBean.numOngl}" />
+		<view-id value="/faces/MesAnnonces.xhtml" />
+	</url-mapping> 
+        
+          <url-mapping  >
+		<pattern value="/listeAnnonces/#{search.from}" />
+		<view-id value="/faces/listeAnnonces.xhtml" />
+	</url-mapping> 
+     <url-mapping  >
+		<pattern value="/EditAnnonce/#{annonceBean.idAnnonce}" />
+		<view-id value="/faces/EditAnnonce.xhtml" /> 
+	</url-mapping>   
+        
+          <url-mapping  >
+		<pattern value="/FirstMessage/#{messageBean.idAnnToMsg}" />
+		<view-id value="/faces/firstMessage.xhtml" /> 
+	</url-mapping> 
+        
+        
+           <url-mapping  >
+		<pattern value="/Modifier_annonce/#{annonceBean.idAnnonce}" />
+		<view-id value="/faces/Modifier_annonce.xhtml" /> 
+	</url-mapping> 
+        
+        
+         <url-mapping>
+		<pattern value="/Panel" />
+		<view-id value="/faces/controlpanel/controlpanel.xhtml" />
+	</url-mapping>
+        
+          <url-mapping>
+		<pattern value="/Panel/Menu" />
+		<view-id value="/faces/controlpanel/menu.xhtml" />
+	</url-mapping>
+        <url-mapping>
+		<pattern value="/Panel/Queus" />
+		<view-id value="/faces/controlpanel/Queus.xhtml" />
+	</url-mapping>
+        <url-mapping>
+		<pattern value="/Panel/Gestion_Employees" />
+		<view-id value="/faces/controlpanel/Gestion_Employees.xhtml" />
+	</url-mapping>
+              
+         <url-mapping>
+		<pattern value="/Panel/NewUser" />
+		<view-id value="/faces/controlpanel/NewUser.xhtml" />
+	</url-mapping>
+         <url-mapping>
+		<pattern value="/Panel/Gray" />
+		<view-id value="/faces/controlpanel/Gray.xhtml" />
+	</url-mapping>
+         <url-mapping>
+		<pattern value="/Panel/grayAll" />
+		<view-id value="/faces/controlpanel/grayAll.xhtml" />
+	</url-mapping>
+         <url-mapping>
+		<pattern value="/Panel/ModifiedAll" />
+		<view-id value="/faces/controlpanel/ModifiedAll.xhtml" />
+	</url-mapping>
+         <url-mapping>
+		<pattern value="/Panel/Modified" />
+		<view-id value="/faces/controlpanel/Modified.xhtml" />
+	</url-mapping>
+            <url-mapping>
+		<pattern value="/Panel/Abus" />
+		<view-id value="/faces/controlpanel/Abus.xhtml" />
+	</url-mapping>
+          <url-mapping>
+		<pattern value="/Panel/NewUserAll" />
+		<view-id value="/faces/controlpanel/NewUserAll.xhtml" />
+	</url-mapping>
+                    
+
+ <url-mapping>
+		<pattern value="/Panel/Search" />
+		<view-id value="/faces/controlpanel/Search.xhtml" />
+	</url-mapping>
+
+ <url-mapping>
+		<pattern value="/Panel/Saif_Mail" />
+		<view-id value="/faces/controlpanel/Saif_Mail.xhtml" />
+	</url-mapping>
+         <url-mapping>
+		<pattern value="/Panel/Spam_Filter" />
+		<view-id value="/faces/controlpanel/Spam_Filter.xhtml" />
+	</url-mapping>
+         <url-mapping>
+		<pattern value="/Panel/Reclamations" />
+		<view-id value="/faces/controlpanel/Reclamations.xhtml" />
+	</url-mapping>
+         <url-mapping>
+		<pattern value="/Panel/Live_chat" />
+		<view-id value="/faces/controlpanel/Live_chat.xhtml" />
+	</url-mapping>
+         <url-mapping>
+		<pattern value="/Panel/Gestion_Boutique" />
+		<view-id value="/faces/controlpanel/Gestion_Boutique.xhtml" />
+	</url-mapping>
+         <url-mapping>
+		<pattern value="/Panel/Gestion_Utilisateurs" />
+		<view-id value="/faces/controlpanel/Gestion_Utilisateurs.xhtml" />
+	</url-mapping>
+          
+          <url-mapping>
+		<pattern value="/Panel/Web_Sql" />
+		<view-id value="/faces/controlpanel/Web_Sql.xhtml" />
+	</url-mapping>
+        <url-mapping>
+		<pattern value="/Panel/nouveauEmp" />
+		<view-id value="/faces/controlpanel/nouveauEmp.xhtml" />
+	</url-mapping> 
+   
+   <url-mapping  >
+		<pattern value="/Panel/conversation/#{annonceBean.idAnnonce}" />
+		<view-id value="/faces/controlpanel/conversation.xhtml" /> 
+	</url-mapping>
+        <url-mapping  >
+		<pattern value="/Panel/editAnnoncePanel" />
+		<view-id value="/faces/controlpanel/editAnnoncePanel.xhtml" /> 
+	</url-mapping>
+          <url-mapping  >
+		<pattern value="/Panel/EditerEmploye" />
+		<view-id value="/faces/controlpanel/EditerEmploye.xhtml" /> 
+	</url-mapping>
+        
+
+</pretty-config>

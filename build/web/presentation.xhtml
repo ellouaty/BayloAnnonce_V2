@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+    </h:head>
+  
+    <h:body style="">
+ 
+                	<ui:insert name = "navigation_barPre" >
+      <ui:include src = " ./partition/navigation_bar.xhtml" />
+   </ui:insert>
+		<!-- /NAVIGATION -->
+                
+               
+       
+  
+                    
+					 
+  <div class="container" style="padding-bottom: 10px;padding-top: 10px ;width: 75%; " id="divEdition" >   
+  
+               
+                     
+                            <div   style="margin-top: 3px;margin-bottom: 2px;"  id="divPresentation">
+       
+          <div class="col-md-12   " style="border-radius: 3px;padding-top:5px;margin-top: 10px;margin-bottom: 10px;">   
+                                              
+                                      <p:link outcome="acceuil" value="📖   Acceuil > "  style="font-size: 14px; color: #155092  "></p:link> <h:outputText style="font-size: 12px;" value="  Présentation"></h:outputText>
+                                           
+      </div>
+                                                
+			    <div class="col-md-12   " style="height: 40px;border-radius: 3px;text-align: center;padding-top:8px;border: gray solid 1px;background-color: #FBFBFC ;margin-left: 0px;margin-right: 0px ">   
+                                              
+                                     <p:outputLabel value="📖  Qui sommes nous ? :" style="color: #1b6d85 ;text-decoration: solid;font-size: 16px;margin-top:3px;margin-bottom:3px; "></p:outputLabel>
+                                                    
+      </div>
+            
+         
+ 
+ 
+   <div  class="col-md-12   " style="border-radius: 3px; text-align: left;padding-top:8px;border: gray solid 1px;padding-bottom: 8px;margin-right: 4px;margin-top: 10px;background-color: #FBFBFC " id="divPresntContent" >   
+          
+  
+ 
+       <br/>
+   
+       <h4 style="color: #f6831f">Baylo.ma </h4>
+       <h6 style="color: #46b8da" > Le bon choix pour acheter et vendre en toute sécurité au Maroc. </h6>
+       <p> 
+
+  
+baylo.ma constitue un choix pratique 100% gratuit pour tout vendre ou acheter au Maroc . 
+Ce service permet à tout utilisateur au Maroc de vendre ou d'acheter en toute simplicité dans sa région.</p>
+       <h4 style="color: #f6831f">Nos valeurs : </h4>
+       <h5 style="color:#155092">  Travail d'équipe:</h5> nos équipes travaillent en collaboration pour offrire un service de bonne qualité .<br/>
+     <h5 style="color: #155092">  Innovation:</h5>  pour anticiper des solutions au besoin du clients<br/>
+     <h5 style="color:#155092">  Qualité: </h5> on proposant un contenu de qualité.<br/> 
+   </div>
+   
+   </div>
+ 
+   
+                                    
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            </div>  
+
+  
+  
+  
+  
+  
+  
+			 <!--footer-->
+                         <div id="divFooter" style="position: relative">
+                                    <ui:insert name = "footerPre"   >
+                                                          <ui:include src = " ./partition/footer.xhtml" />
+                                                                 </ui:insert><!--/footer-->
+                         </div>
+                
+				<!-- /container -->
+                                
+                                
+			   
+                                 
+     
+
+
+                                
+			 
+     
+    </h:body></html>
+        
+        
+    
+
+
+
+     

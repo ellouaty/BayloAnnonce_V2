@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+                 
+     <navigation-rule>
+     <from-view-id>*.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>Acceuil</from-outcome>
+        <to-view-id>/faces/acceuil.xhtml?faces-redirect=true</to-view-id>
+        <redirect/>
+    </navigation-case>
+</navigation-rule>
+   
+<navigation-rule>
+     <from-view-id>*.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>Panel</from-outcome>
+        <to-view-id>/faces/controlpanel/controlpanel.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
+</navigation-rule>
+            
+    <navigation-rule>
+        <from-view-id>*.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Publication</from-outcome> 
+            <to-view-id>/faces/Publier_annonce.xhtml</to-view-id>
+         </navigation-case>
+    </navigation-rule>
+    
+     <navigation-rule>
+        <from-view-id>*.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Chat</from-outcome> 
+            <to-view-id>/faces/chat.xhtml</to-view-id>
+         </navigation-case>
+    </navigation-rule>
+
+ <navigation-rule>
+        <from-view-id>*.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Aide</from-outcome> 
+            <to-view-id>/faces/aide.xhtml</to-view-id>
+         </navigation-case>
+    </navigation-rule>
+
+
+ <navigation-rule>
+        <from-view-id>*.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AchatSecurisé</from-outcome> 
+            <to-view-id>/faces/AchatSecurise.xhtml</to-view-id>
+         </navigation-case>
+    </navigation-rule>
+
+ <navigation-rule>
+        <from-view-id>*.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Reglement</from-outcome> 
+            <to-view-id>/faces/reglement.xhtml</to-view-id>
+         </navigation-case>
+    </navigation-rule>
+
+ <navigation-rule>
+        <from-view-id>*.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Presentation</from-outcome> 
+            <to-view-id>/faces/presentation.xhtml</to-view-id>
+         </navigation-case>
+    </navigation-rule>
+
+ <navigation-rule>
+        <from-view-id>*.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>MesAnnonces</from-outcome> 
+            <to-view-id>/faces/MesAnnonces.xhtml</to-view-id>
+         </navigation-case>
+    </navigation-rule>
+            
+    <navigation-rule>
+        <from-view-id>*.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>listeAnnonces</from-outcome> 
+            <to-view-id>/faces/listeAnnonces.xhtml</to-view-id>
+         </navigation-case>
+    </navigation-rule>
+    
+       <navigation-rule>
+        <from-view-id>*.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>EditAnnonce</from-outcome> 
+           
+            <to-view-id>/faces/EditAnnonce.xhtml</to-view-id>
+         </navigation-case>
+    </navigation-rule>
+    
+   
+    
+    
+</faces-config>

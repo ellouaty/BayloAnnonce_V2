@@ -1,0 +1,247 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+    </h:head>
+  
+    <h:body  >
+ 
+                	<ui:insert name = "navigation_barInsc" >
+      <ui:include src = " ./partition/navigation_bar.xhtml" />
+   </ui:insert>
+		<!-- /NAVIGATION -->
+                
+               
+      
+                <!-- TOP HEADER -->
+			<div id="top-header" style="background-color: #f2f0f0;padding-top: 10px">
+                             
+ 
+                            <form id="ff"  >
+                            
+                                                        		<ui:insert name = "search_bar_normal" >
+                                                                                <ui:include src = "./partition/search/search_bar_normal.xhtml" />
+                                                                                                 </ui:insert>                      
+                            </form>
+                </div>
+			<!-- /TOP HEADER -->
+
+      
+  
+                    
+					 
+  <div class="container" style="padding-bottom: 10px;    " id="divEdition" >   
+  
+        
+            
+                      <div class="col-md-12  col-xs-12 col-lg-12  col-sm-12  " style="border-radius: 3px;padding-bottom: 5px ;">   
+                          
+                                               
+           
+    <div class="col-md-3 col-lg-3 hidden-xs hidden-sm"  ></div>
+  
+   
+    <div class="col-md-7   col-xs-12 col-sm-12 col-lg-7" style="border-radius: 3px;padding-top:5px;padding-bottom: 5px ; padding-right:0px;padding-left: 0px; " id="divInscrip"  >   
+   
+    <br/>  <br/>                             
+         
+                                    <div class="col-md-12  col-sm-12 col-xs-12  " style="height: 10%;border-radius: 3px;padding-top:8px;border-radius: 3px;border: gray solid 1px;background-color:#DDD ">   
+                                              
+                                     <p:outputLabel value="Inscription : " style="color:#245269 ;text-decoration: solid;font-size: 16px;margin-bottom:3px; "></p:outputLabel>
+                                                    
+      </div>
+	     
+	
+	<h:form prependId="formInscrip">
+                 <p:growl id="msgInsc" showDetail="true" life="4000" />
+             <div  class="col-md-12 col-sm-12 col-xs-12  "  id="loginPnlInsc" style="; padding-top:5px;padding-bottom: 5px ;padding-left: 0px ;border: solid graytext 1px " >
+                 <div  class="col-md-2 hidden-xs hidden-sm  " ></div>
+                 <div  class="col-md-10 col-sm-12 col-xs-12  " >
+                    <h:panelGrid id="loginPanel1Insc" class="col-md-7 col-sm-10 col-xs-10  "  columns="3" style="margin-left: 5%;margin-top: 5%; " >
+                       <p:spacer></p:spacer><p:spacer></p:spacer><p:spacer></p:spacer>
+                       
+                       <p:outputLabel value="Nom:*"   style=" " id="labNom" for="nomuserInsc" /> 
+                       <p:inputText id="nomuserInsc" value="#{login.nom}"   style="margin-bottom: 3px;margin-left: 10px;text-transform: capitalize"  >
+                        </p:inputText>
+                       <p:message for="nomuserInsc"   style="color: red;padding-left: 20px ;font-size: 14px"/>
+                         
+                 
+                       
+                       <p:outputLabel value="Ville:* " id="labville" for="MenuVilleinsc"/> 
+                    <p:selectOneMenu id="MenuVilleinsc"   value="#{login.ville}"    style=" margin-left: 10px;height:22px;margin-top: 4px; line-height: 23px; height:33px ;">
+            
+                   <ui:insert name = "Combo_vil" >
+      <ui:include src = "./partition/Combo_villes.xhtml" />
+   </ui:insert>
+        </p:selectOneMenu>   <p:message for="MenuVilleinsc"  style="color: red;padding-left: 20px ;font-size: 14px"/>
+                        
+        <p:outputLabel value="Email:*"   id="labEmail" for="emailInsc"/> 
+                        <p:inputText id="emailInsc" value="#{login.email}"   style="margin-bottom: 3px;margin-left: 10px;text-transform: capitalize"   >
+                  
+                        </p:inputText><p:message for="emailInsc"  style="color: red;padding-left: 20px ;font-size: 14px"/>
+                        
+                           
+                          
+				 <p:outputLabel value="Mot de passe:*"   id="labPass" for="passwordInsc" /> 
+                                
+                              
+                                 <p:password id="passwordInsc" value="#{login.motDepasse}" feedback="false"   size="15" style="margin-bottom: 3px;margin-left: 10px; "></p:password>
+				<p:message for="passwordInsc"  style="color: red;padding-left: 20px ;font-size: 14px"/>
+                        
+                                <p:spacer></p:spacer>
+                                <h:outputText value="&#160;&#160;&#160;  Au moins 5 caractéres  "  style="font-size:12px" id="labInfop"/>
+                                <p:spacer></p:spacer>
+                                  <p:outputLabel value="Téléphone:*" style=" " id="labTel" for="telInsc"/> 
+                                 <p:inputMask   mask="9999999999" id="telInsc" value="#{login.tel}"    style="margin-bottom: 3px;margin-left: 10px;" >
+                       
+                                 </p:inputMask>
+                           <p:message for="telInsc"  style="color: red;padding-left: 20px ;font-size: 14px"/>
+                        
+                          
+                        
+                                
+			</h:panelGrid> 
+                    <p:outputLabel style="font-size:17px;color:#245269;font-family: serif;font-weight: bold;display: none ;margin-top: 10% " id="labInfosC" value="Nous avons envoyé votre code a l'adresse #{login.email} pour verifier que vous en étes le titulaire.Consulter votre boite de récéption ."></p:outputLabel>
+                    
+                    <h:panelGrid class="col-md-7 col-sm-12 col-xs-12  " columns="1" style="margin-bottom:10px;margin-left: 27%" cellpadding="5" id="loginPanel1Insc2">
+                        <p:selectBooleanCheckbox value="#{login.visibilite}" style="font-size:11px" disabled="false" id="visibilite" itemLabel="Masquer votre numéro de téléphone. "/>
+   <p:spacer ></p:spacer>
+                  
+                 <p:commandButton class="btn btn-danger   " id="btnNoCode" value="Je n'ai pas le code"    style="height: 35px;background-color:#fce1b8;color:slategray;margin-bottom:2px;display: none " />
+                
+                  
+                    <p:inputText id="codeRecu" value="#{login.codeRecu}"   style=" margin-bottom: 3px;display: none" ></p:inputText>
+                     <p:watermark for="codeRecu" value="Entrer le code d'accés "   />
+              </h:panelGrid>  
+                    <br/> 
+                    <p:outputLabel  value="Veuillez réessayer plus tard !!" id="prob" style="color: red;display: none;font-size: 17px;display:none;margin-left: 30%"></p:outputLabel>
+                    
+                      			 
+                     
+                    <h:panelGrid columns="2" class="col-md-7 col-sm-12 col-xs-12  " style="margin-bottom:10px; " > 
+                         
+                        <p:outputLabel  id="tentative" value="#{login.msgtentativ}" style="color: red; font-size: 12px;display:none"></p:outputLabel>
+                        <p:outputLabel  id="cptExiste" value="#{login.cptExiste}" style="color: red;display: none;font-size: 12px;display:none"></p:outputLabel>
+                        
+                        
+                        <p:link   class="btn btn-link  a " value="J'ai déja un compte" id="dejaCompte" style="  font-family:sans-serif; font-size: 14px;color:blue "  /> 
+                        <h:commandButton class="btn btn-primary"  value="Suivant" id="btnSuiv"  action ="#{login.suivant()}"  style="height: 35px;margin-left: 50% ;"/></h:panelGrid>
+                    
+                    
+                        <p:commandButton class="btn btn-primary " update="tentative"  id="btnInsc" value="Valider"  action="#{login.verifiCode_validation_codeRecu()}"  style="height: 35px;margin-left: 70% ;display: none">
+                      
+                        </p:commandButton>
+                  <br/>
+                    <br/>
+             </div>
+		 
+    </div>   
+                     </h:form>
+               
+                
+                 
+</div>  
+            
+            
+       <div class="col-md-2 col-lg-2 hidden-xs hidden-sm"></div>
+        
+            
+            
+            
+            
+    </div>
+                                          
+                         
+                            
+  
+                            
+                            </div>  
+
+  
+  
+  
+  
+  
+  
+			 <!--footer-->
+                         <div id="divFooter" style="position: relative">
+                                    <ui:insert name = "footerInsc"   >
+                                                          <ui:include src = " ./partition/footer.xhtml" />
+                                                                 </ui:insert><!--/footer-->
+                         </div>
+                
+				<!-- /container -->
+                                
+                                
+			   
+                                 
+     
+
+
+                                <script>
+                                    $("#dejaCompte").click(function (){
+                                        
+                                        
+                                  event.preventDefault(); $("#dialog").css("background-color","#d9534f"); 
+              $("#idpart").show();
+                $("#idbtq").hide();
+                                    PF('dialogue').show();
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    });
+                                    
+                                        $("#btnNoCode").click(function(){
+         
+       $('#btnNoCode').hide();
+         $('#btnSuiv').show();
+        $('#codeRecu').hide();
+        $('#btnInsc').hide();
+        $('#labInfosC').hide();
+        $('#visibilite').show();
+          $('#labEntCod').hide(); 
+         $('#loginPanel1Insc').show();   
+            
+            
+   });
+ 
+ 
+
+ 
+ 
+                                    
+                                    
+                                    
+                                    </script>
+			 
+     
+    </h:body></html>
+        
+        
+        
+          
+
+        
+    

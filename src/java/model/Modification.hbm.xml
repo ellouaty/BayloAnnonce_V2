@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 janv. 2020 21:02:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Modification" table="MODIFICATION" schema="DBANNONCES">
+        <id name="idMod" type="big_decimal">
+            <column name="ID_MOD" precision="22" scale="0" />
+            <generator class="increment"></generator>
+        </id>
+        <many-to-one name="annonceOld" class="model.Annonce" fetch="select">
+            <column name="ID_ANNONCE_OLD" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="annonceNew" class="model.Annonce" fetch="select">
+            <column name="ID_ANNONCE_NEW" precision="22" scale="0" />
+        </many-to-one>
+        <property name="dateModification" type="string">
+            <column name="DATE_MODIFICATION" length="30" />
+        </property>
+        <property name="heureModification" type="string">
+            <column name="HEURE_MODIFICATION" length="30" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 janv. 2020 21:02:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.TerrainFerme" table="TERRAIN_FERME" schema="DBANNONCES">
+        <id name="idTerrainFerme" type="big_decimal">
+            <column name="ID_TERRAIN_FERME" precision="22" scale="0" />
+            <generator class="increment"></generator>
+        </id>
+        <many-to-one name="autreImmobilier" class="model.AutreImmobilier" fetch="select">
+            <column name="ID_AUTRE_IMMOBILIER" precision="22" scale="0" />
+        </many-to-one>
+        <property name="zoningTerrainFerme" type="string">
+            <column name="ZONING_TERRAIN_FERME" length="30" />
+        </property>
+    </class>
+</hibernate-mapping>

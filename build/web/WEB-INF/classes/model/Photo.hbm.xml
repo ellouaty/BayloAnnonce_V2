@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 janv. 2020 21:02:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Photo" table="PHOTO" schema="DBANNONCES">
+        <id name="idPhoto" type="big_decimal">
+            <column name="ID_PHOTO" precision="22" scale="0" />
+            <generator class="increment"></generator>
+        </id>
+        <many-to-one name="annonce" class="model.Annonce" fetch="select">
+            <column name="ID_ANNONCE" precision="22" scale="0" />
+        </many-to-one>
+        <property name="cheminPhoto" type="string">
+            <column name="CHEMIN_PHOTO" length="1000" />
+        </property>
+        <property name="photoContent" type="blob">
+            <column name="PHOTO_CONTENT" />
+        </property>
+    </class>
+</hibernate-mapping>

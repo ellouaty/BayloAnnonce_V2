@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+                         
+    </h:head>
+    <h:body style="background-color: lightgoldenrodyellow">
+           
+         
+        <p:panel id="panCont" style="margin-left: 5px;border: none;background-color: inherit">   
+           
+            <h:form prependId="conForm">
+              
+                <c:if test="#{not empty emp}"> 
+                    <h:selectOneMenu   value="#{select}" id="menu"  style="color: #000066;font-size: 14px; height:22px;margin-top: 4px; line-height: 23px;height:31px ;margin-left: 0px;margin-top: 0px;width:15%;background-color: inherit">
+                        <f:selectItem  itemValue="0" itemLabel="⇒Menu Principale" />  
+                                <f:selectItems value="#{droits}" /> 
+                                 <f:ajax listener="#{employeBean.redirection()}"/>
+        </h:selectOneMenu> 
+                    <p:outputLabel style="float: right;color: #000066;text-transform: capitalize" value="#{emp.nomEmploye} #{emp.prenomEmploye}" > </p:outputLabel>
+                    <br/> <p:commandLink style="float: right;display: block;text-decoration:underline;" value="Sing out" actionListener="#{employeBean.singOut('controlpanel')}" />
+                
+                
+                    
+    <ul style="list-style: disc ;color: #cc0000;margin-top:2%">
+         <c:if test="#{not emptyd0}"> 
+             <li><p:link outcome="Queus" value="Queus" style="color: #000066"/></li> </c:if>
+             <c:if test="#{not empty d1}"> 
+                        <li><p:link value="Search" outcome="Search" style="color: #000066"/></li>   </c:if>
+             <c:if test="#{not empty d2}"> 
+                        <li><p:link value="Saif Mail" outcome="Saif_Mail" style="color: #000066"/></li> </c:if>
+             <c:if test="#{not empty d3}"> 
+                         <li><p:link value="Spam Filter" outcome="Spam_Filter" style="color: #000066"/></li> </c:if>
+             <c:if test="#{not empty d4}"> 
+                         <li><p:link value="Live chat" outcome="Live_chat" style="color: #000066"/></li> </c:if>
+             <c:if test="#{not empty d5}"> 
+                         <li><p:link value="Reclamations" outcome="Reclamations" style="color: #000066"/></li> </c:if>
+             <c:if test="#{not empty d6}"> 
+                          <li><p:link value="Gestion Utilisateurs" outcome="Gestion_Utilisateurs" style="color: #000066"/></li> </c:if>
+             <c:if test="#{not empty d7}"> 
+                         <li><p:link value="Gestion Boutique" outcome="Gestion_Boutique" style="color: #000066"/></li>   </c:if>
+             <c:if test="#{not empty d8}"> 
+                          <li><p:link value="Gestion Employees" outcome="Gestion_Employees" style="color: #000066"/></li> </c:if>
+             <c:if test="#{not empty d9}"> 
+                          <li><p:link value="Web Sql" outcome="Web_Sql" style="color: #000066"/></li> </c:if>
+             
+                         
+                       
+                    </ul>
+                    
+                </c:if>
+                  
+	</h:form>
+           
+        </p:panel>
+             
+                     
+    
+            
+    </h:body>
+</html>

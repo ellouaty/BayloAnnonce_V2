@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 janv. 2020 21:02:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.MaisonVilla" table="MAISON_VILLA" schema="DBANNONCES">
+        <id name="idMaisonVilla" type="big_decimal">
+            <column name="ID_MAISON_VILLA" precision="22" scale="0" />
+            <generator class="increment"></generator>
+        </id>
+        <many-to-one name="annonce" class="model.Annonce" fetch="select">
+            <column name="ID_ANNONCE" precision="22" scale="0" />
+        </many-to-one>
+        <property name="nbPiecesMaisonVilla" type="big_decimal">
+            <column name="NB_PIECES_MAISON_VILLA" precision="22" scale="0" />
+        </property>
+        <property name="superficieMaisonVilla" type="big_decimal">
+            <column name="SUPERFICIE_MAISON_VILLA" precision="22" scale="0" />
+        </property>
+        <property name="prixMetreCarreMaisonVilla" type="big_decimal">
+            <column name="PRIX_METRE_CARRE_MAISON_VILLA" precision="22" scale="0" />
+        </property>
+        <property name="emplacementMaisonVilla" type="string">
+            <column name="EMPLACEMENT_MAISON_VILLA" length="30" />
+        </property>
+        <set name="appartements" table="APPARTEMENT_BUREAU" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_MAISON_VILLA" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.AppartementBureau" />
+        </set>
+    </class>
+</hibernate-mapping>

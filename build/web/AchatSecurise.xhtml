@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>Baylo</title>
+
+		
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" /> 
+                     
+    </h:head>
+  
+    <h:body >
+ 
+                	<ui:insert name = "navigation_barACHATSEC" >
+      <ui:include src = " ./partition/navigation_bar.xhtml" />
+   </ui:insert>
+		<!-- /NAVIGATION -->
+                
+               
+      
+                
+  
+                    
+					 
+  <div class="container" style="width: 75%;" id="divEdition" >   
+  
+                    
+                                          <div   style="margin-top: 3px;margin-bottom: 2px;background-color: #FBFBFC;"  id="divAchat">
+         
+     
+          
+                                    
+        <div class="col-md-12   " style="border-radius: 3px;padding-top:5px;margin-top: 10px;margin-bottom: 10px;">   
+                                              
+                                      <p:link outcome="acceuil" value="🛒  Acceuil > "  style="font-size: 14px; color: #155092 "></p:link> <h:outputText style="font-size: 12px;" value="  Achat Sécurisé"></h:outputText>
+                                           
+      </div>
+         
+         
+        <div class="col-md-12   " style="height: 40px;border-radius: 1%;text-align: left;padding-top:8px;border: gray solid 1px;background-color: #FBFBFC  ">   
+                                              
+                                     <p:outputLabel value="🛒 Achat en toute sécurité" style="color: #1b6d85 ;text-decoration: solid;font-size: 16px;margin-top:3px;margin-bottom:3px; "></p:outputLabel>
+                                                     
+      </div>
+            
+         
+                                              
+         
+          <div  class="col-md-12  " style="border-radius: 3px; text-align: left;padding-top:8px;border: gray solid 1px;padding-bottom: 8px;margin-right: 4px;margin-top: 10px;background-color: #FBFBFC " >   
+                              
+  
+ <div    style="border-radius: 4px;text-align: center;padding-top:8px;border-radius: 3px;" id="divAchatContent">   
+                       <br/>
+   <ul>
+       <li>🌟 Ne payez jamais d'avance à un vendeur que vous ne connaissez pas.</li>
+<li>🌟 Même si le vendeur vous communique ses informations personnelles ou ses coordonnées bancaires, vous n'êtes pas à l'abri d'une escroquerie.</li>
+<li>🌟 Chaque fois que possible, demandez la facture originale et une facture écrite pour l'achat.</li>
+<li>🌟 N'envoyez jamais les articles avant que le paiement ait été finalisé.</li> 
+</ul>
+<h2 style="color: #1b6d85">Soyez particulièrement vigilant quand...</h2>
+<ul  >
+<li>🌟 L'offre paraît trop belle pour être vraie.</li>
+<li>🌟 L'autre partie insiste pour que vous concluiez l'affaire.</li>
+<li>🌟 Quelqu'un vous demande vos coordonnées bancaires ou le numéro de votre carte de crédit.</li>
+<li>🌟 Vous payez de gros montants à des personnes que vous ne connaissez pas. Essayez de rencontrer l'autre partie dans une boutique ou un lieu public.</li>
+<li>🌟 Vous achetez des articles de marque. Il est toujours recommandé de rencontrer le vendeur dans une boutique et de s'assurer de l'authenticité de l'article.</li>
+</ul>
+<br/>
+ </div> 
+  
+ 
+               
+  
+               <!--div  class="col-md-8   " style="border-radius: 3px;text-align: center;padding-top:8px;border-radius: 3px;" id="EXEMPLE">   
+                         Exmple en cours :=>il faut que je mets le contenu de aide dans ce div et creer d autre div comme celui la +il faut travailler l affichage
+                         JQUERRY DIV PARTAGANT divAideContent  => Insertion d'annonces||Problèmes techniques||Compte||Suggestions||
+               </div-->
+              
+              
+                   
+              
+                                    </div>
+         
+         
+         
+         
+         
+         
+         
+     </div>
+                                        
+                            
+                            
+                       
+                            
+                            </div>  
+
+  
+  
+                <br/>
+                <br/>
+  
+  
+  
+			 <!--footer-->
+                         <div id="divFooter" style="position: relative">
+                                    <ui:insert name = "footerACHATSEC"   >
+                                                          <ui:include src = " ./partition/footer.xhtml" />
+                                                                 </ui:insert><!--/footer-->
+                         </div>
+                
+				<!-- /container -->
+                                
+                                
+			   
+                                 
+     
+
+
+                                
+			 
+     
+    </h:body></html>
+        
+        
+    
+
+

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5 f?vr. 2020 12:24:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Reclamation" table="RECLAMATION" schema="DBANNONCES" optimistic-lock="version">
+        <composite-id name="id" class="model.ReclamationId">
+            <key-property name="idUtilisateurConnecte" type="big_decimal">
+                <column name="ID_UTILISATEUR_CONNECTE" precision="22" scale="0" />
+            </key-property>
+            <key-property name="idAnnonce" type="big_decimal">
+                <column name="ID_ANNONCE" precision="22" scale="0" />
+            </key-property>
+            <key-property name="dateReclamation" type="string">
+                <column name="DATE_RECLAMATION" length="30" />
+            </key-property>
+            <key-property name="heureReclamation" type="string">
+                <column name="HEURE_RECLAMATION" length="30" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="utilisateurConnecte" class="model.UtilisateurConnecte" update="false" insert="false" fetch="select">
+            <column name="ID_UTILISATEUR_CONNECTE" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="employe" class="model.Employe" fetch="select">
+            <column name="ID_EMPLOYE" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="annonce" class="model.Annonce" update="false" insert="false" fetch="select">
+            <column name="ID_ANNONCE" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="motifReclamation" type="string">
+            <column name="MOTIF_RECLAMATION" length="30" />
+        </property>
+        <property name="contenuReclamation" type="string">
+            <column name="CONTENU_RECLAMATION" length="2000" />
+        </property>
+        <property name="etatReclamation" type="string">
+            <column name="ETAT_RECLAMATION" length="10" />
+        </property>
+        <property name="dateTrait" type="string">
+            <column name="DATE_TRAIT" length="30" />
+        </property>
+        <property name="heureTrait" type="string">
+            <column name="HEURE_TRAIT" length="30" />
+        </property>
+    </class>
+</hibernate-mapping>

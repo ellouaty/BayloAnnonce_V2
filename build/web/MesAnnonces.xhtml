@@ -1,0 +1,804 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+       
+		 <title>Baylo</title>
+
+		 
+                 <h:outputStylesheet library = "css" name = "bootstrap.min.css" />  
+                     <h:outputStylesheet library = "css" name = "style.css" />  
+                     
+                     
+                      <f:metadata>
+     
+                          <f:viewAction action="#{annonceBean.onloadListe()}"  immediate=""/>
+                       
+    
+</f:metadata>
+                     
+                                   
+    </h:head>
+  
+    <h:body   >
+ 
+                	<ui:insert name = "navigation_barMesAnn" >
+      <ui:include src = " ./partition/navigation_bar.xhtml" />
+   </ui:insert>
+		<!-- /NAVIGATION -->
+                
+           
+  
+                    
+					 
+  <div class="container" style="padding-bottom: 10px;padding-top: 10px ;   " id="divEdition" >   
+         
+                            
+                             
+                      <div  class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="border-radius: 3px;padding-top:5px;padding-bottom: 5px ; padding-right:0px;padding-left: 0px;" id="divMyAnn">
+         
+                          
+                          
+                          <p:tabView class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="height:auto;padding-bottom: 2%" activeIndex="#{annonceBean.numOngl}" prependId="false">
+                          
+                          
+                              <p:tab title="Mes Annonces"  class="col-md-12 col-sm-12 col-xs-12 col-lg-12" >   
+                                  
+                                  
+                                    <p:panel class="col-md-12 col-sm-12 col-xs-12 col-lg-12" id="MyAnnonces" style="margin:0px;padding: 0;border: none ;background-color: ">
+                                        
+                 
+                                  
+                                        
+                                  
+                                    <p:tabView class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="height:auto;margin:0px;padding: 0px"   prependId="false">
+                          
+                          
+                                        <p:tab class="col-md-12 col-sm-12 col-xs-12 col-lg-12" title="Actives(#{annonceBean.listMyAnnAct.size()})"    > 
+
+							  <h:form prependId="false">
+                                                      <c:if test="#{annonceBean.listMyAnnAct.size() eq 0}">
+                                               
+                                                     <div style=" background-size:100% 100% ;background-repeat: no-repeat; background-image: url(../resources/imgProjet/nop.JPG);">
+                                                  
+                                                  <h:outputLink    class="btn btn-default hidden-sm hidden-xs "  
+                                                                   style="  font-family:slick ;background-color: #efebeb; font-size: 0.9em;color:#155091;margin-top: 40%;margin-left: 43%;margin-bottom: 5%" value="#{request.contextPath}/Publication">
+                                                    
+                                                   Publier une annonce
+                                                    </h:outputLink>
+                                                         <h:outputLink    class="btn btn-default  hidden-md hidden-lg "  
+                                                                   style="  font-family:slick ;background-color: #efebeb; font-size: 0.9em;color:#155091;margin-top: 40%;margin-left: 30%;margin-bottom: 5%" value="#{request.contextPath}/Publication">
+                                                    
+                                                   Publier une annonce
+                                                    </h:outputLink>
+                                              </div>
+                                          
+                                          </c:if>
+                                       
+                                              <c:if test="#{not empty annonceBean.listMyAnnAct}"> 
+                                          <p:panel class="col-md-12 col-sm-12 col-xs-12 col-lg-12" id="MyannoncesActiv"   style=" margin: 0px;padding: 0px;height: 100%;  overflow-y: auto;overflow-x: hidden;border: none">
+                                                 
+                                              <ul class="col-md-12 col-sm-12 col-xs-12 col-lg-12" id="listMannActiv"  style="padding-bottom:5px;padding-left: 0px;padding-right: 0px;margin: 0px" >
+                                              <c:forEach var="anMyA" items="#{annonceBean.listMyAnnAct}" >      
+                                              <li class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style=" padding-top: 5px;padding-bottom: 5px;padding-left: 0px;padding-right: 0px;margin: 0px; height:20%;border: 1px solid #8D99AE; " >
+                                                 
+                                                  
+                                                 <h:outputLink  value="#{request.contextPath}/EditAnnonce/#{anMyA.idAnnonce}">  
+ 
+                                            
+                                   
+                                                      <h:graphicImage class="col-md-2 col-xs-5 col-sm-5 col-lg-2"  name="#{anMyA.cheminFirst}" library="img" style="height:15%   " />
+                                
+                                     
+                                     
+         <div  class="col-md-7 col-xs-3 col-sm-3 col-lg-7" style="font-size: 0.7em" >
+                                      
+             <p:outputLabel value="#{anMyA.titreAnnonce}" /> <br/>
+             <p:outputLabel value="#{anMyA.prixAnnonce} DHs" />  
+                                        <br/>
+                                        <br/>    <p:outputLabel value="#{anMyA.souscategorie}" /> 
+                                        <br/>  <p:outputLabel   class="hidden-sm hidden-xs" value="#{anMyA.dateDepotAnnonce}&#160;&#160;#{anMyA.heureDepotAnnonce}"/> 
+                                         
+                                        <p:outputLabel  class="hidden-lg hidden-md" value="#{anMyA.dateDepotAnnonce}"/> 
+                                          <br/>  <p:outputLabel  class="hidden-lg hidden-md" value="#{anMyA.heureDepotAnnonce}"/> 
+                                         
+                                         
+         </div>
+                                                            </h:outputLink>
+                                                  
+                                                      <div  class="col-md-1 col-xs-3 col-sm-3 col-lg-1" style="padding-top: 10px ; " >
+                                                           
+                                                            
+                                                         <h:commandLink   actionListener="#{annonceBean.redirectModif()}"  style="color:#336699;font-size: 0.8em;font-weight:bold "  class=" btn-link"   value="Modifier"/>
+                                                              
+                                                        
+                                                          <br/>
+                                                          <p:commandLink  style="color:#336699;font-size: 0.8em;font-weight:bold "  class="a btn-link" action="#{annonceBean.supprimerAnnonce('myann')}" value="Supprimer" >
+                                                               <f:param value="#{anMyA.idAnnonce}"  name="idAnnToSupr" ></f:param>
+                                                          </p:commandLink><br/>
+                                                          <p:commandLink style="color:#336699;font-size:0.8em;font-weight:bold "   class="a btn-link" action="#{annonceBean.desactiverAnnonce('myann')}"  value="Désactiver" >
+                                                                  <f:param value="#{anMyA.idAnnonce}"  name="idAnnToDesac" ></f:param> 
+                                                          </p:commandLink>
+                                                          
+                                                          
+                                                      </div>
+                                            
+ 
+       
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                                                  
+                                                 
+                                                </li>
+                                            </c:forEach>
+			</ul>
+                                            
+                                          </p:panel>
+                                          </c:if>
+                                          
+                                  </h:form>
+                               
+        </p:tab>
+                
+		                     
+                                        
+                                        <p:tab class="col-md-12 col-sm-12 col-xs-12 col-lg-12" title="Rejetées(#{annonceBean.listMyAnnRejet.size()})" > 
+
+						
+
+							  <h:form prependId="false">
+                                               <c:if test="#{annonceBean.listMyAnnRejet.size() eq 0}">
+                                                <div style="height:auto;background-size:100% 100% ;background-repeat: no-repeat; background-image: url(../resources/imgProjet/nop.JPG);">
+                                                  
+                                                  <h:outputLink    class="btn btn-default hidden-sm hidden-xs "  
+                                                                   style="  font-family:slick ;background-color: #efebeb; font-size: 0.9em;color:#155091;margin-top: 40%;margin-left: 43%;margin-bottom: 5%" value="#{request.contextPath}/Publication">
+                                                    
+                                                   Publier une annonce
+                                                    </h:outputLink>
+                                                         <h:outputLink    class="btn btn-default  hidden-md hidden-lg "  
+                                                                   style="  font-family:slick ;background-color: #efebeb; font-size: 0.9em;color:#155091;margin-top: 40%;margin-left: 30%;margin-bottom: 5%" value="#{request.contextPath}/Publication">
+                                                    
+                                                   Publier une annonce
+                                                    </h:outputLink>
+                                              </div>
+                                          
+                                          </c:if>
+                                       
+                                              <c:if test="#{not empty annonceBean.listMyAnnRejet}">        
+                                          <p:panel class="col-md-12 col-sm-12 col-xs-12 col-lg-12" id="MyannoncesReje"    style=" margin: 0px;padding: 0px;  overflow-y: auto;overflow-x: hidden;border: none">
+                                                 
+                                          <ul id="listMannReje" class="col-md-12 col-sm-12 col-xs-12 col-lg-12" >
+                                              <c:forEach var="anMyRej" items="#{annonceBean.listMyAnnRejet}" >      
+                                              <li class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style=" padding-top: 5px;padding-bottom: 5px;padding-left: 0px;padding-right: 0px;margin: 0px; height:20%;border: 1px solid #8D99AE; " >
+                                                 
+                                                   <h:graphicImage name="#{anMyRej.cheminFirst}" library="img" class="col-md-2 col-xs-5 col-sm-5 col-lg-2"    style="height:15%   "  />
+                                   
+                                    
+                                 
+                                     
+         <div  class="col-md-7 col-xs-3 col-sm-3 col-lg-7" style="font-size: 0.7em" >
+                                      
+            <p:outputLabel value="#{anMyRej.titreAnnonce}"/> <br/>
+            <span   ><p:outputLabel value="#{anMyRej.prixAnnonce} DHs"/>  </span>
+                                        <br/>
+                                        <br/>  <p:outputLabel value="#{anMyRej.souscategorie}"/>
+                                        <br/><p:outputLabel value="#{anMyRej.dateDepotAnnonce} &#160;&#160; #{anMyRej.heureDepotAnnonce}"/>
+                                         
+                                         
+         </div>
+                                                    
+                                                  
+                                                      <div  class="col-md-1 col-xs-3 col-sm-3 col-lg-1" style="padding-top: 10px" >
+                                                           
+                   <h:outputText value="#{anMyRej.motiRejet}"  style="font-size:0.8em;color: red" />
+                                                                  
+                                                          
+                                                          
+                                                      </div>
+                                                     
+ 
+       
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                                                  
+                                                 
+                                                </li>
+                                            </c:forEach>
+			</ul>
+                                              
+                                          </p:panel>
+                                        </c:if>
+                                          
+                                  </h:form>
+                          
+                                            
+                                          
+                                          
+                                          
+                                
+                               
+        </p:tab>
+		
+		
+                                        <p:tab  class="col-md-12 col-sm-12 col-xs-12 col-lg-12" title="Désactivées(#{annonceBean.listMyAnnDesac.size()})" > 
+
+                           
+
+							  <h:form prependId="false">
+                                                   <c:if test="#{annonceBean.listMyAnnDesac.size() eq 0}">
+                                                 <div style="height:auto;background-size:100% 100% ;background-repeat: no-repeat; background-image: url(../resources/imgProjet/nop.JPG);">
+                                                  
+                                                  <h:outputLink    class="btn btn-default hidden-sm hidden-xs "  
+                                                                   style="  font-family:slick ;background-color: #efebeb; font-size: 0.9em;color:#155091;margin-top: 40%;margin-left: 43%;margin-bottom: 5%" value="#{request.contextPath}/Publication">
+                                                    
+                                                   Publier une annonce
+                                                    </h:outputLink>
+                                                         <h:outputLink    class="btn btn-default  hidden-md hidden-lg "  
+                                                                   style="  font-family:slick ;background-color: #efebeb; font-size: 0.9em;color:#155091;margin-top: 40%;margin-left: 30%;margin-bottom: 5%" value="#{request.contextPath}/Publication">
+                                                    
+                                                   Publier une annonce
+                                                    </h:outputLink>
+                                              </div>
+                                          
+                                          </c:if>
+                                       
+                                              <c:if test="#{not empty annonceBean.listMyAnnDesac}">        
+                                          <p:panel class="col-md-12 col-sm-12 col-xs-12 col-lg-12" id="MyannoncesDesac"   style=" margin: 0px;padding: 0px;  overflow-y: auto;overflow-x: hidden;border: none">
+                                             
+                                          <ul class="col-md-12 col-sm-12 col-xs-12 col-lg-12" id="listMannSesact"  >
+                                              <c:forEach var="anMyD" items="#{annonceBean.listMyAnnDesac}" >      
+                                              <li class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style=" padding-top: 5px;padding-bottom: 5px;padding-left: 0px;padding-right: 0px;margin: 0px; height:20%;border: 1px solid #8D99AE; " >
+                                                 
+                                                  
+                                                   
+                                <f:param value="#{anMyD.idAnnonce}"  name="idAnnToEdit" ></f:param>
+                                                
+                                      
+                                     
+                                                      <h:graphicImage name="#{anMyD.cheminFirst}" class="col-md-2 col-xs-5 col-sm-5 col-lg-2"    library="img" style="height:15%   "  />
+                                      
+                           
+                                     
+         <div  class="col-md-7 col-xs-3 col-sm-3 col-lg-7" style="font-size: 0.7em" >
+                                      
+            <p:outputLabel value="#{anMyD.titreAnnonce}"/> <br/>
+            <span   ><p:outputLabel value="#{anMyD.prixAnnonce} DHs"/>  </span>
+                                        <br/>
+                                        <br/>  <p:outputLabel value="#{anMyD.souscategorie}"/>
+                                        <br/><p:outputLabel value="#{anMyD.dateDepotAnnonce} &#160;&#160; #{anMyD.heureDepotAnnonce}"/>
+                                         
+                                         
+         </div>
+                                                      
+                                                  
+                                                      <div  class="col-md-1 col-xs-3 col-sm-3 col-lg-1" style="padding-top: 10px" >
+                                                          
+                                                          <p:commandLink  style="color:#336699;font-size: 0.8em;font-weight:bold "  class="a btn-link" action="#{annonceBean.supprimerAnnonce('myann')}" value="Supprimer" >
+                                                               <f:param value="#{anMyD.idAnnonce}"  name="idAnnToSupr" ></f:param>
+                                                          </p:commandLink><br/>
+                                                          <p:commandLink style="color:#336699;font-size: 0.8em;font-weight:bold "   class="a btn-link" action="#{annonceBean.activerAnnonce()}"  value="Activer" >
+                                                                  <f:param value="#{anMyD.idAnnonce}"  name="idAnnToActiv" ></f:param> 
+                                                          </p:commandLink>
+                                                          
+                                                          
+                                                      </div>
+                                                      
+ 
+       
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                                                  
+                                                 
+                                                </li>
+                                            </c:forEach>
+			</ul>
+                                            
+                                          </p:panel>
+                                          </c:if>
+                                          
+                                  </h:form>
+                               
+        </p:tab>
+                
+                
+		              
+                        
+                                        <p:tab class="col-md-12 col-sm-12 col-xs-12 col-lg-12" title="Dans la modération(#{annonceBean.listMyAnnModer.size()})" > 
+
+						
+
+							  <h:form prependId="false">
+                                                       <c:if test="#{annonceBean.listMyAnnModer.size() eq 0}">
+                                              <div style="height:auto;background-size:100% 100% ;background-repeat: no-repeat; background-image: url(../resources/imgProjet/nop.JPG);">
+                                                  
+                                                  <h:outputLink    class="btn btn-default hidden-sm hidden-xs "  
+                                                                   style="  font-family:slick ;background-color: #efebeb; font-size: 0.9em;color:#155091;margin-top: 40%;margin-left: 43%;margin-bottom: 5%" value="#{request.contextPath}/Publication">
+                                                    
+                                                   Publier une annonce
+                                                    </h:outputLink>
+                                                         <h:outputLink    class="btn btn-default  hidden-md hidden-lg "  
+                                                                   style="  font-family:slick ;background-color: #efebeb; font-size: 0.9em;color:#155091;margin-top: 40%;margin-left: 30%;margin-bottom: 5%" value="#{request.contextPath}/Publication">
+                                                    
+                                                   Publier une annonce
+                                                    </h:outputLink>
+                                              </div>
+                                          
+                                          </c:if>
+                                       
+                                              <c:if test="#{not empty annonceBean.listMyAnnModer}"> 
+                                          <p:panel class="col-md-12 col-sm-12 col-xs-12 col-lg-12" id="MyannoncesModer"    style=" margin: 0px;padding: 0px;  overflow-y: auto;overflow-x: hidden;border: none">
+                                                
+                                          <ul class="col-md-12 col-sm-12 col-xs-12 col-lg-12" id="listMannModer"  >
+                                              <c:forEach var="anMyM" items="#{annonceBean.listMyAnnModer}" >      
+                                             <li class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style=" padding-top: 5px;padding-bottom: 5px;padding-left: 0px;padding-right: 0px;margin: 0px; height:20%;border: 1px solid #8D99AE; " >
+                                                  
+                                                  
+                                                    
+                                                      <h:graphicImage name="#{anMyM.cheminFirst}" class="col-md-2 col-xs-5 col-sm-5 col-lg-2"    library="img" style="height:15%   "  />
+                                    
+                          
+                                     
+         <div  class="col-md-7 col-xs-7 col-sm-7 col-lg-7" style="font-size: 0.7em" >
+                                      
+            <p:outputLabel value="#{anMyM.titreAnnonce}"/> <br/>
+            <span    ><p:outputLabel value="#{anMyM.prixAnnonce} DHs"/>  </span>
+                                        <br/>
+                                        <br/>  <p:outputLabel value="#{anMyM.souscategorie}"/>
+                                        <br/><p:outputLabel value="#{anMyM.dateDepotAnnonce} &#160;&#160; #{anMyM.heureDepotAnnonce}"/>
+                                          
+                                                  
+                                                       
+                                                      </div>
+ 
+       
+                             
+                             
+                             
+                       
+                             
+                             
+                                                  
+                                                 
+                                                </li>
+                                            </c:forEach>
+			</ul>
+                                            
+                                          </p:panel>
+                                          </c:if>
+                                          
+                                  </h:form>
+                          
+                                            
+                                          
+                                          
+                                          
+                                
+                               
+        </p:tab>
+		
+		
+		         
+                                        
+                                    </p:tabView>
+                                      
+                                      
+                                    </p:panel>
+                                      
+                             
+                               
+        </p:tab>
+        <p:tab class="col-md-12 col-sm-12 col-xs-12 col-lg-12" title="Favoris"> 
+             
+                <h:form prependId="false">
+                     
+                 <p:panel class="col-md-12 col-sm-12 col-xs-12 col-lg-12" id="MyFavoris"   style=" margin: 0px;padding: 0px;  overflow-y: auto;overflow-x: hidden;border: none">
+                                       <c:if test="#{empty annonceBean.listFav}">
+                                              <div style="height:auto;background-size:100% 100% ;background-repeat: no-repeat; background-image: url(../resources/imgProjet/noAnn.jpg);">
+                                                  
+                                                  <h:outputLink    class="btn btn-link  a hidden-lg hidden-md"  
+                                                         
+                                                                   style="  font-family:slick ;background-color: #efebeb; font-size: 0.9em;color:#155091;margin-top: 30%;margin-left: 40%;margin-bottom: 5%" value="#{request.contextPath}/listeAnnonces/All">
+                                                    
+                                                    Rechercher
+                                                    </h:outputLink>
+                                             
+                                                  
+                                                  <h:outputLink    class="btn btn-link  a hidden-sm hidden-xs"  
+                                                         
+                                                                   style="  font-family:slick ;background-color: #efebeb; font-size: 0.9em;color:#155091;margin-top: 30%;margin-left: 47%;margin-bottom: 5%" value="#{request.contextPath}/listeAnnonces/All">
+                                                    
+                                                    Rechercher
+                                                    </h:outputLink>
+                                              </div>
+                                          
+                                          </c:if>
+                    <c:if test="#{not empty annonceBean.listFav}">          
+                                          <ul class="col-md-12 col-sm-12 col-xs-12 col-lg-12" id="listMfav"  >
+                                              <c:forEach var="anF" items="#{annonceBean.listFav}" >   
+                                             <li class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style=" padding-top: 5px;padding-bottom: 5px;padding-left: 0px;padding-right: 0px;margin: 0px; height:20%;border: 1px solid #8D99AE; " >
+                                                     
+                                                  
+                                                  
+                                                          <h:outputLink  value="#{request.contextPath}/EditAnnonce/#{anF.annonce.idAnnonce}"> 
+                                              
+                                     
+                                                      
+                                                      <h:graphicImage name="#{anF.annonce.cheminFirst}" class="col-md-2 col-xs-5 col-sm-5 col-lg-2"    library="img" style="height:15%   " />
+                                    
+                                    
+                          
+                                    
+                                     
+         <div  class="col-md-7 col-xs-3 col-sm-3 col-lg-7" style="font-size: 0.7em" >
+                                      
+             <p:outputLabel value="#{anF.annonce.titreAnnonce}"/> <br/>
+             <span   ><p:outputLabel value="#{anF.annonce.prixAnnonce} DHs"/>  </span>
+                                        <br/>
+                                        <br/> <p:outputLabel value="#{anF.annonce.souscategorie}"/>
+                                        <br/><p:outputLabel value="#{anF.annonce.dateDepotAnnonce}&#160;&#160;#{anF.annonce.heureDepotAnnonce}"/>
+                                         
+                                         
+         </div>   </h:outputLink>
+                                                  
+                                                  
+                                                      <div  class="col-md-1"  >
+                                                               <br/> 
+                                                              
+                                                               
+                   <button onclick="event.preventDefault();$('#addFavlist').click();" style=" margin-left: 30px;">
+                  <p:outputLabel  id="labFavlist" style="padding-right: 3px;padding-left:3px;padding-top: 3px;cursor: pointer" > 
+                      <p:graphicImage style="width:20px ;height:20px;cursor: pointer"   library="imgProjet" name="cred.JPG"  /> 
+                       
+                                   </p:outputLabel></button>
+                      
+                                 <p:commandButton  id="addFavlist" ondblclick="event.preventDefault();"  action="#{annonceBean.removeFavoriteList()}" style="display: none" update="MyFavoris">
+              <f:param value="#{anF.annonce.idAnnonce}"  name="idAnnfav" ></f:param>
+              </p:commandButton>                                              
+                                                               
+                                                               
+                                                               
+                                                      </div>
+                                                     
+ 
+       
+                             
+                             
+                             
+                             
+                             
+                             
+                             
+                                                  
+                                                 
+                                                </li>
+                                               </c:forEach>
+			</ul>
+                 </c:if>   </p:panel> </h:form>
+            
+           
+        </p:tab>
+        <p:tab   title="Paramétres" >
+       
+            
+            
+            
+            <p:panel id="panelParam" class="col-lg-8 col-md-8" style="padding-top:5px;padding-bottom: 5px ;margin-left: 0px; margin-bottom:20px ;border-left: none;border-bottom: none;border-top: none" >
+                    
+             <p:panel class=" hidden-md hidden-lg" id="contt" style="border: none;float: top" >
+                
+        
+                <div style="padding-top: 25%; margin-left: 25%;width:150px; height:150px;border-radius:50%; border: 2px solid #95a5a6;border-radius: 50%; background-image: url(../resources/img/#{user.phProfil});background-repeat: no-repeat;background-size: 150px" >
+                 <p:graphicImage   style="line-height:5;float:right;height: 40px;;width: 40px;border-radius: 50%;" library="imgProjet" name="app.JPG" id="parct" cache="false" />
+                </div>                              
+               <p:separator></p:separator>
+                
+             </p:panel>
+                    
+                       
+           
+                <h:panelGrid  id="a"  columns="3"   style="padding-left: 10%;margin-left: 10%;margin-top: 5%;margin-bottom: 0px;padding-bottom: 0px;width: 70% " >
+                     <p:outputLabel   value="Nom:"   /> 
+                        
+                     <p:outputLabel   id="labNom" value="#{user.nom}"   style=" margin-bottom: 3px;font-weight: normal "  ></p:outputLabel>
+                   <p:link    style="margin-bottom: 3px;margin-left: 10px;color:blue"  value="Modifier" id="mdfNom"></p:link>
+                   
+                       </h:panelGrid> 
+                  <h:form prependId="false">
+                 
+                       <h:panelGrid  id="b" columns="3" style="display: none;margin-left: 10%;margin-top: 5%;margin-bottom: 0px;padding-bottom: 0px;width: 70%" >
+                
+                <p:outputLabel value="Nom:" style="" for="NomN" /> 
+                       
+                    
+                <p:inputText id="NomN" value="#{login.nomNew}"   style="margin-bottom: 3px;margin-left: 10px;"  >
+                
+                    <f:validateBean/>
+                </p:inputText>
+                
+                
+                
+                <p:message id="msgNom"  for="NomN"></p:message> <p:spacer></p:spacer> <p:spacer></p:spacer>
+                <p:commandLink  style="margin-bottom: 3px;margin-left: 10%;color:blue;"  value="Valider" id="vldNom" action="#{login.modifierNom()}" update="msgNom"  ></p:commandLink>
+                  
+                </h:panelGrid>  
+                  </h:form>
+                   <p:separator></p:separator>
+                   
+                   
+                   
+                       <h:panelGrid id="j"   columns="3" style="margin-left: 10%;margin-top: 5%;margin-bottom: 0px;padding-bottom: 0px;width: 70%" >
+                     <p:outputLabel value="Ville" style=" " /> 
+                        
+                      <p:outputLabel id="labVille" value="#{user.villeUtilConnecte}"  style=" font-weight: normal "  /> 
+             
+                <p:link  style="margin-bottom: 3px;margin-left: 10px;color:blue"  value="Modifier" id="mdfVille"></p:link>
+                    
+                       </h:panelGrid>  
+                
+                   <h:form prependId="false">
+                
+                        
+                       <h:panelGrid id="h"   columns="3" style="display: none;margin-left: 10%;margin-top: 5%;margin-bottom: 0px;padding-bottom: 0px;width: 70%" >
+                
+              
+                     
+                 <p:outputLabel value="Ville" style="font-weight: normal " /> 
+                     
+                   
+                 <p:selectOneMenu id="VilleN"  value="#{login.villeNew}"    style=" margin-left: 10px; margin-top: 4px; line-height: 23px; height:33px ;width: 80%">
+            
+                   <ui:insert name = "Combo_vil" >
+      <ui:include src = "./partition/Combo_villes.xhtml" />
+   </ui:insert>
+        </p:selectOneMenu>
+                
+                
+                <p:message id="msgVille"  for="VilleN"></p:message> <p:spacer></p:spacer> <p:spacer></p:spacer>
+                <p:commandLink  style="margin-bottom: 3px;margin-left: 10px;color:blue"  value="Valider" id="vldVille" action="#{login.modifierVille()}" update="msgVille"  ></p:commandLink>
+                  
+                </h:panelGrid>  
+                   </h:form>
+                   <p:separator></p:separator>
+                   
+                   <h:panelGrid   columns="3" style="margin-left: 10%;width: 70%" >
+                        <p:outputLabel value="Email:" style="" id="labEmail"/> 
+                        <p:outputLabel id="emailInsc" value="#{login.email}"   style="margin-bottom: 3px;margin-left: 10px;font-weight: normal"  /> 
+                          <p:spacer></p:spacer>
+                    </h:panelGrid>
+                            <p:separator></p:separator>
+                            <div id="c">
+                                
+                                 <h:panelGrid   columns="3" style="margin-left: 10%;width:50%" >
+				 <p:outputLabel value="Mot de passe" style=" " /> 
+                                   <p:link  style="margin-bottom: 3px;margin-left: 10px;color:blue"  value="Modifier" id="mdfpwd"></p:link>
+                              
+                                 <p:spacer></p:spacer>
+                                 </h:panelGrid>
+                                
+                                
+                                
+                                
+                                
+                            </div>
+                            
+                            
+                             
+             <h:form prependId="false">                
+                 <h:panelGrid  id="d" columns="3" style="margin-left: 10%;display: none;width: 70%" >
+				 <p:outputLabel value="Ancien mot de passe" style="  " id="labPass" /> 
+                                 
+  <p:password id="passwordAncien" value="#{login.ancienPwd}" feedback="false" size="15" style="margin-bottom: 3px;margin-left: 10px; "></p:password>
+			   <div id="pwdanc" style="display: none" aria-live="polite" class="ui-message ui-message-error ui-widget ui-corner-all"><span class="ui-message-error-icon"></span><span class="ui-message-error-detail">mot de passe invalide !</span></div>
+             
+                                 <p:outputLabel value="Nouveau Mot de passe" style=" " id="labNewPass" /> 
+                                
+                              
+                                 <p:password id="passwordNew" value="#{login.newPwd}" feedback="false" size="15" style="margin-bottom: 3px;margin-left: 10px; ">
+                                     <f:validateBean/></p:password>
+                                 <p:message for="passwordNew"  id="msgPwd"></p:message>
+                                <p:spacer></p:spacer>
+                                <h:outputText value="&#160;&#160;&#160;  Au moins 5 caractéres  "  style="font-size:0.8em" id="labInfop"/>
+                                <p:spacer></p:spacer>
+                                 <p:spacer></p:spacer> <p:spacer></p:spacer>
+                                 
+                                 <p:commandLink    value="Valider"  id="vldpwd" action="#{login.modifierPwdCon()}" update="msgPwd"  style="height: 35px;color:blue;"/> 
+                    
+                                 
+                 </h:panelGrid>   </h:form>  
+                            
+                            <p:separator></p:separator>
+                             
+                                
+                                 <h:panelGrid  id="e" columns="3" style="margin-left: 10%;width: 70%" >
+                                 
+                                  <p:outputLabel value="Téléphone:" style=" "  /> 
+                                  <p:outputLabel value="#{user.telUtilConnecte}"  id="telmod"  style="margin-bottom: 3px;margin-left: 10px;font-weight: normal " />
+                                      <p:spacer></p:spacer>
+                                      <p:outputLabel value="Visibilité:" style=""  /> 
+                                      <p:outputLabel     style="margin-bottom: 3px;margin-left: 10px;font-weight: normal " id="visTel" >
+                                          <c:if test="#{user.telVisiblUtilConnecte eq 'ko'}">affiché</c:if>
+                                           <c:if test="#{user.telVisiblUtilConnecte eq 'ok'}">masqué</c:if>
+                                          
+                                      </p:outputLabel>
+                                      
+                                      <p:spacer></p:spacer>
+                      
+                   <p:spacer></p:spacer> <p:spacer></p:spacer>
+                                 
+                   <p:link    value="Modifier"  id="mdftel"    style="height: 35px;color:blue;"/> 
+                    
+                        
+                           </h:panelGrid>
+                          
+                            
+                                
+                                  <h:form prependId="false">
+                                <h:panelGrid  id="f" columns="3" style="margin-left: 10%;display: none;width: 70%" >
+                                 
+                                  <p:outputLabel value="Téléphone:" style="" id="labTel"/> 
+                             <p:inputMask   mask="9999999999" id="telInsc" value="#{login.telNew}"    style="margin-bottom: 3px;margin-left: 10px;" />
+                                     
+                       
+                    <p:message for="telInsc" id="msgTel"></p:message>
+                        
+                           </h:panelGrid>
+                           
+                     
+                    <h:panelGrid id="k" columns="2" style="margin-bottom:10px;margin-left:34%;display: none;width: 100% "    >
+                      <p:selectBooleanCheckbox value="#{login.newVisib}" style="font-size:0.7em;display: inline" disabled="false" id="visibilite" itemLabel="Masquer votre numéro de téléphone. "/>
+ 
+                        
+                        <p:spacer ></p:spacer>
+                    <p:spacer ></p:spacer>
+                    <p:commandLink    value="Valider"  id="vldtel"  action="#{login.modifierTel()}" update="msgTel"    style="height: 35px;color:blue;"/> 
+              </h:panelGrid>  
+                   </h:form>  		  
+                  
+                
+                     </p:panel> 
+            <p:panel class="col-md-4 hidden-sm hidden-xs" id="cont" style="border: none;float: top" >
+                
+        
+                <div style="padding-top: 25%; margin-left: 25%;width:150px; height:150px;border-radius:50%; border: 2px solid #95a5a6;border-radius: 50%; background-image: url(../resources/img/#{user.phProfil});background-repeat: no-repeat;background-size: 150px" >
+                 <p:graphicImage   style="line-height:5;float:right;height: 40px;;width: 40px;border-radius: 50%;" library="imgProjet" name="app.JPG" id="parc1" cache="false" />
+                </div>                              
+              
+                
+            </p:panel>
+            
+    
+            
+          
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </p:tab>   
+            
+                  
+                          
+                                </p:tabView>
+                          
+                                
+                                  
+  
+                      
+         
+     </div>
+                            
+                            
+                            
+                            
+                            
+  </div>   
+                
+                
+                <h:form prependId="uploadFormMyan" enctype="multipart/form-data" >
+                  <p:fileUpload value="#{login.file}" mode="simple" id="ph"  label="Choisir"    style="display: none"   ></p:fileUpload>
+                     <br/>
+                     <h:commandButton   class="btn btn-primary" value="Ajouter" id="modPh"   actionListener  ="#{login.uploadPh()}"  style="display: none"   >
+                         
+                      </h:commandButton>
+                    </h:form>
+ 
+                    
+			 <!--footer-->
+                         <div id="divFooter" style="position: relative">
+                                    <ui:insert name = "footerMesAnn"   >
+                                                          <ui:include src = " ./partition/footer.xhtml" />
+                                                                 </ui:insert><!--/footer-->
+                         </div>
+                
+				<!-- /container -->
+                                
+                              <script>
+                                    
+            
+      $("#parc1").click(function(){
+           
+            $("#ph").click();
+         
+     });
+      $("#parct").click(function(){
+           
+            $("#ph").click();
+         
+     });
+          $("#parc2").click(function(){
+           
+            $("#ph").click();
+         
+     });
+       $("#ph").change(function(){
+           
+            $("#modPh").click();
+         
+     });
+          
+                         
+                           $("#mdfNom").click(function(){
+                               event.preventDefault(); 
+                                   $("#a").toggle();
+                              $("#b").toggle();
+                                  
+                           });
+                           $("#mdfVille").click(function(){
+                               event.preventDefault(); 
+                                   $("#j").toggle();
+                              $("#h").toggle();
+                                  
+                           });
+               
+                       
+                             $("#mdfpwd").click(function(){
+                               event.preventDefault(); 
+                                   $("#c").toggle();
+                              $("#d").toggle();
+                                  
+                           });
+                                
+                          
+                             $("#mdftel").click(function(){
+                               event.preventDefault(); 
+                                   $("#e").toggle();
+                              $("#f").toggle();
+                              $("#k").toggle();
+                                  
+                           });</script>
+
+
+                                
+			 
+     
+    </h:body></html>
+        
+        
+    
+    
+           

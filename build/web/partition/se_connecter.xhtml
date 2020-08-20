@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:composition>
+      
+       
+       
+       
+            <p:dialog  id="dialog" widgetVar="dialogue" hideEffect="explode"  modal="true" header="Connexion"  style="background-color:gainsboro ;text-decoration: brown" >
+         
+         
+         
+            
+           <h:form prependId="conForm">
+	
+                
+                
+            
+             
+               
+		<p:panel id="loginPAnl"  style="">
+                    
+                     
+            <div id="idbtq"><h5 style="color: slategray;text-decoration: underline #ef233c solid ;">Boutique:</h5></div>
+             <div id="idpart"><h5 style="color: rosybrown;text-decoration: underline slategray solid;">Particulier</h5></div>
+            
+                    <h:panelGrid id="loginPanel" columns="2"  >
+                        <p:spacer></p:spacer> <p:outputLabel  value="#{login.msg}" id="vld" style="color: red;font-size: 12px"></p:outputLabel>
+                        <h:outputText value="Email" style="font-size: 13px ;margin-bottom: 3px;padding-right: 5px;text-transform: capitalize"/>
+                        <p:inputText id="emailC" value="#{login.email}" size="15" required="true" style="margin-bottom: 3px;margin-left: 10px;"></p:inputText>
+				 
+				<h:outputText value="Mot de passe" style="font-size: 13px ;margin-bottom: 3px; " />
+                              
+                                <p:password id="pass" value="#{login.motDepasse}" required="true"
+                                            feedback="false" size="15" style="margin-bottom: 3px;margin-left: 10px; "></p:password>
+				<p:message for="pass" style="color: red;padding-left: 20px ;font-size: 14px"  ></p:message>
+			</h:panelGrid>
+			 <br/>
+                <h:panelGrid columns="2" cellpadding="10" width="100%">
+                        
+                    <p:link outcome="pwdOublier" class="btn btn-link  a " value="Mot de passe oublié ?" id="lienPwdOublie" style="  font-family:slick ; font-size: 15px;color:#1b6d85 "  /> 
+						 
+                            
+                    <p:commandButton id="loginButton"  class="btn btn-primary"  
+                                     value="Valider" actionListener="#{login.authentification}"  style="float: right; color:white ;text-decoration: gainsboro;margin-right: 10px">
+                                 <c:if test="#{not empty annonceBean.annonceToEdit.utilisateurConnecte}"> 
+                                 <f:param value="#{annonceBean.annonceToEdit.idAnnonce}" name="idAnnToMsg"></f:param>
+               <f:param value="#{annonceBean.annonceToEdit.utilisateurConnecte.idUtilisateurConnecte}"  name="idAnn" />
+                                 
+                                 </c:if>  
+                        
+                            </p:commandButton></h:panelGrid>
+                    <div id="insc"   ><h:outputText value="Pas encore inscrit ? " style="font-size:14px"  /> 
+                        
+                        <p:link outcome="inscrire" class="btn btn-link  a " value="S'inscrire gratuitement" id="lienInscrire" style="  font-family:slick ; font-size: 15px;color:blue"  /> 
+                          
+                      
+						 </div>
+		</p:panel>
+	 
+            	 
+		<p:blockUI block="loginPAnl" trigger="loginButton"  >
+			
+                    <h:graphicImage name="load.gif" library="imgProjet"  height="100%"  width="50%"  alt="Patientez" />
+                      
+		</p:blockUI>
+                
+                 
+                                             
+                
+	</h:form>
+           
+           
+             
+                     
+    
+            
+            
+       
+            
+            
+            
+        </p:dialog>
+            
+            
+           
+       </ui:composition>
+    </h:body>
+</html>

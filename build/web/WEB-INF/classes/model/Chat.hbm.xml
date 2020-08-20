@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 janv. 2020 21:02:01 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.Chat" table="CHAT" schema="DBANNONCES">
+        <id name="idChat" type="big_decimal">
+            <column name="ID_CHAT" precision="22" scale="0" />
+            <generator class="increment"></generator>
+        </id>
+        <many-to-one name="utilisateurConnecte" class="model.UtilisateurConnecte" fetch="select">
+            <column name="ID_UTILISATEUR_CONNECTE" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="contact" class="model.UtilisateurConnecte" fetch="select">
+            <column name="ID_UTILISATEUR_CONNECTE1" precision="22" scale="0" />
+        </many-to-one>
+        <property name="lastMessage" type="string">
+            <column name="LAST_MESSAGE" length="100" />
+        </property>
+        <property name="dateLastMessage" type="string">
+            <column name="DATE_LAST_MESSAGE" length="30" />
+        </property>
+          <property name="etatLastMsg" type="string">
+            <column name="etat_last_msg" length="10" />
+        </property> 
+        <property name="idRecepLast" type="big_decimal">
+            <column name="id_recep_last" precision="22" scale="0" />
+        </property> 
+        <set name="messages" table="MESSAGE" inverse="true" lazy="true" fetch="select"  >
+            <key>
+                <column name="ID_CHAT" precision="22" scale="0" />
+            </key>
+            <one-to-many class="model.Message" />
+        </set>
+    </class>
+</hibernate-mapping>
