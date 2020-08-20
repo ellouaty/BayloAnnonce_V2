@@ -542,8 +542,8 @@ if(val==true){
      }
       public void envoyerEmail(String toEmail,String subject,String message){
           
-          String user = "ellouaty@gmail.com";
-                String pass = "azerty2018+++";
+          String user = "****@GMAIL.COM";
+                String pass = "*****";
                 SendMail.send(toEmail,subject, message, user, pass); 
                 
       }      
